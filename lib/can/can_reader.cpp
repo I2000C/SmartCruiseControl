@@ -48,7 +48,7 @@ void canRxTask(void* args) {
     }
 }
 
-void CanReader::readState(VehicleState& state) {
+void CanReader::readState(VehicleState& state) const {
     // Seq lock
     uint32_t s1, s2;
     do {

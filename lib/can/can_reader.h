@@ -8,7 +8,7 @@ class CanReader {
     public:
         bool init();
 
-        void readState(VehicleState& state);
+        void readState(VehicleState& state) const;
     
     private:
         SharedVehicleState sharedState;

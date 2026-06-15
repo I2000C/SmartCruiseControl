@@ -8,6 +8,7 @@
 
 #define CAN_RX_TASK_PRIORITY 5
 #define CAN_PROCESSING_TASK_PRIORITY 4
+#define ELM327_TASK_PRIORITY 1
 
 /* CAN bus constants */
 #define CAN_TX_GPIO GPIO_NUM_5
@@ -17,3 +18,14 @@
 #define CAN_RX_QUEUE_LENGTH 16
 #define CAN_PROCESSING_QUEUE_LENGTH 100
 #define SNAPSHOT_PERIOD_MS 20
+
+/* ELM327 constants */
+#define USE_SERIAL2
+#ifdef USE_SERIAL2
+    #define ELM327_SERIAL Serial2
+    #define ELM327_SERIAL_RX_PIN GPIO_NUM_16
+    #define ELM327_SERIAL_TX_PIN GPIO_NUM_17
+#else
+    #define ELM327_SERIAL Serial
+#endif
+#define ELM327_SERIAL_BAUDRATE 115200

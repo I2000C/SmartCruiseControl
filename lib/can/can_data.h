@@ -40,7 +40,7 @@ struct VehicleState {
     // bit 6 --> Trunk door
     uint8_t doorStatus;
 
-    uint16_t refrigerantTemperature;    // ºC
+    int16_t refrigerantTemperature;     // ºC
     float fuelRate;                     // L/h
 
     float averageSpeed;             // km/h
