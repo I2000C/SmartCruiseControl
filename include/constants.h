@@ -32,6 +32,9 @@
 
 #define THROTTLE_RELAY_PIN GPIO_NUM_19
 
+/* Brake / Clutch constants */
+#define BRAKE_CLUTCH_PIN GPIO_NUM_18
+
 /* CAN bus constants */
 #define CAN_TX_GPIO GPIO_NUM_5
 #define CAN_RX_GPIO GPIO_NUM_4
