@@ -4,6 +4,7 @@
 #include "indicator_led.h"
 #include "throttle.h"
 #include "brake_clutch.h"
+#include "buttons.h"
 
 CanReader canReader;
 Elm327 elm327(canReader);
