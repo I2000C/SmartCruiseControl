@@ -40,7 +40,8 @@ bool CanDecoder::decodeFrame(const CanFrame& frame, SharedVehicleState& sharedSt
 
             ENTER_CRITICAL(sharedState);
             sharedState.state.brakeIntensity = ((frame.data[2] << 8) | (frame.data[3]));
-            sharedState.state.brakeIntensity = (sharedState.state.brakeIntensity - MIN_BRAKE_VALUE) / (MAX_BRAKE_VALUE - MIN_BRAKE_VALUE) * 100.0;
+            sharedState.state.brakeIntensity = (sharedState.state.brakeIntensity - MIN_BRAKE_VALUE) / (MAX_BRAKE_VALUE - MIN_BRAKE_VALUE) * 100.0f;
+            sharedState.state.brakeIntensity = constrain(sharedState.state.brakeIntensity, 0.0f, 100.0f);
 
             sharedState.state.speed = speedEstimator.getSpeed();
             sharedState.state.speedValid = speedEstimator.isValid();
@@ -50,6 +51,7 @@ bool CanDecoder::decodeFrame(const CanFrame& frame, SharedVehicleState& sharedSt
             // Throttle pedal intensity
             ENTER_CRITICAL(sharedState);
             sharedState.state.throttleIntensity = frame.data[2] * 100.0f / MAX_THROTTLE_VALUE;
+            sharedState.state.throttleIntensity = constrain(sharedState.state.throttleIntensity, 0.0f, 100.0f);
             EXIT_CRITICAL(sharedState);
             break;
         case 0x308:
