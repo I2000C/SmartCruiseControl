@@ -11,15 +11,16 @@ void canProcessingTask(void* args) {
     CanReader* canReader = (CanReader*) args;
 
     CanFrame frame;
-    uint32_t lastSpeedUpdate = millis();
+    uint32_t lastComputedDataUpdate = millis();
 
     while(true) {
         if(xQueueReceive(canReader->canQueue, &frame, pdMS_TO_TICKS(REFRESH_COMPUTED_DATA_TIME_MS))) {
             canReader->canDecoder.decodeFrame(frame, canReader->sharedState);
         }
 
-        if(millis() - lastSpeedUpdate > REFRESH_COMPUTED_DATA_TIME_MS) {
+        if(millis() - lastComputedDataUpdate > REFRESH_COMPUTED_DATA_TIME_MS) {
             canReader->canDecoder.refreshComputedData(canReader->sharedState);
+            lastComputedDataUpdate = millis();
         }
     }
 }
