@@ -116,7 +116,7 @@ void CanDecoder::refreshComputedData(SharedVehicleState& sharedState) {
     float tripDistanceKM = sharedState.state.tripDistance;
     float tripTimeHours = (sharedState.state.tripTime / 1000.0f) / 3600.0f;
     ENTER_CRITICAL(sharedState);
-    sharedState.state.averageSpeed = tripTimeHours / tripTimeHours;
+    sharedState.state.averageSpeed = tripTimeHours > 0.0f ? (tripDistanceKM / tripTimeHours) : 0.0f;
     EXIT_CRITICAL(sharedState);
 
     // Refresh instant fuel rate (L/100km), average fuel rate (L/100km) and range (km)
