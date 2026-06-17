@@ -165,7 +165,13 @@ void Elm327::processMode01(const char* cmd, const VehicleState& vehicleState) {
         return;
     }
 
-    uint8_t pid = (uint8_t) strtol(cmd + 2, nullptr, 16);
+    char* end;
+    uint8_t pid = (uint8_t) strtol(cmd + 2, &end, 16);
+    if(end == cmd + 2) {
+        sendText("?");
+        return;
+    }
+
     if(pid == 0x00 || pid == 0x20 || pid == 0x40) {
         uint8_t out[6] = {0x41, pid};
         uint8_t* bitmap = &out[2];
@@ -178,7 +184,8 @@ void Elm327::processMode01(const char* cmd, const VehicleState& vehicleState) {
     if(processPid(pid, response, vehicleState)) {
         uint8_t out[sizeof(response.data) + 2] = {0x41, pid};
         memcpy(&out[2], response.data, response.len);
-        sendResponse(response.data, response.len + 2);
+        sendResponse(out, response.len + 2);
+        return;
     }
 
     sendText("NO DATA");
@@ -190,13 +197,19 @@ void Elm327::processMode22(const char* cmd, const VehicleState& vehicleState) {
         return;
     }
 
-    uint8_t pid = (uint8_t) strtol(cmd + 2, nullptr, 16);
+    char* end;
+    uint8_t pid = (uint8_t) strtol(cmd + 2, &end, 16);
+    if(end == cmd + 2) {
+        sendText("?");
+        return;
+    }
 
     PidResponse response;
     if(processExtraPid(pid, response, vehicleState)) {
         uint8_t out[sizeof(response.data) + 3] = {0x41, 0x00, pid};
         memcpy(&out[3], response.data, response.len);
-        sendResponse(response.data, response.len + 3);
+        sendResponse(out, response.len + 3);
+        return;
     }
 
     sendText("NO DATA");
