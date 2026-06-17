@@ -14,7 +14,7 @@ class CanDecoder {
         FuelRangeEstimator fuelRangeEstimator;
 
         inline void ENTER_CRITICAL(SharedVehicleState& sharedState) {
-            sharedState.seq.fetch_add(1, std::memory_order_release);
+            sharedState.seq.fetch_add(1, std::memory_order_relaxed);
         }
         
         inline void EXIT_CRITICAL(SharedVehicleState& sharedState) {
