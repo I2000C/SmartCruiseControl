@@ -1,7 +1,6 @@
 #pragma once
+#include "constants.h"
 #include <cstdint>
-
-#define SPEED_TIMEOUT_MS 3000
 
 class SpeedEstimator {
     private:

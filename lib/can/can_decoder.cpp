@@ -58,6 +58,7 @@ bool CanDecoder::decodeFrame(const CanFrame& frame, SharedVehicleState& sharedSt
             // Engine rpm
             ENTER_CRITICAL(sharedState);
             sharedState.state.rpm = (frame.data[1] << 8) | (frame.data[2]);
+            sharedState.state.rpmLastUpdate = millis();
             EXIT_CRITICAL(sharedState);
             break;
         case 0x408:

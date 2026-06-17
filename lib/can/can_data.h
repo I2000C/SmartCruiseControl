@@ -19,6 +19,7 @@ struct VehicleState {
     float speed;        // km/h
     bool speedValid;
     uint16_t rpm;       // rpm
+    uint32_t rpmLastUpdate;
 
     float totalDistance;    // km
     float startDistance;    // km

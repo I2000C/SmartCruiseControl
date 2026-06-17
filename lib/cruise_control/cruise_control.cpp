@@ -23,6 +23,10 @@ bool CruiseControl::canEnableCruise(bool isResume, const VehicleState& vehicleSt
     }
 
     // Check rpm
+    uint32_t rpmLastUpdate = vehicleState.rpmLastUpdate;
+    if(millis() - rpmLastUpdate > RPM_TIMEOUT_MS) {
+        return false;
+    }
     uint16_t rpm = vehicleState.rpm;
     if(rpm < MIN_RPM || rpm > MAX_RPM) {
         return false;

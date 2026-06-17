@@ -1,4 +1,5 @@
 #include "elm327_pids.h"
+#include "constants.h"
 #include <cinttypes>
 #include <cmath>
 
@@ -12,6 +13,9 @@ static bool pidCoolant(PidResponse& out, const VehicleState& state) {
 
 static bool pidRPM(PidResponse& out, const VehicleState& state) {
     uint16_t rpm = state.rpm;
+    if(millis() - state.rpmLastUpdate > RPM_TIMEOUT_MS) {
+        rpm = 0;
+    }
     out.data[0] = (rpm >> 8) & 0xFF;
     out.data[1] = rpm & 0xFF;
     out.len = 2;
@@ -20,6 +24,9 @@ static bool pidRPM(PidResponse& out, const VehicleState& state) {
 
 static bool pidSpeed(PidResponse& out, const VehicleState& state) {
     float speed = state.speed;
+    if(state.speedValid) {
+        speed = 0.0f;
+    }
     out.data[0] = (uint8_t) round(speed);
     out.len = 1;
     return true;

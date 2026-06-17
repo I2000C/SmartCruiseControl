@@ -20,6 +20,9 @@
 #define THROTTLE_PEDAL_THRESHOLD_ENABLE 20
 #define THROTTLE_PEDAL_THRESHOLD_DISABLE 10
 
+#define SPEED_TIMEOUT_MS 3000
+#define RPM_TIMEOUT_MS 3000
+
 /* PIDController constants */
 #define PID_KP 0.12f
 #define PID_KI 0.002f
