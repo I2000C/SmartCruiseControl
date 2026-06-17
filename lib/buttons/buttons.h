@@ -39,7 +39,7 @@ namespace Buttons {
         Button button;
     };
 
-    const ButtonRange buttons[] = {
+    inline constexpr ButtonRange buttons[] = {
         {50,    Button::BUTTON_REJECT_CALL},
         {250,   Button::BUTTON_MUTE},
         {800,   Button::BUTTON_ANSWER_CALL},
@@ -48,6 +48,8 @@ namespace Buttons {
         {2200,  Button::BUTTON_VOLUME_DOWN},
         {2600,  Button::BUTTON_VOLUME_UP}
     };
+
+    Button classify(uint16_t rawValue);
 
     Button getPressedButton();
 
