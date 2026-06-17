@@ -1,7 +1,8 @@
 #include "buttons.h"
+#include "adc_utils.h"
 
 Button Buttons::getPressedButton() {
-    uint16_t rawValue = readADC(BUTTONS_PIN);
+    uint16_t rawValue = ADC::readWithSamples(BUTTONS_PIN);
     for(const ButtonRange& buttonRange : buttons) {
         if(rawValue <= buttonRange.maxValue) {
             return buttonRange.button;

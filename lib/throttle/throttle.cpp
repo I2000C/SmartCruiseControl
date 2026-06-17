@@ -26,8 +26,10 @@ void Throttle::setGeneratedValue(float value) {
 }
 
 float Throttle::readPedalValue() {
-    uint16_t rawValue = readADC(THROTTLE_APPS2_PEDAL_PIN);
-    float apps2Value = (rawValue - APPS2_BASE) / APPS2_MULTI;
+    static float previousValue = 0.0f;
+    float value = ADC::readWithEMA(THROTTLE_APPS2_PEDAL_PIN, previousValue);
+    previousValue = value;
+    float apps2Value = (value - APPS2_BASE) / APPS2_MULTI;
     apps2Value = constrain(apps2Value, 0.0f, 100.0f);
     return apps2Value;
 }

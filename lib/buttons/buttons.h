@@ -1,6 +1,5 @@
 #pragma once
 #include "constants.h"
-#include "adc_utils.h"
 
 /**
  * ADC values for buttons using 5.1K resistor between BUTTONS_PIN and GND:
