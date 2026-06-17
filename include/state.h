@@ -1,6 +1,6 @@
 #pragma once
 
-enum SystemState {
+enum class SystemState {
     STATE_OFF,
     STATE_ACTIVE,
     STATE_OVERRIDE

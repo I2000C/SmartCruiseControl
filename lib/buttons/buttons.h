@@ -13,7 +13,7 @@
  * VOLUME_DOWN:     2060
  * VOLUME_UP:       2490
  */
-enum Button {
+enum class Button {
     BUTTON_REJECT_CALL,
     BUTTON_MUTE,
     BUTTON_ANSWER_CALL,
@@ -27,11 +27,11 @@ enum Button {
 /**
  * CruiseControl buttons
  */
-enum CCButton {
-    BUTTONCC_SET,
-    BUTTONCC_RESUME,
-    BUTTONCC_CANCEL,
-    BUTTONCC_NONE
+enum class CCButton {
+    BUTTON_SET,
+    BUTTON_RESUME,
+    BUTTON_CANCEL,
+    BUTTON_NONE
 };
 
 namespace Buttons {
@@ -41,13 +41,13 @@ namespace Buttons {
     };
 
     const ButtonRange buttons[] = {
-        {50,    BUTTON_REJECT_CALL},
-        {250,   BUTTON_MUTE},
-        {800,   BUTTON_ANSWER_CALL},
-        {1500,  BUTTON_NEXT_TRACK},
-        {1900,  BUTTON_PREVIOUS_TRACK},
-        {2200,  BUTTON_VOLUME_DOWN},
-        {2600,  BUTTON_VOLUME_UP}
+        {50,    Button::BUTTON_REJECT_CALL},
+        {250,   Button::BUTTON_MUTE},
+        {800,   Button::BUTTON_ANSWER_CALL},
+        {1500,  Button::BUTTON_NEXT_TRACK},
+        {1900,  Button::BUTTON_PREVIOUS_TRACK},
+        {2200,  Button::BUTTON_VOLUME_DOWN},
+        {2600,  Button::BUTTON_VOLUME_UP}
     };
 
     Button getPressedButton();
@@ -73,13 +73,13 @@ CCButton Buttons::getPressedCCButton() {
         case Button::BUTTON_ANSWER_CALL:
         case Button::BUTTON_NEXT_TRACK:
         case Button::BUTTON_PREVIOUS_TRACK:
-            return CCButton::BUTTONCC_CANCEL;
+            return CCButton::BUTTON_CANCEL;
         case Button::BUTTON_VOLUME_DOWN:
-            return CCButton::BUTTONCC_SET;
+            return CCButton::BUTTON_SET;
         case Button::BUTTON_VOLUME_UP:
-            return CCButton::BUTTONCC_RESUME;
+            return CCButton::BUTTON_RESUME;
         default:
-            return CCButton::BUTTONCC_NONE;
+            return CCButton::BUTTON_NONE;
     }
 }
 

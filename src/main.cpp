@@ -10,7 +10,7 @@
 VehicleState vehicleState;
 SystemState currentState = SystemState::STATE_OFF;
 float targetSpeed = 0.0f;
-CCButton lastPressedButton = CCButton::BUTTONCC_NONE;
+CCButton lastPressedButton = CCButton::BUTTON_NONE;
 
 CanReader canReader;
 Elm327 elm327(canReader);
@@ -67,8 +67,8 @@ void mainTask(void* args) {
 
         switch(currentState) {
             case SystemState::STATE_OFF:
-                if(isNewPulsation && (button == CCButton::BUTTONCC_SET || button == CCButton::BUTTONCC_RESUME)) {
-                    bool isResume = button == CCButton::BUTTONCC_RESUME;
+                if(isNewPulsation && (button == CCButton::BUTTON_SET || button == CCButton::BUTTON_RESUME)) {
+                    bool isResume = button == CCButton::BUTTON_RESUME;
                     if(canEnableCruise(isResume)) {
                         if(!isResume) {
                             targetSpeed = vehicleState.speed;
@@ -86,7 +86,7 @@ void mainTask(void* args) {
                 }
                 break;
             case SystemState::STATE_OVERRIDE:
-                if(!canEnableCruise(false) || button == CCButton::BUTTONCC_CANCEL) {
+                if(!canEnableCruise(false) || button == CCButton::BUTTON_CANCEL) {
                     Throttle::setGeneratedValue(0);
                     Throttle::enableOverride(false);
                     cruisePID.reset();
@@ -101,7 +101,7 @@ void mainTask(void* args) {
                 }
                 break;
             case SystemState::STATE_ACTIVE:
-                if(!canEnableCruise(false) || button == CCButton::BUTTONCC_CANCEL) {
+                if(!canEnableCruise(false) || button == CCButton::BUTTON_CANCEL) {
                     Throttle::setGeneratedValue(0);
                     Throttle::enableOverride(false);
                     cruisePID.reset();
@@ -114,9 +114,9 @@ void mainTask(void* args) {
                         currentState = SystemState::STATE_OVERRIDE;
                     } else {
                         if(isNewPulsation) {
-                            if(button == CCButton::BUTTONCC_SET) {
+                            if(button == CCButton::BUTTON_SET) {
                                 targetSpeed--;
-                            } else if(button == CCButton::BUTTONCC_RESUME) {
+                            } else if(button == CCButton::BUTTON_RESUME) {
                                 targetSpeed++;
                             }
                             targetSpeed = constrain(targetSpeed, MIN_SPEED_KMH, MAX_SPEED_KMH);
