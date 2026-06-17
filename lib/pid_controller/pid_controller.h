@@ -17,6 +17,7 @@ class PIDController {
         float _prevError = 0.0f;
         float _prevDeriv = 0.0f;
         float _prevProcessValue = 0.0f;
+        float _prevOutput = 0.0f;
 
         float _integralMax = 1000.0f;
     public:

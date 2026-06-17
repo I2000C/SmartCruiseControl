@@ -16,6 +16,7 @@ void PIDController::reset() {
     _prevError = 0.0f;
     _prevDeriv = 0.0f;
     _prevProcessValue = 0.0f;
+    _prevOutput = 0.0f;
 }
 
 float PIDController::compute(float setpoint, float processValue) {
@@ -59,12 +60,15 @@ float PIDController::compute(float setpoint, float processValue) {
 
     // clamp
     output = constrain(output, _outMin, _outMax);
-    output = constrain(output, _prevProcessValue - _maxDeltaDown, _prevProcessValue + _maxDeltaUp);
+
+    // rate limit
+    output = constrain(output, _prevOutput - _maxDeltaDown, _prevOutput + _maxDeltaUp);
 
     // save state
     _prevError = error;
     _prevDeriv = d;
     _prevProcessValue = processValue;
+    _prevOutput = output;
 
     return output;
 }
