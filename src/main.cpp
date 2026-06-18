@@ -3,7 +3,6 @@
 #include "elm327.h"
 #include "indicator_led.h"
 #include "throttle.h"
-#include "brake_clutch.h"
 #include "cruise_control.h"
 
 static CanReader canReader;
@@ -25,7 +24,6 @@ void mainTask(void* args) {
 
 void setup() {
     Throttle::init();
-    BrakeClutch::init();
     IndicatorLed::init();
     canReader.init();
     elm327.init();

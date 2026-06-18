@@ -2,8 +2,11 @@
 #include "adc_utils.h"
 #include <cinttypes>
 
+static bool overrideActive = false;
+
 void Throttle::init() {
     pinMode(THROTTLE_RELAY_PIN, OUTPUT);
+    pinMode(THROTTLE_RELAY_CHECK_PIN, INPUT);
     enableOverride(false);
 
     ledcSetup(THROTTLE_APPS1_PWM_CHANNEL, THROTTLE_PWM_FREQ_HZ, THROTTLE_PWM_RESOLUTION_BITS);
@@ -34,6 +37,29 @@ float Throttle::readPedalValue() {
     return apps2Value;
 }
 
-void Throttle::enableOverride(bool enabled) {
+bool Throttle::enableOverride(bool enabled) {
+    overrideActive = enabled;
     digitalWrite(THROTTLE_RELAY_PIN, enabled);
+    if(enabled) {
+        delayMicroseconds(10);
+        bool relayActuallyEnabled = digitalRead(THROTTLE_RELAY_CHECK_PIN);
+        if(!relayActuallyEnabled) {
+            overrideActive = false;
+            digitalWrite(THROTTLE_RELAY_PIN, false);
+            return false;
+        }
+    }
+    return true;
+}
+
+bool Throttle::isOverrideActive() {
+    return overrideActive;
+}
+
+bool Throttle::checkRelayState() {
+    if(!overrideActive) {
+        return false;
+    }
+    bool relayActuallyEnabled = digitalRead(THROTTLE_RELAY_CHECK_PIN);
+    return relayActuallyEnabled;
 }

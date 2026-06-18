@@ -53,10 +53,8 @@
 
 #define THROTTLE_APPS2_PEDAL_PIN GPIO_NUM_34
 
-#define THROTTLE_RELAY_PIN GPIO_NUM_19
-
-/* Brake / Clutch constants */
-#define BRAKE_CLUTCH_PIN GPIO_NUM_18
+#define THROTTLE_RELAY_PIN GPIO_NUM_18
+#define THROTTLE_RELAY_CHECK_PIN GPIO_NUM_19
 
 /* Buttons constants */
 #define BUTTONS_PIN GPIO_NUM_35

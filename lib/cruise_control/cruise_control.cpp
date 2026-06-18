@@ -1,5 +1,4 @@
 #include "cruise_control.h"
-#include "brake_clutch.h"
 #include "indicator_led.h"
 #include "throttle.h"
 
@@ -32,8 +31,8 @@ bool CruiseControl::canEnableCruise(bool isResume, const VehicleState& vehicleSt
         return false;
     }
 
-    // Check brake and clutch
-    if(BrakeClutch::isPressed()) {
+    // Check throttle relay
+    if(Throttle::isOverrideActive() && !Throttle::checkRelayState()) {
         return false;
     }
 
@@ -63,8 +62,9 @@ void CruiseControl::loop(const VehicleState& vehicleState) {
                         Throttle::enableOverride(false);
                         currentState = SystemState::STATE_OVERRIDE;
                     } else {
-                        Throttle::enableOverride(true);
-                        currentState = SystemState::STATE_ACTIVE;
+                        if(Throttle::enableOverride(true)) {
+                            currentState = SystemState::STATE_ACTIVE;
+                        }
                     }
                 }
             }
@@ -79,8 +79,11 @@ void CruiseControl::loop(const VehicleState& vehicleState) {
                 if(throttlePedal < THROTTLE_PEDAL_THRESHOLD_DISABLE) {
                     Throttle::setGeneratedValue(0);
                     cruisePID.reset();
-                    Throttle::enableOverride(true);
-                    currentState = SystemState::STATE_ACTIVE;
+                    if(Throttle::enableOverride(true)) {
+                        currentState = SystemState::STATE_ACTIVE;
+                    } else {
+                        currentState = SystemState::STATE_OFF;
+                    }
                 }
             }
             break;

@@ -24,5 +24,13 @@ namespace Throttle {
     float readPedalValue();
 
     // When enabled, the generated throttle value is used instead of the actual pedal value.
-    void enableOverride(bool enabled);
+    // If brake or clutch are active, this will return false and throttle won't be overrided
+    bool enableOverride(bool enabled);
+
+    // Returns true if throttle override is active
+    bool isOverrideActive();
+
+    // Checks if relay is active or not.
+    // This could be used to detect if brake or clutch are active while throttle is being overrided.
+    bool checkRelayState();
 }
