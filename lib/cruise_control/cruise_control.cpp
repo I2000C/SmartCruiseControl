@@ -3,7 +3,7 @@
 #include "throttle.h"
 
 bool CruiseControl::canEnableCruise(bool isResume, const VehicleState& vehicleState) {
-    // Check speed
+    // Validate vehicle state before enabling or resuming cruise control
     if(!vehicleState.speedValid) {
         return false;
     }
@@ -21,7 +21,7 @@ bool CruiseControl::canEnableCruise(bool isResume, const VehicleState& vehicleSt
         }
     }
 
-    // Check rpm
+    // Validate RPM freshness and range
     uint32_t rpmLastUpdate = vehicleState.rpmLastUpdate;
     if(millis() - rpmLastUpdate > RPM_TIMEOUT_MS) {
         return false;
@@ -31,7 +31,7 @@ bool CruiseControl::canEnableCruise(bool isResume, const VehicleState& vehicleSt
         return false;
     }
 
-    // Check throttle relay
+    // Ensure throttle relay is healthy when override is active
     if(Throttle::isOverrideActive() && !Throttle::checkRelayState()) {
         return false;
     }
@@ -40,16 +40,20 @@ bool CruiseControl::canEnableCruise(bool isResume, const VehicleState& vehicleSt
 }
 
 void CruiseControl::loop(const VehicleState& vehicleState) {
+    // Update indicator based on current cruise control state
     IndicatorLed::setState(currentState);
+
     CCButton button = Buttons::getPressedCCButton();
     bool isNewPulsation = button != lastPressedButton;
     if(isNewPulsation) {
         lastPressedButton = button;
     }
+
     float throttlePedal = Throttle::readPedalValue();
 
     switch(currentState) {
         case SystemState::STATE_OFF:
+            // Handle requests to set or resume cruise from OFF state
             if(isNewPulsation && (button == CCButton::BUTTON_SET || button == CCButton::BUTTON_RESUME)) {
                 bool isResume = button == CCButton::BUTTON_RESUME;
                 if(canEnableCruise(isResume, vehicleState)) {
@@ -69,7 +73,9 @@ void CruiseControl::loop(const VehicleState& vehicleState) {
                 }
             }
             break;
+
         case SystemState::STATE_OVERRIDE:
+            // When the driver presses the pedal, disable cruise and follow the pedal
             if(!canEnableCruise(false, vehicleState) || button == CCButton::BUTTON_CANCEL) {
                 Throttle::setGeneratedValue(0);
                 Throttle::enableOverride(false);
@@ -87,7 +93,9 @@ void CruiseControl::loop(const VehicleState& vehicleState) {
                 }
             }
             break;
+
         case SystemState::STATE_ACTIVE:
+            // Maintain target speed with PID while cruise is active
             if(!canEnableCruise(false, vehicleState) || button == CCButton::BUTTON_CANCEL) {
                 Throttle::setGeneratedValue(0);
                 Throttle::enableOverride(false);

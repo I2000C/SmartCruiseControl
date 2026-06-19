@@ -1,5 +1,6 @@
 #pragma once
 
+// Simple PID controller with output saturation and rate limiting
 class PIDController {
     private:
         float _kp;
@@ -38,11 +39,15 @@ class PIDController {
               _maxDeltaUp(maxDeltaUp),
               _maxDeltaDown(maxDeltaDown) { }
 
+        // Update PID gains
         void setTunings(float kp, float ki, float kd);
 
+        // Limit integral windup
         void setIntegralLimit(float limit);
 
+        // Reset controller state
         void reset();
 
+        // Compute PID output for given setpoint and process value
         float compute(float setpoint, float processValue);
 };

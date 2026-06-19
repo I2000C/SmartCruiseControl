@@ -4,6 +4,7 @@
 #include "can_decoder.h"
 #include <driver/twai.h>
 
+// Task that processes raw CAN frames and updates derived vehicle state
 void canProcessingTask(void* args) {
     if(args == nullptr) {
         return;
@@ -14,10 +15,12 @@ void canProcessingTask(void* args) {
     uint32_t lastComputedDataUpdate = millis();
 
     while(true) {
+        // Process any received CAN frames from the queue
         if(xQueueReceive(canReader->canQueue, &frame, pdMS_TO_TICKS(REFRESH_COMPUTED_DATA_TIME_MS))) {
             canReader->canDecoder.decodeFrame(frame, canReader->sharedState);
         }
 
+        // Periodically refresh derived state values from the latest data
         if(millis() - lastComputedDataUpdate > REFRESH_COMPUTED_DATA_TIME_MS) {
             canReader->canDecoder.refreshComputedData(canReader->sharedState);
             lastComputedDataUpdate = millis();
@@ -25,6 +28,7 @@ void canProcessingTask(void* args) {
     }
 }
 
+// Task that receives raw CAN frames from TWAI and pushes them for processing
 void canRxTask(void* args) {
     if(args == nullptr) {
         return;
@@ -35,6 +39,7 @@ void canRxTask(void* args) {
     CanFrame frame;
 
     while(true) {
+        // Receive raw TWAI frames from the CAN bus
         if(twai_receive(&message, pdMS_TO_TICKS(CAN_SLEEP_TIME_MS)) == ESP_OK) {
             frame.id = message.identifier;
             frame.dlc = message.data_length_code;
@@ -43,14 +48,14 @@ void canRxTask(void* args) {
             size_t len = frame.dlc < 8 ? frame.dlc : 8;
             memcpy(frame.data, message.data, len);
 
-            // Avoid blocking
+            // Enqueue frame without blocking so decoder can process it later
             xQueueSend(canReader->canQueue, &frame, 0);
         }
     }
 }
 
 void CanReader::readState(VehicleState& state) const {
-    // Seq lock
+    // Safe read using sequence lock to avoid partially written state
     uint32_t s1, s2;
     do {
         s1 = sharedState.seq.load(std::memory_order_acquire);
@@ -60,7 +65,7 @@ void CanReader::readState(VehicleState& state) const {
 }
 
 bool CanReader::init() {
-    // Main can bus config
+    // Configure TWAI in listen-only mode and accept all messages
     twai_general_config_t generalConfig = {
         .mode = TWAI_MODE_LISTEN_ONLY,
         .tx_io = CAN_TX_GPIO,
@@ -72,13 +77,9 @@ bool CanReader::init() {
         .clkout_divider = 0
     };
 
-    // CAN bus speed
     twai_timing_config_t timingConfig = CAN_SPEED;
-
-    // CAN message filter: Accept all messages
     twai_filter_config_t filterConfig = TWAI_FILTER_CONFIG_ACCEPT_ALL();
 
-    // Init driver
     if(twai_driver_install(&generalConfig, &timingConfig, &filterConfig) != ESP_OK) {
         return false;
     }

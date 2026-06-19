@@ -3,7 +3,7 @@
 bool CanDecoder::decodeFrame(const CanFrame& frame, SharedVehicleState& sharedState) {
     switch(frame.id) {
         case 0x09E:
-            // Total distance
+            // Decode total distance traveled from CAN frame
             ENTER_CRITICAL(sharedState);
             sharedState.state.totalDistance = ((frame.data[4] << 16) | (frame.data[5] << 8) | (frame.data[6])) / 10.0f;
 
@@ -15,7 +15,7 @@ bool CanDecoder::decodeFrame(const CanFrame& frame, SharedVehicleState& sharedSt
             EXIT_CRITICAL(sharedState);
             break;
         case 0x200:
-            // Speed A, B and C
+            // Process three redundant speed values and fuse them
             {
                 uint16_t speedA = (frame.data[2] << 8) | (frame.data[3]);
                 uint16_t speedB = (frame.data[4] << 8) | (frame.data[5]);
@@ -30,7 +30,7 @@ bool CanDecoder::decodeFrame(const CanFrame& frame, SharedVehicleState& sharedSt
             EXIT_CRITICAL(sharedState);
             break;
         case 0x208:
-            // Brake pedal intensity + speed D and E
+            // Brake intensity and additional speed sources
             {
                 uint16_t speedD = (frame.data[4] << 8) | (frame.data[5]);
                 uint16_t speedE = (frame.data[6] << 8) | (frame.data[7]);
@@ -48,39 +48,39 @@ bool CanDecoder::decodeFrame(const CanFrame& frame, SharedVehicleState& sharedSt
             EXIT_CRITICAL(sharedState);
             break;
         case 0x210:
-            // Throttle pedal intensity
+            // Throttle pedal position reported by the vehicle
             ENTER_CRITICAL(sharedState);
             sharedState.state.throttleIntensity = frame.data[2] * 100.0f / MAX_THROTTLE_VALUE;
             sharedState.state.throttleIntensity = constrain(sharedState.state.throttleIntensity, 0.0f, 100.0f);
             EXIT_CRITICAL(sharedState);
             break;
         case 0x308:
-            // Engine rpm
+            // Engine RPM reported on the CAN bus
             ENTER_CRITICAL(sharedState);
             sharedState.state.rpm = (frame.data[1] << 8) | (frame.data[2]);
             sharedState.state.rpmLastUpdate = millis();
             EXIT_CRITICAL(sharedState);
             break;
         case 0x408:
-            // Fuel level
+            // Fuel tank level in liters
             ENTER_CRITICAL(sharedState);
             sharedState.state.fuelLevel = frame.data[0];
             EXIT_CRITICAL(sharedState);
             break;
         case 0x416:
-            // Battery voltage
+            // Battery voltage report
             ENTER_CRITICAL(sharedState);
             sharedState.state.batteryVoltage = frame.data[0];
             EXIT_CRITICAL(sharedState);
             break;
         case 0x423:
-            // Door status
+            // Door open/closed status bits
             ENTER_CRITICAL(sharedState);
             sharedState.state.doorStatus = frame.data[2];
             EXIT_CRITICAL(sharedState);
             break;
         case 0x608:
-            // Refrigerant temperature and fuel rate
+            // Refrigerant temperature and fuel rate data
             ENTER_CRITICAL(sharedState);
             sharedState.state.refrigerantTemperature = frame.data[0] - 40;
             sharedState.state.fuelRate = ((frame.data[5] << 8) | (frame.data[6])) / 100.0f;
@@ -98,14 +98,14 @@ bool CanDecoder::decodeFrame(const CanFrame& frame, SharedVehicleState& sharedSt
 }
 
 void CanDecoder::refreshComputedData(SharedVehicleState& sharedState) {
-    // Refresh speed estimator
+    // Recompute fused speed and validate the current speed sample
     speedEstimator.compute();
     ENTER_CRITICAL(sharedState);
     sharedState.state.speed = speedEstimator.getSpeed();
     sharedState.state.speedValid = speedEstimator.isValid();
     EXIT_CRITICAL(sharedState);
 
-    // Refresh trip time
+    // Update trip timer and duration
     ENTER_CRITICAL(sharedState);
     if(sharedState.state.startTime == 0) {
         sharedState.state.startTime = millis();
@@ -113,14 +113,14 @@ void CanDecoder::refreshComputedData(SharedVehicleState& sharedState) {
     sharedState.state.tripTime = millis() - sharedState.state.startTime;
     EXIT_CRITICAL(sharedState);
 
-    // Refresh average speed
+    // Update average speed using total distance and trip time
     float tripDistanceKM = sharedState.state.tripDistance;
     float tripTimeHours = (sharedState.state.tripTime / 1000.0f) / 3600.0f;
     ENTER_CRITICAL(sharedState);
     sharedState.state.averageSpeed = tripTimeHours > 0.0f ? (tripDistanceKM / tripTimeHours) : 0.0f;
     EXIT_CRITICAL(sharedState);
 
-    // Refresh instant fuel rate (L/100km), average fuel rate (L/100km) and range (km)
+    // Update fuel consumption stats and remaining range estimate
     float litresRemaing = sharedState.state.fuelLevel;
     ENTER_CRITICAL(sharedState);
     sharedState.state.instantFuelConsumption = fuelRangeEstimator.getInstantConsumption();

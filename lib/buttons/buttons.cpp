@@ -27,14 +27,14 @@ Button Buttons::getPressedButton() {
         return Button::BUTTON_NONE;
     }
 
-    // Candidate changed, reset timer
+    // Candidate changed, reset debounce timer
     if(current != lastCandidate) {
         lastCandidate = current;
         candidateStartTime = now;
         return Button::BUTTON_NONE;
     }
 
-    // Candidate stable over time
+    // Candidate has been stable long enough to confirm
     if(confirmedButton != current) {
         if(now - candidateStartTime >= 200) {
             confirmedButton = current;

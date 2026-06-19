@@ -3,6 +3,7 @@
 #include "elm327_pids.h"
 #include <Arduino.h>
 
+// Background task that reads serial commands and keeps vehicle state fresh
 void elm327Task(void* args) {
     if(args == nullptr) {
         return;
@@ -40,6 +41,7 @@ void elm327Task(void* args) {
 }
 
 void Elm327::init() {
+    // Initialize serial interface used by the ELM327 emulator
     #ifdef USE_SERIAL2
         ELM327_SERIAL.begin(ELM327_SERIAL_BAUDRATE, SERIAL_8N1, ELM327_SERIAL_RX_PIN, ELM327_SERIAL_TX_PIN);
     #else
@@ -49,6 +51,7 @@ void Elm327::init() {
 }
 
 void Elm327::sendText(const char* text) {
+    // Send a single line of text to the ELM327 serial port
     ELM327_SERIAL.write(text);
     ELM327_SERIAL.write('\r');
     if(context.linefeeds) {
@@ -57,11 +60,13 @@ void Elm327::sendText(const char* text) {
 }
 
 void Elm327::sendPrompt() {
+    // Send the ELM327 prompt character after a response
     sendText("");
     ELM327_SERIAL.write('>');
 }
 
 void Elm327::sendResponse(const uint8_t* data, uint8_t len, const char* header) {
+    // Format a response using configured header and spacing options
     char out[64];
     int pos = 0;
 
@@ -81,6 +86,7 @@ void Elm327::sendResponse(const uint8_t* data, uint8_t len, const char* header) 
 }
 
 void Elm327::processCommand(const char* cmd, const VehicleState& vehicleState) {
+    // Route command to appropriate handler based on prefix
     if(cmd[0] == 'A' && cmd[1] == 'T') {
         processAT(cmd, vehicleState);
         return;
@@ -100,6 +106,7 @@ void Elm327::processCommand(const char* cmd, const VehicleState& vehicleState) {
 }
 
 void Elm327::processAT(const char* cmd, const VehicleState& vehicleState) {
+    // Handle AT commands used by ELM327 clients
     if(!strncmp(cmd, "ATZ", 3)) {
         context.echo = false;
         context.headers = false;
@@ -160,6 +167,7 @@ void Elm327::processAT(const char* cmd, const VehicleState& vehicleState) {
 }
 
 void Elm327::processMode01(const char* cmd, const VehicleState& vehicleState) {
+    // Handle standard OBD-II request mode 01
     if(strnlen(cmd, 4) != 4) {
         sendText("?");
         return;
@@ -192,6 +200,7 @@ void Elm327::processMode01(const char* cmd, const VehicleState& vehicleState) {
 }
 
 void Elm327::processMode22(const char* cmd, const VehicleState& vehicleState) {
+    // Handle extended OBD-II request mode 22
     if(strnlen(cmd, 6) != 6) {
         sendText("?");
         return;

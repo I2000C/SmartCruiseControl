@@ -5,6 +5,7 @@
 #include "pid_controller.h"
 #include "can_data.h"
 
+// Cruise control state machine and control loop
 class CruiseControl {
     private:
         SystemState currentState = SystemState::STATE_OFF;
@@ -12,9 +13,11 @@ class CruiseControl {
         float targetSpeed = 0.0f;
         PIDController cruisePID;
 
+        // Validate whether cruise can be enabled or resumed
         bool canEnableCruise(bool isResume, const VehicleState& vehicleState);
 
     public:
+        // Run one iteration of cruise control logic
         void loop(const VehicleState& vehicleState);
 
         CruiseControl() : cruisePID(PID_KP, PID_KI, PID_KD,

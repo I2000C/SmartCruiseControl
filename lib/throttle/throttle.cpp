@@ -2,9 +2,10 @@
 #include "adc_utils.h"
 #include <cinttypes>
 
-static bool overrideActive = false;
+static bool overrideActive = false; // Tracks whether throttle override is enabled
 
 void Throttle::init() {
+    // Initialize relay and throttle PWM outputs
     pinMode(THROTTLE_RELAY_PIN, OUTPUT);
     pinMode(THROTTLE_RELAY_CHECK_PIN, INPUT);
     enableOverride(false);
@@ -38,6 +39,7 @@ float Throttle::readPedalValue() {
 }
 
 bool Throttle::enableOverride(bool enabled) {
+    // Engage or disengage throttle override relay and verify its state
     overrideActive = enabled;
     digitalWrite(THROTTLE_RELAY_PIN, enabled);
     if(enabled) {

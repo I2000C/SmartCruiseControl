@@ -1,6 +1,7 @@
 #pragma once
 #include "can_reader.h"
 
+// ELM327 serial context tracks AT command settings
 struct ElmContext {
     bool echo      = false;     // ATE0 / ATE1
     bool headers   = false;     // ATH0 / ATH1
@@ -12,8 +13,10 @@ class Elm327 {
     public:
         Elm327(const CanReader& canReader) : canReader(canReader) { };
 
+        // Initialize the ELM327 serial interface and start its task
         void init();
 
+        // Process a received command string using current vehicle state
         void processCommand(const char* command, const VehicleState& vehicleState);
 
     private:

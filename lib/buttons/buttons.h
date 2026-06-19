@@ -24,7 +24,7 @@ enum class Button {
 };
 
 /**
- * CruiseControl buttons
+ * Cruise control button mapping from vehicle button bank
  */
 enum class CCButton {
     BUTTON_SET,
@@ -49,9 +49,12 @@ namespace Buttons {
         {2600,  Button::BUTTON_VOLUME_UP}
     };
 
+    // Determine button identity from raw ADC value
     Button classify(uint16_t rawValue);
 
+    // Sample the button ADC pin and return the pressed button if stable
     Button getPressedButton();
 
+    // Map generic button presses to cruise control commands
     CCButton getPressedCCButton();
 }

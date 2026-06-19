@@ -1,5 +1,6 @@
 #pragma once
 
+// Cruise control operating states
 enum class SystemState {
     STATE_OFF,
     STATE_ACTIVE,

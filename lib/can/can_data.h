@@ -7,19 +7,21 @@
 #define MIN_BRAKE_VALUE 0x4000
 #define MAX_BRAKE_VALUE 0x4659
 
+// Raw CAN frame container
 struct CanFrame {
-    uint32_t id;
-    uint8_t data[8];
-    uint8_t dlc;
-    uint32_t timestamp;
+    uint32_t id;          // CAN identifier
+    uint8_t data[8];      // Frame payload bytes
+    uint8_t dlc;          // Data length code
+    uint32_t timestamp;   // Receive timestamp in milliseconds
 };
 
+// Computed vehicle state extracted from CAN frames
 struct VehicleState {
     // Critical data
-    float speed;        // km/h
-    bool speedValid;
-    uint16_t rpm;       // rpm
-    uint32_t rpmLastUpdate;
+    float speed;          // km/h
+    bool speedValid;      // true when speed estimate is fresh
+    uint16_t rpm;         // rpm
+    uint32_t rpmLastUpdate; // timestamp of last RPM update
 
     float totalDistance;    // km
     float startDistance;    // km
@@ -50,6 +52,7 @@ struct VehicleState {
     float remainingRange;           // km
 };
 
+// Shared state wrapper using sequence lock for thread-safe reads/writes
 struct SharedVehicleState {
     std::atomic<uint32_t> seq{0};
     VehicleState state;
