@@ -91,7 +91,7 @@ bool CanReader::init() {
     sharedState.state.startDistance = -1.0f;
     canQueue = xQueueCreate(CAN_PROCESSING_QUEUE_LENGTH, sizeof(CanFrame));
 
-    xTaskCreatePinnedToCore(canRxTask, "CanTask", 5000, this, CAN_RX_TASK_PRIORITY, nullptr, PRO_CORE_ID);
+    xTaskCreatePinnedToCore(canRxTask, "CanRxTask", 5000, this, CAN_RX_TASK_PRIORITY, nullptr, PRO_CORE_ID);
     xTaskCreatePinnedToCore(canProcessingTask, "CanProcessingTask", 10000, this, CAN_PROCESSING_TASK_PRIORITY, nullptr, PRO_CORE_ID);
 
     return true;

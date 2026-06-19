@@ -6,6 +6,22 @@
 #include "throttle.h"
 #include "cruise_control.h"
 
+#define configCHECK_FOR_STACK_OVERFLOW 2
+
+// Stack overflow callback
+void vApplicationStackOverflowHook(TaskHandle_t xTask, char *pcTaskName) {
+    printf("ERROR: Stack overflow in task %s\n", pcTaskName);
+
+    // Disable interrupts
+    taskDISABLE_INTERRUPTS();
+
+    // Turn off throttle overriding
+    Throttle::enableOverride(false);
+
+    // Restart ESP32
+    esp_restart();
+}
+
 static CanReader canReader;                  // Shared CAN reader instance
 static Elm327 elm327(canReader);             // ELM327 emulator tied to CAN reader
 
