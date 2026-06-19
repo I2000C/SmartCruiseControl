@@ -4,14 +4,20 @@
 
 static bool overrideActive = false; // Tracks whether throttle override is enabled
 
-void Throttle::init() {
+bool Throttle::init() {
     // Initialize relay and throttle PWM outputs
     pinMode(THROTTLE_RELAY_PIN, OUTPUT);
     pinMode(THROTTLE_RELAY_CHECK_PIN, INPUT);
     enableOverride(false);
 
-    ledcSetup(THROTTLE_APPS1_PWM_CHANNEL, THROTTLE_PWM_FREQ_HZ, THROTTLE_PWM_RESOLUTION_BITS);
-    ledcSetup(THROTTLE_APPS2_PWM_CHANNEL, THROTTLE_PWM_FREQ_HZ, THROTTLE_PWM_RESOLUTION_BITS);
+    if(!ledcSetup(THROTTLE_APPS1_PWM_CHANNEL, THROTTLE_PWM_FREQ_HZ, THROTTLE_PWM_RESOLUTION_BITS)) {
+        return false;
+    }
+
+    if(!ledcSetup(THROTTLE_APPS2_PWM_CHANNEL, THROTTLE_PWM_FREQ_HZ, THROTTLE_PWM_RESOLUTION_BITS)) {
+        return false;
+    }
+    
     ledcAttachPin(THROTTLE_APPS1_PIN, THROTTLE_APPS1_PWM_CHANNEL);
     ledcAttachPin(THROTTLE_APPS2_PIN, THROTTLE_APPS2_PWM_CHANNEL);
     setGeneratedValue(0.0f);

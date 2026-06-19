@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include "error_codes.h"
 #include "can_reader.h"
 #include "elm327.h"
 #include "indicator_led.h"
@@ -23,12 +24,38 @@ void mainTask(void* args) {
     }
 }
 
+// Fatal error handler: blinks an error code indefinitely using the indicator LED
+void fatalErrorLoop(uint8_t code) {
+    while(true) {
+        for(uint8_t i=0; i<code; i++) {
+            IndicatorLed::setState(SystemState::STATE_ACTIVE);
+            delay(200);
+            IndicatorLed::setState(SystemState::STATE_OFF);
+            delay(200);
+        }
+        delay(1000); // Wait before repeating the error code
+    }
+}
+
 // Arduino setup() initializes hardware and starts application tasks
 void setup() {
-    Throttle::init();                         // Initialize throttle outputs and inputs
-    IndicatorLed::init();                     // Initialize status LED
-    canReader.init();                         // Start CAN bus reception and processing
-    elm327.init();                            // Start ELM327 serial task
+    // Initialize status LED
+    if(!IndicatorLed::init()) {
+        fatalErrorLoop(ERROR_LED_INIT);
+    }
+
+    // Initialize throttle outputs and inputs
+    if(!Throttle::init()) {
+        fatalErrorLoop(ERROR_THROTTLE_INIT);
+    }
+    
+    // Start CAN bus reception and processing
+    if(!canReader.init()) {
+        fatalErrorLoop(ERROR_CAN_READER_INIT);
+    }
+
+    // Start ELM327 serial task
+    elm327.init();
 
     xTaskCreatePinnedToCore(mainTask, "MainTask", 10000, nullptr, MAIN_TASK_PRIORITY, nullptr, APP_CORE_ID);
 }

@@ -16,7 +16,7 @@ inline constexpr float APPS2_MULTI = (APPS2_MAX_V * THROTTLE_PWM_MAX / V_REF - A
 
 namespace Throttle {
     // Initialize throttle PWM outputs, relay pins, and ADC input state
-    void init();
+    bool init();
 
     // Set throttle value. Value must be between 0% and 100%
     void setGeneratedValue(float value);

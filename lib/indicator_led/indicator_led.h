@@ -4,7 +4,7 @@
 
 namespace IndicatorLed {
     // Initialize PWM LED hardware
-    void init();
+    bool init();
 
     // Set the indicator brightness based on cruise control state
     void setState(const SystemState& state);
