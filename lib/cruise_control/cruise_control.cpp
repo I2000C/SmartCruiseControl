@@ -1,8 +1,14 @@
 #include "cruise_control.h"
 #include "indicator_led.h"
 #include "throttle.h"
+#include "brake_clutch.h"
 
 bool CruiseControl::canEnableCruise(bool isResume, const VehicleState& vehicleState) {
+    // Check brake and clutch
+    if(BrakeClutch::isBrakePressed() || BrakeClutch::isClutchPressed()) {
+        return false;
+    }
+
     // Validate vehicle state before enabling or resuming cruise control
     if(!vehicleState.speedValid) {
         return false;
@@ -28,11 +34,6 @@ bool CruiseControl::canEnableCruise(bool isResume, const VehicleState& vehicleSt
     }
     uint16_t rpm = vehicleState.rpm;
     if(rpm < MIN_RPM || rpm > MAX_RPM) {
-        return false;
-    }
-
-    // Ensure throttle relay is healthy when override is active
-    if(Throttle::isOverrideActive() && !Throttle::checkRelayState()) {
         return false;
     }
 
@@ -66,9 +67,8 @@ void CruiseControl::loop(const VehicleState& vehicleState) {
                         Throttle::enableOverride(false);
                         currentState = SystemState::STATE_OVERRIDE;
                     } else {
-                        if(Throttle::enableOverride(true)) {
-                            currentState = SystemState::STATE_ACTIVE;
-                        }
+                        Throttle::enableOverride(true);
+                        currentState = SystemState::STATE_ACTIVE;
                     }
                 }
             }
@@ -85,11 +85,8 @@ void CruiseControl::loop(const VehicleState& vehicleState) {
                 if(throttlePedal < THROTTLE_PEDAL_THRESHOLD_DISABLE) {
                     Throttle::setGeneratedValue(0);
                     cruisePID.reset();
-                    if(Throttle::enableOverride(true)) {
-                        currentState = SystemState::STATE_ACTIVE;
-                    } else {
-                        currentState = SystemState::STATE_OFF;
-                    }
+                    Throttle::enableOverride(true);
+                    currentState = SystemState::STATE_ACTIVE;
                 }
             }
             break;

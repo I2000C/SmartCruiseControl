@@ -2,12 +2,9 @@
 #include "adc_utils.h"
 #include <cinttypes>
 
-static bool overrideActive = false; // Tracks whether throttle override is enabled
-
 bool Throttle::init() {
     // Initialize relay and throttle PWM outputs
     pinMode(THROTTLE_RELAY_PIN, OUTPUT);
-    pinMode(THROTTLE_RELAY_CHECK_PIN, INPUT);
     enableOverride(false);
 
     if(!ledcSetup(THROTTLE_APPS1_PWM_CHANNEL, THROTTLE_PWM_FREQ_HZ, THROTTLE_PWM_RESOLUTION_BITS)) {
@@ -23,6 +20,7 @@ bool Throttle::init() {
     setGeneratedValue(0.0f);
 
     analogReadResolution(THROTTLE_PWM_RESOLUTION_BITS);
+    return true;
 }
 
 void Throttle::setGeneratedValue(float value) {
@@ -44,30 +42,7 @@ float Throttle::readPedalValue() {
     return apps2Value;
 }
 
-bool Throttle::enableOverride(bool enabled) {
-    // Engage or disengage throttle override relay and verify its state
-    overrideActive = enabled;
+void Throttle::enableOverride(bool enabled) {
+    // Engage or disengage throttle override relay
     digitalWrite(THROTTLE_RELAY_PIN, enabled);
-    if(enabled) {
-        delayMicroseconds(10);
-        bool relayActuallyEnabled = digitalRead(THROTTLE_RELAY_CHECK_PIN);
-        if(!relayActuallyEnabled) {
-            overrideActive = false;
-            digitalWrite(THROTTLE_RELAY_PIN, false);
-            return false;
-        }
-    }
-    return true;
-}
-
-bool Throttle::isOverrideActive() {
-    return overrideActive;
-}
-
-bool Throttle::checkRelayState() {
-    if(!overrideActive) {
-        return false;
-    }
-    bool relayActuallyEnabled = digitalRead(THROTTLE_RELAY_CHECK_PIN);
-    return relayActuallyEnabled;
 }

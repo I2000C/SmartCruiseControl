@@ -54,8 +54,11 @@
 
 #define THROTTLE_APPS2_PEDAL_PIN GPIO_NUM_34      // Analog input from actual accelerator pedal
 
-#define THROTTLE_RELAY_PIN GPIO_NUM_18            // Relay control pin for throttle override
-#define THROTTLE_RELAY_CHECK_PIN GPIO_NUM_19      // Relay status feedback pin
+#define THROTTLE_RELAY_PIN GPIO_NUM_21            // Relay control pin for throttle override
+
+/* Brake and clutch constants */
+#define BRAKE_PIN GPIO_NUM_18                     // Brake pedal pin      
+#define CLUTCH_PIN GPIO_NUM_19                    // Clutch pedal pin
 
 /* Button ADC input */
 #define BUTTONS_PIN GPIO_NUM_35                   // Analog pin for button matrix readout

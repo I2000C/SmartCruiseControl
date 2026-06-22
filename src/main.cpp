@@ -4,6 +4,7 @@
 #include "elm327.h"
 #include "indicator_led.h"
 #include "throttle.h"
+#include "brake_clutch.h"
 #include "cruise_control.h"
 
 #define configCHECK_FOR_STACK_OVERFLOW 2
@@ -64,6 +65,9 @@ void setup() {
     if(!Throttle::init()) {
         fatalErrorLoop(ERROR_THROTTLE_INIT);
     }
+
+    // Initialize brake and clutch pins
+    BrakeClutch::init();
     
     // Start CAN bus reception and processing
     if(!canReader.init()) {
