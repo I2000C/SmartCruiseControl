@@ -69,7 +69,7 @@
 #define CAN_PROCESSING_QUEUE_LENGTH 100           // Queue length for decoded CAN processing
 
 /* ELM327 constants */
-#define USE_SERIAL2
+//#define USE_SERIAL2
 #ifdef USE_SERIAL2
     #define ELM327_SERIAL Serial2
     #define ELM327_SERIAL_RX_PIN GPIO_NUM_16      // Serial2 RX pin for ELM327 interface
