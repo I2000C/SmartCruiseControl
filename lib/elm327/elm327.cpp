@@ -215,7 +215,7 @@ void Elm327::processMode22(const char* cmd, const VehicleState& vehicleState) {
 
     PidResponse response;
     if(processExtraPid(pid, response, vehicleState)) {
-        uint8_t out[sizeof(response.data) + 3] = {0x41, 0x00, pid};
+        uint8_t out[sizeof(response.data) + 3] = {0x62, 0x00, pid};
         memcpy(&out[3], response.data, response.len);
         sendResponse(out, response.len + 3);
         return;
