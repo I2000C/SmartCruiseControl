@@ -25,9 +25,9 @@
 #define RPM_TIMEOUT_MS 3000           // Maximum age of RPM data before invalidation
 
 /* PIDController constants */
-#define PID_KP 0.12f                  // Proportional gain
-#define PID_KI 0.002f                 // Integral gain
-#define PID_KD 0.8f                   // Derivative gain
+#define PID_KP 0.6f                   // Proportional gain
+#define PID_KI 0.2f                   // Integral gain
+#define PID_KD 0.05f                  // Derivative gain
 #define MAIN_LOOP_PERIOD_MS 50        // Main control loop period in milliseconds
 #define THROTTLE_RATE_UP_PER_SEC 15.0f   // Maximum throttle increase per second
 #define THROTTLE_RATE_DOWN_PER_SEC 40.0f // Maximum throttle decrease per second
