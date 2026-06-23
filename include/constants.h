@@ -43,8 +43,8 @@
 #define INDICATOR_LED_PWM_MAX (INDICATOR_LED_PWM_RESOLUTION-1)
 
 /* Throttle output and input constants */
-#define THROTTLE_APPS1_PIN GPIO_NUM_23            // PWM output for simulated APP sensor 1
-#define THROTTLE_APPS2_PIN GPIO_NUM_22            // PWM output for simulated APP sensor 2
+#define THROTTLE_APPS1_PIN GPIO_NUM_18            // PWM output for simulated APP sensor 1
+#define THROTTLE_APPS2_PIN GPIO_NUM_19            // PWM output for simulated APP sensor 2
 #define THROTTLE_APPS1_PWM_CHANNEL 2              // PWM channel for APP1 output
 #define THROTTLE_APPS2_PWM_CHANNEL 3              // PWM channel for APP2 output
 #define THROTTLE_PWM_FREQ_HZ 19000                // PWM frequency for throttle outputs
@@ -57,8 +57,8 @@
 #define THROTTLE_RELAY_PIN GPIO_NUM_21            // Relay control pin for throttle override
 
 /* Brake and clutch constants */
-#define BRAKE_PIN GPIO_NUM_18                     // Brake pedal pin      
-#define CLUTCH_PIN GPIO_NUM_19                    // Clutch pedal pin
+#define BRAKE_PIN GPIO_NUM_22                     // Brake pedal pin      
+#define CLUTCH_PIN GPIO_NUM_23                    // Clutch pedal pin
 
 /* Button ADC input */
 #define BUTTONS_PIN GPIO_NUM_35                   // Analog pin for button matrix readout
