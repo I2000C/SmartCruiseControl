@@ -13,7 +13,7 @@ bool IndicatorLed::init() {
         failSafeMode = true;
     }
     setState(SystemState::STATE_OFF);
-    return failSafeMode;
+    return !failSafeMode;
 }
 
 void IndicatorLed::setState(const SystemState& state) {
