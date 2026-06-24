@@ -1,6 +1,6 @@
 # SmartCruiseControl
 
-SmartCruiseControl is an embedded ESP32 project that implements cruise control using CAN Bus data, with vehicle state monitoring and ELM327 command emulation.
+SmartCruiseControl is an embedded ESP32 project that implements cruise control using CAN Bus data, with vehicle state monitoring and ELM327 command emulation for the **Smart forfour 454** car
 
 ## Description
 
@@ -29,7 +29,7 @@ The software runs on an ESP32 using the Arduino framework and focuses on:
   - `STATE_OFF`
   - `STATE_ACTIVE`
   - `STATE_OVERRIDE`
-- ELM327 interface over `Serial2` with basic `AT`, `01`, and `22` command handling.
+- ELM327 interface over `Serial` with basic `AT`, `01`, and `22` command handling.
 
 ## Project structure
 
@@ -51,21 +51,11 @@ The software runs on an ESP32 using the Arduino framework and focuses on:
 
 ## Requirements
 
-- ESP32 board, such as `esp32dev`.
-- PlatformIO installed.
-- CAN Bus connection to the vehicle or CAN simulator using the constants defined in `include/constants.h`:
-  - `CAN_RX_GPIO`
-  - `CAN_TX_GPIO`
-- Serial interface for ELM327 using `Serial2` and the constants defined in `include/constants.h`:
-  - `ELM327_SERIAL_RX_PIN`
-  - `ELM327_SERIAL_TX_PIN`
+See `requirements.md` file for required software and hardware
 
-## Build and upload
+## How to build
 
-1. Open the project in PlatformIO.
-2. Make sure `platformio.ini` uses the `[env:esp32dev]` environment.
-3. Build with PlatformIO: `pio run`.
-4. Upload to the ESP32: `pio run --target upload`.
+See `how-to-build.md` file to build software and hardware
 
 ## Usage
 
