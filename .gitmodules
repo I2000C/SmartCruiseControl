@@ -1,0 +1,3 @@
+[submodule "kicad_project/SmartCruiseControl/KiCad_Libraries-master"]
+	path = kicad_project/SmartCruiseControl/KiCad_Libraries-master
+	url = https://github.com/MrChunckuee-Electronics/KiCad_Libraries
