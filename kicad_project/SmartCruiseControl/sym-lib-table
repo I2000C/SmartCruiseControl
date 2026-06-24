@@ -1,0 +1,4 @@
+(sym_lib_table
+	(version 7)
+	(lib (name "MCE_Modules") (type "KiCad") (uri "${KIPRJMOD}/KiCad_Libraries-master/Libraries/MCE_Modules.kicad_sym") (options "") (descr ""))
+)

@@ -1,0 +1,4 @@
+(fp_lib_table
+	(version 7)
+	(lib (name "MCE_Modules") (type "KiCad") (uri "${KIPRJMOD}/KiCad_Libraries-master/Modules/MCE_Modules.pretty") (options "") (descr ""))
+)
