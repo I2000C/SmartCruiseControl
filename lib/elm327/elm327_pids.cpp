@@ -14,7 +14,7 @@ static bool pidCoolant(PidResponse& out, const VehicleState& state) {
 
 // PID 0x0C: Engine RPM, 2-byte value
 static bool pidRPM(PidResponse& out, const VehicleState& state) {
-    uint16_t rpm = state.rpm;
+    uint16_t rpm = state.rpm * 4;
     if(millis() - state.rpmLastUpdate > RPM_TIMEOUT_MS) {
         rpm = 0;
     }
@@ -27,7 +27,7 @@ static bool pidRPM(PidResponse& out, const VehicleState& state) {
 // PID 0x0D: Vehicle speed rounded to km/h
 static bool pidSpeed(PidResponse& out, const VehicleState& state) {
     float speed = state.speed;
-    if(state.speedValid) {
+    if(!state.speedValid) {
         speed = 0.0f;
     }
     out.data[0] = (uint8_t) round(speed);
@@ -46,7 +46,7 @@ static bool pidThrottle(PidResponse& out, const VehicleState& state) {
 // PID 0x42: Battery voltage encoded as tenths of volts
 static bool pidVoltage(PidResponse& out, const VehicleState& state) {
     float voltage = state.batteryVoltage;
-    uint16_t value = (uint16_t) round(voltage * 10);
+    uint16_t value = (uint16_t) round(voltage * 1000);
     out.data[0] = (value >> 8) & 0xFF;
     out.data[1] = value & 0xFF;
     out.len = 2;

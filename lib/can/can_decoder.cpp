@@ -70,7 +70,7 @@ bool CanDecoder::decodeFrame(const CanFrame& frame, SharedVehicleState& sharedSt
         case 0x416:
             // Battery voltage report
             ENTER_CRITICAL(sharedState);
-            sharedState.state.batteryVoltage = frame.data[0];
+            sharedState.state.batteryVoltage = frame.data[0] / 10.0f;
             EXIT_CRITICAL(sharedState);
             break;
         case 0x423:
