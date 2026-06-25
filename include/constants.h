@@ -70,6 +70,7 @@
 #define CAN_SLEEP_TIME_MS 100                     // Max wait time for CAN receive
 #define CAN_RX_QUEUE_LENGTH 16                    // Queue length for raw CAN frames
 #define CAN_PROCESSING_QUEUE_LENGTH 100           // Queue length for decoded CAN processing
+#define REFRESH_COMPUTED_DATA_TIME_MS 100         // Interval to refresh computed vehicle data
 
 /* ELM327 constants */
 //#define USE_SERIAL2

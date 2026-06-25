@@ -168,6 +168,16 @@ static bool extraPidRemainingRange(PidResponse& out, const VehicleState& state) 
     return true;
 }
 
+// Extended PID 0x0B: Used fuel liters in current trip encoded as 0.01 L units
+static bool extraPidUsedFuelLiters(PidResponse& out, const VehicleState& state) {
+    float usedFuelLiters = state.usedFuelLiters;
+    uint16_t value = (uint16_t) round(usedFuelLiters * 100);
+    out.data[0] = (value >> 8) & 0xFF;
+    out.data[1] = value & 0xFF;
+    out.len = 2;
+    return true;
+}
+
 // ------------------------------------------------------------
 
 struct PidEntry {
@@ -199,7 +209,8 @@ static const PidEntry extendedTable[] =
     {0x07, extraPidAverageSpeed},
     {0x08, extraPidInstantFuelConsumption},
     {0x09, extraPidAverageFuelConsumption},
-    {0x0A, extraPidRemainingRange}
+    {0x0A, extraPidRemainingRange},
+    {0x0B, extraPidUsedFuelLiters}
 };
 
 static const int tableSize = sizeof(table) / sizeof(table[0]);

@@ -2,8 +2,6 @@
 #include "can_data.h"
 #include "can_decoder.h"
 
-#define REFRESH_COMPUTED_DATA_TIME_MS 100 // Interval to refresh computed vehicle data
-
 // CAN reader handles raw CAN reception and exposes decoded vehicle state
 class CanReader {
     public:

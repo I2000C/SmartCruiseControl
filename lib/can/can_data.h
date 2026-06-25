@@ -50,6 +50,7 @@ struct VehicleState {
     float instantFuelConsumption;   // L/100 km
     float averageFuelConsumption;   // L/100 km
     float remainingRange;           // km
+    float usedFuelLiters;           // L
 };
 
 // Shared state wrapper using sequence lock for thread-safe reads/writes

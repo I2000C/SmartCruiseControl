@@ -1,3 +1,4 @@
+#include "constants.h"
 #include "can_decoder.h"
 
 bool CanDecoder::decodeFrame(const CanFrame& frame, SharedVehicleState& sharedState) {
@@ -85,10 +86,6 @@ bool CanDecoder::decodeFrame(const CanFrame& frame, SharedVehicleState& sharedSt
             sharedState.state.refrigerantTemperature = frame.data[0] - 40;
             sharedState.state.fuelRate = ((frame.data[5] << 8) | (frame.data[6])) / 100.0f;
             EXIT_CRITICAL(sharedState);
-
-            if(sharedState.state.speedValid) {
-                fuelRangeEstimator.updateConsumption(sharedState.state.fuelRate, sharedState.state.speed);
-            }
             break;
         default:
             return false;
@@ -121,10 +118,15 @@ void CanDecoder::refreshComputedData(SharedVehicleState& sharedState) {
     EXIT_CRITICAL(sharedState);
 
     // Update fuel consumption stats and remaining range estimate
-    float litresRemaing = sharedState.state.fuelLevel;
+    float fuelRateLh = sharedState.state.fuelRate;
+    float speedKmh = sharedState.state.speedValid ? sharedState.state.speed : 0.0f;
+    float odometerKm = sharedState.state.tripDistance;
+    float fuelRemainigL = sharedState.state.fuelLevel;
+    fuelRangeEstimator.update(fuelRateLh, speedKmh, odometerKm, fuelRemainigL, REFRESH_COMPUTED_DATA_TIME_MS / 1000.0f);
     ENTER_CRITICAL(sharedState);
     sharedState.state.instantFuelConsumption = fuelRangeEstimator.getInstantConsumption();
-    sharedState.state.averageFuelConsumption = fuelRangeEstimator.getAverageConsumption();
-    sharedState.state.remainingRange = fuelRangeEstimator.estimateRange(litresRemaing);
+    sharedState.state.averageFuelConsumption = fuelRangeEstimator.getTripAverageConsumption();
+    sharedState.state.remainingRange = fuelRangeEstimator.getDisplayedRangeKm();
+    sharedState.state.usedFuelLiters = fuelRangeEstimator.getFuelUsedLiters();
     EXIT_CRITICAL(sharedState);
 }
