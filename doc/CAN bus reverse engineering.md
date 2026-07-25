@@ -234,6 +234,7 @@ All fields unknown (16-bit blocks)
 - Byte 0:
   - Bits 0–1: **Ignition state (LOCK = 0b00 / ACC = 0b01 / ON = 0b11 / START = 0b10)**
   - Bit 2: **Position lights**
+  - Bit 3: **Front fog lights**
   - Bit 4: **Rear fog light**
 - Byte 1:
   - Bit 0: **Right turn signal**
