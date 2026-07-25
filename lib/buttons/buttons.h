@@ -40,13 +40,13 @@ namespace Buttons {
     };
 
     inline constexpr ButtonRange buttons[] = {
-        {50,    Button::BUTTON_REJECT_CALL},
-        {250,   Button::BUTTON_MUTE},
+        {200,    Button::BUTTON_REJECT_CALL},
+        {400,   Button::BUTTON_MUTE},
         {800,   Button::BUTTON_ANSWER_CALL},
-        {1500,  Button::BUTTON_NEXT_TRACK},
-        {1900,  Button::BUTTON_PREVIOUS_TRACK},
-        {2200,  Button::BUTTON_VOLUME_DOWN},
-        {2600,  Button::BUTTON_VOLUME_UP}
+        {1600,  Button::BUTTON_NEXT_TRACK},
+        {2000,  Button::BUTTON_PREVIOUS_TRACK},
+        {2300,  Button::BUTTON_VOLUME_DOWN},
+        {2700,  Button::BUTTON_VOLUME_UP}
     };
 
     // Determine button identity from raw ADC value

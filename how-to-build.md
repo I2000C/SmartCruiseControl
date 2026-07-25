@@ -30,19 +30,19 @@ upload_speed = 921600
 
 const char* detectButtonName(uint16_t rawSensorValue) {
     const char* buttonName = "";
-    if(rawSensorValue <= 50) {
+    if(rawSensorValue <= 200) {
         buttonName = "Reject call";
-    } else if(rawSensorValue <= 250) {
+    } else if(rawSensorValue <= 400) {
         buttonName = "Mute";
     } else if(rawSensorValue <= 800) {
         buttonName = "Answer call";
-    } else if(rawSensorValue <= 1500) {
+    } else if(rawSensorValue <= 1600) {
         buttonName = "Next track";
-    } else if(rawSensorValue <= 1900) {
+    } else if(rawSensorValue <= 2000) {
         buttonName = "Previous track";
-    } else if(rawSensorValue <= 2200) {
+    } else if(rawSensorValue <= 2300) {
         buttonName = "Volume down";
-    } else if(rawSensorValue <= 2600) {
+    } else if(rawSensorValue <= 2700) {
         buttonName = "Volume up";
     } else {
         buttonName = "None";
