@@ -1,4 +1,5 @@
 #pragma once
+#include "constants.h"
 
 // Simple PID controller with output saturation and rate limiting
 class PIDController {
@@ -9,45 +10,43 @@ class PIDController {
 
         float _dt;
         
-        float _outMin;
-        float _outMax;
         float _maxDeltaUp;
         float _maxDeltaDown;
 
         float _integral = 0.0f;
-        float _prevError = 0.0f;
         float _prevDeriv = 0.0f;
         float _prevProcessValue = 0.0f;
         float _prevOutput = 0.0f;
+        float _prevError = 0.0f;
 
-        float _integralMax = 1000.0f;
+        float _integralMax;
+
+        float _outMin = 0.0f;
+        float _outMax = 1.0f;
+
+        bool _firstRun = true;
     public:
         PIDController(float kp,
                       float ki,
                       float kd,
                       float dt,
-                      float outMin,
-                      float outMax,
                       float maxDeltaUp,
                       float maxDeltaDown)
             : _kp(kp),
               _ki(ki),
               _kd(kd),
               _dt(dt),
-              _outMin(outMin),
-              _outMax(outMax),
               _maxDeltaUp(maxDeltaUp),
-              _maxDeltaDown(maxDeltaDown) { }
+              _maxDeltaDown(maxDeltaDown),
+              _integralMax(MAX_INTEGRAL_CONTRIBUTION / _ki) { }
 
         // Update PID gains
         void setTunings(float kp, float ki, float kd);
 
-        // Limit integral windup
-        void setIntegralLimit(float limit);
-
         // Reset controller state
         void reset();
 
-        // Compute PID output for given setpoint and process value
+        // Compute PID output for given setpoint and process value.
+        // Output value is between _outMin and _outMax
         float compute(float setpoint, float processValue);
 };

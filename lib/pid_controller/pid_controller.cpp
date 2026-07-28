@@ -1,4 +1,5 @@
 #include "pid_controller.h"
+#include "constants.h"
 #include <Arduino.h>
 
 void PIDController::setTunings(float kp, float ki, float kd) {
@@ -8,58 +9,60 @@ void PIDController::setTunings(float kp, float ki, float kd) {
     _kd = kd;
 }
 
-void PIDController::setIntegralLimit(float limit) {
-    // Set maximum absolute integral term to prevent windup
-    _integralMax = limit;
-}
-
 void PIDController::reset() {
     // Clear historic PID state
     _integral = 0.0f;
-    _prevError = 0.0f;
     _prevDeriv = 0.0f;
     _prevProcessValue = 0.0f;
     _prevOutput = 0.0f;
+    _prevError = 0.0f;
+    _firstRun = true;
 }
 
 float PIDController::compute(float setpoint, float processValue) {
+    // Initialize previous process value on first execution
+    if(_firstRun) {
+        _prevProcessValue = processValue;
+        _firstRun = false;
+    }
+
+    // Compute control error
     float error = setpoint - processValue;
 
     // Proportional term
-    float p = _kp * error;
+    float pOut = _kp * error;
 
-    // Derivative term using filtered process value derivative
+    // Derivative term (computed from the process value with a small filter)
     float rawDeriv = (processValue - _prevProcessValue) / _dt;
-    float alpha = 0.7f;
-    float d = alpha * _prevDeriv + (1.0f - alpha) * rawDeriv;
-    float dOut = _kd * d;
+    float deriv = DERIVATIVE_ALPHA * _prevDeriv + (1.0f - DERIVATIVE_ALPHA) * rawDeriv;
+    float dOut = -_kd * deriv;
 
-    // Pre-output from P and D terms
-    float output = p + dOut;
-
-    // Integrate only if output is not saturated
-    bool saturatedHigh = (output >= _outMax);
-    bool saturatedLow = (output <= _outMin);
-
-    if(!saturatedHigh && !saturatedLow) {
-        _integral += error * _dt;
-        _integral = constrain(_integral, -_integralMax, _integralMax);
-    }
-
+    // Integral term
     float iOut = _ki * _integral;
-    output = p + iOut + dOut;
 
-    // Clamp output to configured bounds
-    output = constrain(output, _outMin, _outMax);
+    // Controller output before any limiting
+    float unsatOutput = pOut + iOut + dOut;
 
-    // Apply rate limiting to prevent abrupt throttle changes
-    output = constrain(output, _prevOutput - _maxDeltaDown, _prevOutput + _maxDeltaUp);
+    // Apply output saturation
+    float saturatedOutput = constrain(unsatOutput, _outMin, _outMax);
 
-    // Save state for next iteration
-    _prevError = error;
-    _prevDeriv = d;
+    // Apply slew-rate limiting
+    float output = constrain(saturatedOutput, _prevOutput - _maxDeltaDown, _prevOutput + _maxDeltaUp);
+
+    // Integrate error
+    _integral += error * _dt;
+
+    // Anti-windup (back-calculation)
+    _integral += ANTI_WINDUP_GAIN * (output - unsatOutput) * _dt;
+
+    // Limit integrator
+    _integral = constrain(_integral, -_integralMax, _integralMax);
+
+    // Save controller state
+    _prevDeriv = deriv;
     _prevProcessValue = processValue;
     _prevOutput = output;
+    _prevError = error;
 
     return output;
 }

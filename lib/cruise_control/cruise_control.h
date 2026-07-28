@@ -21,9 +21,7 @@ class CruiseControl {
         void loop(const VehicleState& vehicleState);
 
         CruiseControl() : cruisePID(PID_KP, PID_KI, PID_KD,
-                                    MAIN_LOOP_PERIOD_MS / 1000.0f, 0.0f, 100.0f,
+                                    MAIN_LOOP_PERIOD_MS / 1000.0f,
                                     THROTTLE_MAX_DELTA_UP,
-                                    THROTTLE_MAX_DELTA_DOWN) {
-                                        cruisePID.setIntegralLimit(500.0f);
-                                    }
+                                    THROTTLE_MAX_DELTA_DOWN) { }
 };

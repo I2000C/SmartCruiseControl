@@ -114,8 +114,9 @@ void CruiseControl::loop(const VehicleState& vehicleState) {
                         targetSpeed = constrain(targetSpeed, MIN_SPEED_KMH, MAX_SPEED_KMH);
                     }
 
-                    float throttle = cruisePID.compute(targetSpeed, vehicleState.speed);
-                    Throttle::setGeneratedValue(throttle);
+                    float pidValue = cruisePID.compute(targetSpeed, vehicleState.speed);
+                    float throttleValue = pidValue * 100.0f;
+                    Throttle::setGeneratedValue(throttleValue);
                 }
             }
             break;
