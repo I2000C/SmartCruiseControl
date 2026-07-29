@@ -83,13 +83,5 @@
 #define CAN_PROCESSING_QUEUE_LENGTH 100           // Queue length for decoded CAN processing
 #define REFRESH_COMPUTED_DATA_TIME_MS 100         // Interval to refresh computed vehicle data
 
-/* ELM327 constants */
-//#define USE_SERIAL2
-#ifdef USE_SERIAL2
-    #define ELM327_SERIAL Serial2
-    #define ELM327_SERIAL_RX_PIN GPIO_NUM_16      // Serial2 RX pin for ELM327 interface
-    #define ELM327_SERIAL_TX_PIN GPIO_NUM_17      // Serial2 TX pin for ELM327 interface
-#else
-    #define ELM327_SERIAL Serial
-#endif
-#define ELM327_SERIAL_BAUDRATE 115200             // Serial baud rate for ELM327
+/* Serial constants */
+#define SERIAL_BAUDRATE 115200                    // Serial baud rate for ELM327 / debug serial

@@ -65,10 +65,14 @@ void fatalErrorLoop(uint8_t code) {
 
 // Arduino setup() initializes hardware and starts application tasks
 void setup() {
+    Serial.begin(115200);
+
     // Initialize status LED
     if(!IndicatorLed::init()) {
         fatalErrorLoop(ERROR_LED_INIT);
     }
+
+    IndicatorLed::setState(SystemState::STATE_ACTIVE);
 
     // Initialize throttle outputs and inputs
     if(!Throttle::init()) {
@@ -85,6 +89,9 @@ void setup() {
 
     // Start ELM327 serial task
     elm327.init();
+
+    delay(1000);
+    IndicatorLed::setState(SystemState::STATE_OFF);
 
     xTaskCreatePinnedToCore(mainTask, "MainTask", 10000, nullptr, MAIN_TASK_PRIORITY, nullptr, APP_CORE_ID);
 }

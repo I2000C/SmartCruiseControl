@@ -17,14 +17,14 @@ void elm327Task(void* args) {
     uint32_t lastUpdateTime = 0;
 
     while(true) {
-        while(ELM327_SERIAL.available()) {
+        while(Serial.available()) {
             uint32_t now = millis();
             if(now - lastUpdateTime > REFRESH_COMPUTED_DATA_TIME_MS) {
                 elm327->canReader.readState(vehicleState);
                 lastUpdateTime = now;
             }
 
-            char c = ELM327_SERIAL.read();
+            char c = Serial.read();
             if(c == '\r' || c == '\n') {
                 buffer[pos] = '\0';
                 if(pos > 0) {
@@ -41,28 +41,23 @@ void elm327Task(void* args) {
 }
 
 void Elm327::init() {
-    // Initialize serial interface used by the ELM327 emulator
-    #ifdef USE_SERIAL2
-        ELM327_SERIAL.begin(ELM327_SERIAL_BAUDRATE, SERIAL_8N1, ELM327_SERIAL_RX_PIN, ELM327_SERIAL_TX_PIN);
-    #else
-        ELM327_SERIAL.begin(ELM327_SERIAL_BAUDRATE);
-    #endif
+    // Initialize ELM327 emulator task
     xTaskCreatePinnedToCore(elm327Task, "Elm327Task", 5000, this, ELM327_TASK_PRIORITY, nullptr, APP_CORE_ID);
 }
 
 void Elm327::sendText(const char* text) {
     // Send a single line of text to the ELM327 serial port
-    ELM327_SERIAL.write(text);
-    ELM327_SERIAL.write('\r');
+    Serial.write(text);
+    Serial.write('\r');
     if(context.linefeeds) {
-        ELM327_SERIAL.write('\n');
+        Serial.write('\n');
     }
 }
 
 void Elm327::sendPrompt() {
     // Send the ELM327 prompt character after a response
     sendText("");
-    ELM327_SERIAL.write('>');
+    Serial.write('>');
 }
 
 void Elm327::sendResponse(const uint8_t* data, uint8_t len, const char* header) {
