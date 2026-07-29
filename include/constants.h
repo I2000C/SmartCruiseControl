@@ -37,6 +37,7 @@
 #define DERIVATIVE_ALPHA 0.7f           // Alpha value to smooth derivative
 #define MAX_INTEGRAL_CONTRIBUTION 0.2f  // Max integral contribution to PID (20 % by default)
 #define ANTI_WINDUP_GAIN 0.5f           // Anti windup gain
+#define ERROR_DEADZONE 0.3f             // Dead zone for error values
 
 /* Indicator LED constants */
 #define INDICATOR_LED_PIN GPIO_NUM_25           // Status LED pin for cruise control state

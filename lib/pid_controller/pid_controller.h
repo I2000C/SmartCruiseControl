@@ -38,7 +38,7 @@ class PIDController {
               _dt(dt),
               _maxDeltaUp(maxDeltaUp),
               _maxDeltaDown(maxDeltaDown),
-              _integralMax(MAX_INTEGRAL_CONTRIBUTION / _ki) { }
+              _integralMax(_ki > 0.0f ? (MAX_INTEGRAL_CONTRIBUTION / _ki) : 0.0f) { }
 
         // Update PID gains
         void setTunings(float kp, float ki, float kd);
