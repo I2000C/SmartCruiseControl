@@ -1,5 +1,6 @@
 #include "pid_controller.h"
 #include "constants.h"
+#include "debug.h"
 #include <Arduino.h>
 #include <cmath>
 
@@ -67,6 +68,8 @@ float PIDController::compute(float setpoint, float processValue) {
 
     // Apply slew-rate limiting
     float output = constrain(saturatedOutput, _prevOutput - _maxDeltaDown, _prevOutput + _maxDeltaUp);
+
+    Debug::printf("target: %.2f kmh/h, current: %.2f km/h, output: %.2f %%   p: %.2f, i: %.2f, d: %.2f\n", setpoint, processValue, output * 100.0f, pOut, iOut, dOut);
 
     // Save controller state
     _prevDeriv = deriv;

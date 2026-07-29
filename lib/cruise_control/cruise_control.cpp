@@ -2,6 +2,7 @@
 #include "indicator_led.h"
 #include "throttle.h"
 #include "brake_clutch.h"
+#include "debug.h"
 
 bool CruiseControl::canEnableCruise(bool isResume, const VehicleState& vehicleState) {
     // Check brake and clutch
@@ -47,6 +48,10 @@ void CruiseControl::loop(const VehicleState& vehicleState, const CCButton button
     bool isNewPulsation = button != lastPressedButton;
     if(isNewPulsation) {
         lastPressedButton = button;
+    }
+
+    if(button != CCButton::BUTTON_NONE) {
+        Debug::printf("Button pressed: %d, new pulsation: %d, state: %d\n", button, isNewPulsation, currentState);
     }
 
     float throttlePedal = Throttle::readPedalValue();
