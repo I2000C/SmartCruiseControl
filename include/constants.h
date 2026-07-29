@@ -45,7 +45,8 @@
 /* Indicator LED constants */
 #define INDICATOR_LED_PIN GPIO_NUM_25           // Status LED pin for cruise control state
 #define INDICATOR_LED_PWM_CHANNEL 0             // PWM channel for indicator LED
-#define INDICATOR_LED_BUILTIN GPIO_NUM_2
+#define INDICATOR_LED_BUILTIN_PIN GPIO_NUM_2    // Same as status LED but using internal LED
+#define INDICATOR_LED_BUILTIN_PWM_CHANNEL 1     // PWM channel for builtin indicator LED
 #define INDICATOR_LED_PWM_FREQ_HZ 1000          // PWM frequency for indicator LED
 #define INDICATOR_LED_PWM_RESOLUTION_BITS 8     // PWM resolution bits for indicator LED
 #define INDICATOR_LED_PWM_RESOLUTION (1<<INDICATOR_LED_PWM_RESOLUTION_BITS)

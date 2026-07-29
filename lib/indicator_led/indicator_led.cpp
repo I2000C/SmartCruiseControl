@@ -12,6 +12,13 @@ bool IndicatorLed::init() {
         pinMode(INDICATOR_LED_PIN, OUTPUT);
         failSafeMode = true;
     }
+    if(ledcSetup(INDICATOR_LED_BUILTIN_PWM_CHANNEL, INDICATOR_LED_PWM_FREQ_HZ, INDICATOR_LED_PWM_RESOLUTION_BITS)) {
+        ledcAttachPin(INDICATOR_LED_BUILTIN_PIN, INDICATOR_LED_BUILTIN_PWM_CHANNEL);
+        failSafeMode = false;
+    } else {
+        pinMode(INDICATOR_LED_BUILTIN_PIN, OUTPUT);
+        failSafeMode = true;
+    }
     setState(SystemState::STATE_OFF);
     return !failSafeMode;
 }
@@ -22,24 +29,30 @@ void IndicatorLed::setState(const SystemState& state) {
         case SystemState::STATE_OFF:
             if(failSafeMode) {
                 digitalWrite(INDICATOR_LED_PIN, LOW);
+                digitalWrite(INDICATOR_LED_BUILTIN_PIN, LOW);
             } else {
                 ledcWrite(INDICATOR_LED_PWM_CHANNEL, 0);
+                ledcWrite(INDICATOR_LED_BUILTIN_PWM_CHANNEL, 0);
             }
             break;
 
         case SystemState::STATE_ACTIVE:
             if(failSafeMode) {
                 digitalWrite(INDICATOR_LED_PIN, HIGH);
+                digitalWrite(INDICATOR_LED_BUILTIN_PIN, HIGH);
             } else {
                 ledcWrite(INDICATOR_LED_PWM_CHANNEL, INDICATOR_LED_PWM_MAX);
+                ledcWrite(INDICATOR_LED_BUILTIN_PWM_CHANNEL, INDICATOR_LED_PWM_MAX);
             }
             break;
 
         case SystemState::STATE_OVERRIDE:
             if(failSafeMode) {
                 digitalWrite(INDICATOR_LED_PIN, HIGH);
+                digitalWrite(INDICATOR_LED_BUILTIN_PIN, HIGH);
             } else {
                 ledcWrite(INDICATOR_LED_PWM_CHANNEL, INDICATOR_LED_PWM_MAX / 2);
+                ledcWrite(INDICATOR_LED_BUILTIN_PWM_CHANNEL, INDICATOR_LED_PWM_MAX / 2);
             }
             break;
     }
