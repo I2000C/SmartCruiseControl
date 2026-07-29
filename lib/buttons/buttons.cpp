@@ -2,9 +2,7 @@
 #include "adc_utils.h"
 
 static Button lastCandidate = Button::BUTTON_NONE;
-static Button confirmedButton = Button::BUTTON_NONE;
-
-static uint32_t candidateStartTime = 0;
+static uint8_t consecutiveReads = 0;
 
 Button Buttons::classify(uint16_t rawValue) {
     for(const ButtonRange& buttonRange : buttons) {
@@ -16,34 +14,29 @@ Button Buttons::classify(uint16_t rawValue) {
 }
 
 Button Buttons::getPressedButton() {
-    uint16_t rawValue = ADC::read(BUTTONS_PIN);
+    uint16_t rawValue = ADC::readFiltered(BUTTONS_PIN);
     Button current = classify(rawValue);
-    uint32_t now = millis();
 
     // No button detected
     if(current == Button::BUTTON_NONE) {
         lastCandidate = Button::BUTTON_NONE;
-        confirmedButton = Button::BUTTON_NONE;
         return Button::BUTTON_NONE;
     }
 
-    // Candidate changed, reset debounce timer
+    // Candidate changed
     if(current != lastCandidate) {
         lastCandidate = current;
-        candidateStartTime = now;
+        consecutiveReads = 0;
         return Button::BUTTON_NONE;
     }
 
-    // Candidate has been stable long enough to confirm
-    if(confirmedButton != current) {
-        if(now - candidateStartTime >= 200) {
-            confirmedButton = current;
-        } else {
-            return Button::BUTTON_NONE;
-        }
+    // Confirm min consecutive reads
+    if(consecutiveReads < BUTTONS_MIN_CONSECUTIVE_READINGS) {
+        consecutiveReads++;
+        return Button::BUTTON_NONE;
     }
 
-    return confirmedButton;
+    return current;
 }
 
 CCButton Buttons::getPressedCCButton() {

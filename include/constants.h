@@ -11,6 +11,10 @@
 #define ELM327_TASK_PRIORITY 1       // Priority for ELM327 serial task
 #define MAIN_TASK_PRIORITY 2         // Priority for main cruise control loop task
 
+#define MAIN_LOOP_PERIOD_MS 50        // Main control loop period in milliseconds
+#define BUTTONS_QUERY_PERIOD_MS 10    // Buttons query period in milliseconds.
+                                      // BUTTONS_QUERY_PERIOD_MS < MAIN_LOOP_PERIOD_MS and MAIN_LOOP_PERIOD_MS % BUTTONS_QUERY_PERIOD_MS == 0
+
 /* Cruise control limits and thresholds */
 #define MAX_TARGET_SPEED_DIFF 25     // Maximum resume speed difference in km/h
 #define MIN_SPEED_KMH 20             // Minimum allowed cruise speed
@@ -28,7 +32,6 @@
 #define PID_KP 0.6f                   // Proportional gain
 #define PID_KI 0.2f                   // Integral gain
 #define PID_KD 0.05f                  // Derivative gain
-#define MAIN_LOOP_PERIOD_MS 50        // Main control loop period in milliseconds
 #define THROTTLE_RATE_UP_PER_SEC 0.15f   // Maximum throttle increase per second (15 % by default)
 #define THROTTLE_RATE_DOWN_PER_SEC 0.40f // Maximum throttle decrease per second (40 % by default)
 #define THROTTLE_MAX_DELTA_UP (THROTTLE_RATE_UP_PER_SEC * (MAIN_LOOP_PERIOD_MS / 1000.0f))
@@ -42,6 +45,7 @@
 /* Indicator LED constants */
 #define INDICATOR_LED_PIN GPIO_NUM_25           // Status LED pin for cruise control state
 #define INDICATOR_LED_PWM_CHANNEL 0             // PWM channel for indicator LED
+#define INDICATOR_LED_BUILTIN GPIO_NUM_2
 #define INDICATOR_LED_PWM_FREQ_HZ 1000          // PWM frequency for indicator LED
 #define INDICATOR_LED_PWM_RESOLUTION_BITS 8     // PWM resolution bits for indicator LED
 #define INDICATOR_LED_PWM_RESOLUTION (1<<INDICATOR_LED_PWM_RESOLUTION_BITS)
@@ -65,8 +69,9 @@
 #define BRAKE_PIN GPIO_NUM_22                     // Brake pedal pin      
 #define CLUTCH_PIN GPIO_NUM_23                    // Clutch pedal pin
 
-/* Button ADC input */
+/* Buttons */
 #define BUTTONS_PIN GPIO_NUM_35                   // Analog pin for button matrix readout
+#define BUTTONS_MIN_CONSECUTIVE_READINGS 3        // Amount of consecutive readings to make sure a button has truly be pressed
 
 /* CAN bus constants */
 #define CAN_TX_GPIO GPIO_NUM_5                    // CAN bus transmit pin

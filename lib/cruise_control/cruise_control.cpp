@@ -40,11 +40,10 @@ bool CruiseControl::canEnableCruise(bool isResume, const VehicleState& vehicleSt
     return true;
 }
 
-void CruiseControl::loop(const VehicleState& vehicleState) {
+void CruiseControl::loop(const VehicleState& vehicleState, const CCButton button) {
     // Update indicator based on current cruise control state
     IndicatorLed::setState(currentState);
 
-    CCButton button = Buttons::getPressedCCButton();
     bool isNewPulsation = button != lastPressedButton;
     if(isNewPulsation) {
         lastPressedButton = button;

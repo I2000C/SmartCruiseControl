@@ -31,12 +31,21 @@ void mainTask(void* args) {
     VehicleState vehicleState;
     CruiseControl cruiseControl;
 
-    const TickType_t period = pdMS_TO_TICKS(MAIN_LOOP_PERIOD_MS);
+    const TickType_t period = pdMS_TO_TICKS(BUTTONS_QUERY_PERIOD_MS);
     TickType_t lastWakeTime = xTaskGetTickCount();
 
+    uint8_t pidUpdateInterval = MAIN_LOOP_PERIOD_MS / BUTTONS_QUERY_PERIOD_MS;
+    uint8_t counter = 0;
+
     while(true) {
-        canReader.readState(vehicleState);      // Read the latest vehicle state from CAN
-        cruiseControl.loop(vehicleState);       // Run cruise control logic
+        CCButton pressedButton = Buttons::getPressedCCButton();
+
+        if(++counter >= pidUpdateInterval) {
+            counter = 0;
+            canReader.readState(vehicleState);                  // Read the latest vehicle state from CAN
+            cruiseControl.loop(vehicleState, pressedButton);    // Run cruise control logic
+        }
+
         vTaskDelayUntil(&lastWakeTime, period); // Sleep until next loop period
     }
 }

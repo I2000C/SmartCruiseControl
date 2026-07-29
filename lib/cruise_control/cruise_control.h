@@ -18,7 +18,7 @@ class CruiseControl {
 
     public:
         // Run one iteration of cruise control logic
-        void loop(const VehicleState& vehicleState);
+        void loop(const VehicleState& vehicleState, const CCButton button);
 
         CruiseControl() : cruisePID(PID_KP, PID_KI, PID_KD,
                                     MAIN_LOOP_PERIOD_MS / 1000.0f,
