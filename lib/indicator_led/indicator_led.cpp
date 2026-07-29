@@ -3,6 +3,12 @@
 
 static bool failSafeMode = false;
 
+// Manage override mode PWM
+static constexpr int incrementPwmStep = 20;
+static SystemState previousState = SystemState::STATE_OFF;
+static int currentPwmValue = 0;
+static bool incrementingPwm = false;
+
 bool IndicatorLed::init() {
     // Configure PWM output for the cruise indicator LED
     if(ledcSetup(INDICATOR_LED_PWM_CHANNEL, INDICATOR_LED_PWM_FREQ_HZ, INDICATOR_LED_PWM_RESOLUTION_BITS)) {
@@ -51,9 +57,30 @@ void IndicatorLed::setState(const SystemState& state) {
                 digitalWrite(INDICATOR_LED_PIN, HIGH);
                 digitalWrite(INDICATOR_LED_BUILTIN_PIN, HIGH);
             } else {
-                ledcWrite(INDICATOR_LED_PWM_CHANNEL, INDICATOR_LED_PWM_MAX / 2);
-                ledcWrite(INDICATOR_LED_BUILTIN_PWM_CHANNEL, INDICATOR_LED_PWM_MAX / 2);
+                if(previousState != SystemState::STATE_OVERRIDE) {
+                    currentPwmValue = 0;
+                    incrementingPwm = true;
+                }
+
+                ledcWrite(INDICATOR_LED_PWM_CHANNEL, currentPwmValue);
+                ledcWrite(INDICATOR_LED_BUILTIN_PWM_CHANNEL, currentPwmValue);
+
+                if(incrementingPwm) {
+                    currentPwmValue += incrementPwmStep;
+                    if(currentPwmValue > INDICATOR_LED_PWM_MAX) {
+                        currentPwmValue = INDICATOR_LED_PWM_MAX;
+                        incrementingPwm = false;
+                    }
+                } else {
+                    currentPwmValue -= incrementPwmStep;
+                    if(currentPwmValue < 0) {
+                        currentPwmValue = 0;
+                        incrementingPwm = true;
+                    }
+                }
             }
             break;
     }
+
+    previousState = state;
 }

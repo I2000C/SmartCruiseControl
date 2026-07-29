@@ -63,7 +63,7 @@ See `how-to-build.md` file to build software and hardware
 - The indicator LED shows cruise control status:
   - off = cruise control disabled
   - full brightness = cruise control active
-  - half brightness = throttle override active
+  - fading = throttle override active
 - Cruise control buttons support `SET`, `RESUME`, and `CANCEL`.
 - Pressing the accelerator while cruise control is active transitions the system to `STATE_OVERRIDE`.
 
