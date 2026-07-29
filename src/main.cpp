@@ -6,6 +6,7 @@
 #include "throttle.h"
 #include "brake_clutch.h"
 #include "cruise_control.h"
+#include "debug.h"
 
 #define configCHECK_FOR_STACK_OVERFLOW 2
 
@@ -87,10 +88,33 @@ void setup() {
         fatalErrorLoop(ERROR_CAN_READER_INIT);
     }
 
-    // Start ELM327 serial task
-    elm327.init();
+    // Wait a second for a button to be pressed to enter debug mode
+    Debug::setEnabled(false);
+    uint32_t buttonDebugTime = 0;
+    while(buttonDebugTime < 1000) {
+        Button button = Buttons::getPressedButton();
+        if(button == Button::BUTTON_NONE) {
+            delay(BUTTONS_QUERY_PERIOD_MS);
+            buttonDebugTime += BUTTONS_QUERY_PERIOD_MS;
+        } else {
+            // Enable debug mode
+            Debug::setEnabled(true);
+            Debug::println("Debug mode is enabled");
 
-    delay(1000);
+            // Fade indicator LED for 2 seconds
+            for(uint32_t time = 0; time < 2000; time += MAIN_LOOP_PERIOD_MS) {
+                IndicatorLed::setState(SystemState::STATE_OVERRIDE);
+                delay(MAIN_LOOP_PERIOD_MS);
+            }
+            break;
+        }
+    }
+
+    // Start ELM327 serial task if debug mode is not enabled
+    if(!Debug::isEnabled()) {
+        elm327.init();
+    }
+
     IndicatorLed::setState(SystemState::STATE_OFF);
 
     xTaskCreatePinnedToCore(mainTask, "MainTask", 10000, nullptr, MAIN_TASK_PRIORITY, nullptr, APP_CORE_ID);
