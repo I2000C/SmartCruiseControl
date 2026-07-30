@@ -16,7 +16,7 @@ bool CruiseControl::canEnableCruise(bool isResume, const VehicleState& vehicleSt
     }
 
     float currentSpeed = vehicleState.speed;
-    if(currentSpeed < MIN_SPEED_KMH || currentSpeed > MAX_SPEED_KMH) {
+    if(currentSpeed < MIN_CAR_SPEED_KMH || currentSpeed > MAX_CAR_SPEED_KMH) {
         return false;
     }
     if(isResume) {

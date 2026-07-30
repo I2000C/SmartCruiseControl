@@ -21,8 +21,11 @@ inline constexpr uint16_t BUTTONS_REPEAT_PERIOD_TICKS = BUTTONS_REPEAT_PERIOD_MS
 
 /* Cruise control limits and thresholds */
 #define MAX_TARGET_SPEED_DIFF 25     // Maximum resume speed difference in km/h
-#define MIN_SPEED_KMH 20             // Minimum allowed cruise speed
-#define MAX_SPEED_KMH 140            // Maximum allowed cruise speed
+#define MIN_SPEED_KMH 25             // Minimum allowed cruise speed
+#define MAX_SPEED_KMH 135            // Maximum allowed cruise speed
+
+#define MIN_CAR_SPEED_KMH (MIN_SPEED_KMH-5)  // Minimum allowed car speed
+#define MAX_CAR_SPEED_KMH (MAX_SPEED_KMH+5)  // Maximum allowed car speed
 #define MIN_RPM 1200                 // Minimum engine RPM for cruise control
 #define MAX_RPM 3500                 // Maximum engine RPM for cruise control
 
