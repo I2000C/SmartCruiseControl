@@ -9,12 +9,16 @@
 class CruiseControl {
     private:
         SystemState currentState = SystemState::STATE_OFF;
-        CCButton lastPressedButton = CCButton::BUTTON_NONE;
+        CCButton previousButton = CCButton::BUTTON_NONE;
+
+        uint16_t buttonHoldTicks = 0;
+
         float targetSpeed = 0.0f;
         PIDController cruisePID;
 
         // Validate whether cruise can be enabled or resumed
         bool canEnableCruise(bool isResume, const VehicleState& vehicleState);
+        bool hasButtonEvent(CCButton button);
 
     public:
         // Run one iteration of cruise control logic

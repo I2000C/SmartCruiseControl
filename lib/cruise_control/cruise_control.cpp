@@ -41,17 +41,43 @@ bool CruiseControl::canEnableCruise(bool isResume, const VehicleState& vehicleSt
     return true;
 }
 
+bool CruiseControl::hasButtonEvent(const CCButton button) {
+    // Button state changed
+    if(button != previousButton) {
+        previousButton = button;
+
+        if(button != CCButton::BUTTON_NONE) {
+            buttonHoldTicks = 0;
+            return true;        // Initial press
+        }
+
+        return false;           // Button released
+    }
+
+    // No button pressed
+    if(button == CCButton::BUTTON_NONE) {
+        return false;
+    }
+
+    // Button held
+    buttonHoldTicks++;
+
+    // Wait for initial delay
+    if(buttonHoldTicks < BUTTONS_REPEAT_DELAY_TICKS) {
+        return false;
+    }
+
+    // Generate repeat events every BUTTONS_REPEAT_PERIOD_TICKS
+    return ((buttonHoldTicks - BUTTONS_REPEAT_DELAY_TICKS) % BUTTONS_REPEAT_PERIOD_TICKS) == 0;
+}
+
 void CruiseControl::loop(const VehicleState& vehicleState, const CCButton button) {
     // Update indicator based on current cruise control state
     IndicatorLed::setState(currentState);
 
-    bool isNewPulsation = button != lastPressedButton;
-    if(isNewPulsation) {
-        lastPressedButton = button;
-    }
-
-    if(button != CCButton::BUTTON_NONE) {
-        Debug::printf("Button pressed: %d, new pulsation: %d, state: %d\n", button, isNewPulsation, currentState);
+    bool buttonEvent = hasButtonEvent(button);
+    if(buttonEvent) {
+        Debug::printf("Button pressed: %d, state: %d\n", button, currentState);
     }
 
     float throttlePedal = Throttle::readPedalValue();
@@ -59,14 +85,17 @@ void CruiseControl::loop(const VehicleState& vehicleState, const CCButton button
     switch(currentState) {
         case SystemState::STATE_OFF:
             // Handle requests to set or resume cruise from OFF state
-            if(isNewPulsation && (button == CCButton::BUTTON_SET || button == CCButton::BUTTON_RESUME)) {
+            if(buttonEvent && (button == CCButton::BUTTON_SET || button == CCButton::BUTTON_RESUME)) {
                 bool isResume = button == CCButton::BUTTON_RESUME;
                 if(canEnableCruise(isResume, vehicleState)) {
+                    
                     if(!isResume) {
                         targetSpeed = vehicleState.speed;
                     }
+
                     Throttle::setGeneratedValue(0);
                     cruisePID.reset();
+
                     if(throttlePedal > THROTTLE_PEDAL_THRESHOLD_ENABLE) {
                         Throttle::enableOverride(false);
                         currentState = SystemState::STATE_OVERRIDE;
@@ -109,7 +138,7 @@ void CruiseControl::loop(const VehicleState& vehicleState, const CCButton button
                     Throttle::enableOverride(false);
                     currentState = SystemState::STATE_OVERRIDE;
                 } else {
-                    if(isNewPulsation) {
+                    if(buttonEvent) {
                         if(button == CCButton::BUTTON_SET) {
                             targetSpeed--;
                         } else if(button == CCButton::BUTTON_RESUME) {

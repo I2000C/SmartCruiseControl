@@ -14,6 +14,10 @@
 #define MAIN_LOOP_PERIOD_MS 50        // Main control loop period in milliseconds
 #define BUTTONS_QUERY_PERIOD_MS 10    // Buttons query period in milliseconds.
                                       // BUTTONS_QUERY_PERIOD_MS < MAIN_LOOP_PERIOD_MS and MAIN_LOOP_PERIOD_MS % BUTTONS_QUERY_PERIOD_MS == 0
+#define BUTTONS_REPEAT_DELAY_MS 500                     // Initial button delay to repeat action. BUTTONS_INITIAL_REPEAT_DELAY_MS % MAIN_LOOP_PERIOD_MS == 0
+#define BUTTONS_REPEAT_PERIOD_MS 200                    // Period to repeat button action. BUTTONS_REPEAT_PERIOD_MS % MAIN_LOOP_PERIOD_MS == 0
+inline constexpr uint16_t BUTTONS_REPEAT_DELAY_TICKS = BUTTONS_REPEAT_DELAY_MS / MAIN_LOOP_PERIOD_MS;
+inline constexpr uint16_t BUTTONS_REPEAT_PERIOD_TICKS = BUTTONS_REPEAT_PERIOD_MS / MAIN_LOOP_PERIOD_MS;
 
 /* Cruise control limits and thresholds */
 #define MAX_TARGET_SPEED_DIFF 25     // Maximum resume speed difference in km/h
