@@ -13,6 +13,8 @@ class CruiseControl {
 
         uint16_t buttonHoldTicks = 0;
 
+        float throttleStartValue = 0.0f;
+
         float targetSpeed = 0.0f;
         PIDController cruisePID;
 

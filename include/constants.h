@@ -30,15 +30,15 @@
 #define RPM_TIMEOUT_MS 3000           // Maximum age of RPM data before invalidation
 
 /* PIDController constants */
-#define PID_KP 0.6f                   // Proportional gain
-#define PID_KI 0.2f                   // Integral gain
-#define PID_KD 0.05f                  // Derivative gain
-#define THROTTLE_RATE_UP_PER_SEC 0.15f   // Maximum throttle increase per second (15 % by default)
-#define THROTTLE_RATE_DOWN_PER_SEC 0.40f // Maximum throttle decrease per second (40 % by default)
+#define PID_KP 0.45f                  // Proportional gain
+#define PID_KI 0.05f                  // Integral gain
+#define PID_KD 0.20f                  // Derivative gain
+#define THROTTLE_RATE_UP_PER_SEC 0.30f   // Maximum throttle increase per second (15 % by default)
+#define THROTTLE_RATE_DOWN_PER_SEC 0.30f // Maximum throttle decrease per second (40 % by default)
 #define THROTTLE_MAX_DELTA_UP (THROTTLE_RATE_UP_PER_SEC * (MAIN_LOOP_PERIOD_MS / 1000.0f))
 #define THROTTLE_MAX_DELTA_DOWN (THROTTLE_RATE_DOWN_PER_SEC * (MAIN_LOOP_PERIOD_MS / 1000.0f))
 
-#define DERIVATIVE_ALPHA 0.7f           // Alpha value to smooth derivative
+#define DERIVATIVE_ALPHA 0.9f           // Alpha value to smooth derivative
 #define MAX_INTEGRAL_CONTRIBUTION 0.2f  // Max integral contribution to PID (20 % by default)
 #define ANTI_WINDUP_GAIN 0.5f           // Anti windup gain
 #define ERROR_DEADZONE 0.3f             // Dead zone for error values

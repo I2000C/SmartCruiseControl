@@ -21,12 +21,34 @@ void PIDController::setTunings(float kp, float ki, float kd) {
 
 void PIDController::reset() {
     // Clear historic PID state
+    _prevOutput = 0.0f;
     _integral = 0.0f;
+    _integratorEnabled = false;
     _prevDeriv = 0.0f;
     _prevProcessValue = 0.0f;
-    _prevOutput = 0.0f;
     _prevError = 0.0f;
     _firstRun = true;
+}
+
+void PIDController::setInitialOutput(float currentOutput, float setpoint, float processValue) {
+    _prevOutput = constrain(currentOutput, _outMin, _outMax);
+    _prevProcessValue = processValue;
+
+    float error = setpoint - processValue;
+
+    float rawDeriv = 0.0f;
+    float deriv = 0.0f;
+    float dOut = -_kd * deriv;
+
+    if(_ki > 0.0f) {
+        _integral = (currentOutput - _kp * error - dOut) / _ki;
+    } else {
+        _integral = 0.0f;
+    }
+
+    _integral = constrain(_integral, -_integralMax, _integralMax);
+
+    _firstRun = false;
 }
 
 float PIDController::compute(float setpoint, float processValue) {

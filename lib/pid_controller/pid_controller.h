@@ -20,6 +20,7 @@ class PIDController {
         float _prevError = 0.0f;
 
         float _integralMax;
+        bool _integratorEnabled = false;
 
         float _outMin = 0.0f;
         float _outMax = 1.0f;
@@ -46,7 +47,15 @@ class PIDController {
         // Reset controller state
         void reset();
 
+        // Initialize controller output with initial value
+        void setInitialOutput(float currentOutput, float setpoint, float processValue);
+
         // Compute PID output for given setpoint and process value.
         // Output value is between _outMin and _outMax
         float compute(float setpoint, float processValue);
+
+        // Get current acceleration
+        float getAcceleration() const {
+            return _prevDeriv;
+        }
 };

@@ -93,6 +93,9 @@ void CruiseControl::loop(const VehicleState& vehicleState, const CCButton button
                         targetSpeed = vehicleState.speed;
                     }
 
+                    // Save throttle pedal value to start PID with it
+                    throttleStartValue = throttlePedal;
+
                     Throttle::setGeneratedValue(0);
                     cruisePID.reset();
 
@@ -116,8 +119,9 @@ void CruiseControl::loop(const VehicleState& vehicleState, const CCButton button
                 currentState = SystemState::STATE_OFF;
             } else {
                 if(throttlePedal < THROTTLE_PEDAL_THRESHOLD_DISABLE) {
-                    Throttle::setGeneratedValue(0);
+                    Throttle::setGeneratedValue(throttleStartValue);
                     cruisePID.reset();
+                    cruisePID.setInitialOutput(throttleStartValue / 100.0f, targetSpeed, vehicleState.speed);
                     Throttle::enableOverride(true);
                     currentState = SystemState::STATE_ACTIVE;
                 }
@@ -134,7 +138,6 @@ void CruiseControl::loop(const VehicleState& vehicleState, const CCButton button
             } else {
                 if(throttlePedal > THROTTLE_PEDAL_THRESHOLD_ENABLE) {
                     Throttle::setGeneratedValue(0);
-                    cruisePID.reset();
                     Throttle::enableOverride(false);
                     currentState = SystemState::STATE_OVERRIDE;
                 } else {
