@@ -82,7 +82,8 @@ float PIDController::compute(float setpoint, float processValue) {
     if(Debug::isEnabled()) {
         if((millis() - tDebug) >= DEBUG_INFO_PERIOD_MS) {
             tDebug += DEBUG_INFO_PERIOD_MS;
-            Debug::printf("target: %.2f kmh/h, current: %.2f km/h, output: %.2f %%   p: %.2f, i: %.2f, d: %.2f\n", setpoint, processValue, output * 100.0f, pOut, iOut, dOut);
+            Debug::printf("sp=%.2f pv=%.2f err=%.2f out=%.2f P=%.2f I=%.2f D=%.2f acc=%.2f\n",
+                setpoint, processValue, error, output*100, pOut, iOut, dOut, getAcceleration());
         }
     }
 
