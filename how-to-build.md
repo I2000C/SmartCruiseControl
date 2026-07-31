@@ -28,38 +28,112 @@ upload_speed = 921600
 #include <Arduino.h>
 #include <cinttypes>
 
-const char* detectButtonName(uint16_t rawSensorValue) {
-    const char* buttonName = "";
-    if(rawSensorValue <= 200) {
-        buttonName = "Reject call";
-    } else if(rawSensorValue <= 400) {
-        buttonName = "Mute";
-    } else if(rawSensorValue <= 800) {
-        buttonName = "Answer call";
-    } else if(rawSensorValue <= 1600) {
-        buttonName = "Next track";
-    } else if(rawSensorValue <= 2000) {
-        buttonName = "Previous track";
-    } else if(rawSensorValue <= 2300) {
-        buttonName = "Volume down";
-    } else if(rawSensorValue <= 2700) {
-        buttonName = "Volume up";
-    } else {
-        buttonName = "None";
+#define LED_PIN GPIO_NUM_2
+#define BUTTONS_PIN GPIO_NUM_35
+
+uint16_t minValue = 0xFFFF;
+uint16_t maxValue = 0;
+uint32_t sumValue = 0;
+uint16_t numSamples = 0;
+
+void resetValues() {
+    minValue = 0xFFFF;
+    maxValue = 0;
+    sumValue = 0;
+    numSamples = 0;
+}
+
+inline uint16_t readFiltered(gpio_num_t pin, uint8_t samples = 16, uint8_t samplesToDiscard = 2) {
+    uint16_t adcSamples[samples];
+
+    if(samplesToDiscard * 2 >= samples) {
+        samplesToDiscard = 0;
     }
 
-    return buttonName;
+    // Adquire ADC samples
+    for(int i=0; i<samples; i++) {
+        adcSamples[i] = analogRead(pin);
+    }
+
+    // Sort samples using insertion sort
+    for(int index=1; index<samples; index++) {
+        uint16_t currentSample = adcSamples[index];
+        int8_t prevIndex = index - 1;
+
+        while(prevIndex >= 0 && adcSamples[prevIndex] > currentSample) {
+            adcSamples[prevIndex + 1] = adcSamples[prevIndex];
+            prevIndex--;
+        }
+
+        adcSamples[prevIndex + 1] = currentSample;
+    }
+
+    // Compute the average after discarding extreme values
+    uint32_t sum = 0;
+    for(uint8_t i=samplesToDiscard; i<samples-samplesToDiscard; i++) {
+        sum += adcSamples[i];
+    }
+
+    uint8_t validSamples = samples - (2 * samplesToDiscard);
+    return sum / validSamples;
+}
+
+void detectButton(uint16_t rawSensorValue) {
+    const char* buttonName = "";
+    bool showRawValue = true;
+    if(rawSensorValue <= 50) {
+        buttonName = "Reject call";
+        digitalWrite(LED_PIN, HIGH);
+    } else if(rawSensorValue <= 250) {
+        buttonName = "Mute";
+        digitalWrite(LED_PIN, HIGH);
+    } else if(rawSensorValue <= 800) {
+        buttonName = "Answer call";
+        digitalWrite(LED_PIN, HIGH);
+    } else if(rawSensorValue <= 1600) {
+        buttonName = "Next track";
+        digitalWrite(LED_PIN, HIGH);
+    } else if(rawSensorValue <= 1900) {
+        buttonName = "Previous track";
+        digitalWrite(LED_PIN, HIGH);
+    } else if(rawSensorValue <= 2300) {
+        buttonName = "Volume down";
+        digitalWrite(LED_PIN, HIGH);
+    } else if(rawSensorValue <= 2700) {
+        buttonName = "Volume up";
+        digitalWrite(LED_PIN, HIGH);
+    } else {
+        buttonName = "None";
+        showRawValue = false;
+        resetValues();
+        digitalWrite(LED_PIN, LOW);
+    }
+
+    if(showRawValue) {
+        numSamples++;
+        sumValue += rawSensorValue;
+
+        if(rawSensorValue < minValue) {
+            minValue = rawSensorValue;
+        }
+        if(rawSensorValue > maxValue) {
+            maxValue = rawSensorValue;
+        }
+
+        uint16_t averageValue = sumValue / numSamples;
+        Serial.printf("Raw value: %4d (min: %4d, max: %4d, avg: %4d). Detected button name: %s\n", rawSensorValue, minValue, maxValue, averageValue, buttonName);
+    }
 }
 
 void setup() {
+    pinMode(LED_PIN, OUTPUT);
     Serial.begin(115200);
 }
 
 void loop() {
-    uint16_t rawValue = analogRead(GPIO_NUM_35);
-    const char* detectedButtonName = detectButtonName(rawValue);
-    Serial.printf("Raw value: %4d. Detected button name: %s\n", rawValue, detectedButtonName);
-    delay(500);
+    uint16_t rawValue = readFiltered(BUTTONS_PIN);
+    detectButton(rawValue);
+    delay(100);
 }
 ```
 
