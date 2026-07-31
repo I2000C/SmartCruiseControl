@@ -4,6 +4,9 @@
 #include <Arduino.h>
 #include <cmath>
 
+#define DEBUG_INFO_PERIOD_MS 250
+static uint32_t tDebug = 0;
+
 void PIDController::setTunings(float kp, float ki, float kd) {
     // Update controller gains
     _kp = kp;
@@ -69,13 +72,19 @@ float PIDController::compute(float setpoint, float processValue) {
     // Apply slew-rate limiting
     float output = constrain(saturatedOutput, _prevOutput - _maxDeltaDown, _prevOutput + _maxDeltaUp);
 
-    Debug::printf("target: %.2f kmh/h, current: %.2f km/h, output: %.2f %%   p: %.2f, i: %.2f, d: %.2f\n", setpoint, processValue, output * 100.0f, pOut, iOut, dOut);
-
     // Save controller state
     _prevDeriv = deriv;
     _prevProcessValue = processValue;
     _prevOutput = output;
     _prevError = error;
+
+    // Print debug data
+    if(Debug::isEnabled()) {
+        if((millis() - tDebug) >= DEBUG_INFO_PERIOD_MS) {
+            tDebug += DEBUG_INFO_PERIOD_MS;
+            Debug::printf("target: %.2f kmh/h, current: %.2f km/h, output: %.2f %%   p: %.2f, i: %.2f, d: %.2f\n", setpoint, processValue, output * 100.0f, pOut, iOut, dOut);
+        }
+    }
 
     return output;
 }
