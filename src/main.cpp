@@ -66,8 +66,6 @@ void fatalErrorLoop(uint8_t code) {
 
 // Arduino setup() initializes hardware and starts application tasks
 void setup() {
-    Serial.begin(115200);
-
     // Initialize status LED
     if(!IndicatorLed::init()) {
         fatalErrorLoop(ERROR_LED_INIT);
@@ -99,6 +97,7 @@ void setup() {
         } else {
             // Enable debug mode
             Debug::setEnabled(true);
+            Serial.begin(SERIAL_DEBUG_BAUDRATE);
             Debug::println("Debug mode is enabled");
 
             // Fade indicator LED for 2 seconds
@@ -112,6 +111,7 @@ void setup() {
 
     // Start ELM327 serial task if debug mode is not enabled
     if(!Debug::isEnabled()) {
+        Serial.begin(SERIAL_ELM327_BAUDRATE);
         elm327.init();
     }
 

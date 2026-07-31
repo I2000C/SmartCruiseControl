@@ -92,4 +92,5 @@ inline constexpr uint16_t BUTTONS_REPEAT_PERIOD_TICKS = BUTTONS_REPEAT_PERIOD_MS
 #define REFRESH_COMPUTED_DATA_TIME_MS 100         // Interval to refresh computed vehicle data
 
 /* Serial constants */
-#define SERIAL_BAUDRATE 115200                    // Serial baud rate for ELM327 / debug serial
+#define SERIAL_ELM327_BAUDRATE  115200            // Serial baud rate for ELM327
+#define SERIAL_DEBUG_BAUDRATE   921600            // Serial baud rate for debug
