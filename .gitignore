@@ -73,3 +73,6 @@ Testing/
 .vscode/launch.json
 .vscode/ipch
 kicad_project/SmartCruiseControl/.history/
+kicad_project/SmartCruiseControl/*.lck
+kicad_project/SmartCruiseControl/**/*.zip
+kicad_project/SmartCruiseControl/_autosave*
