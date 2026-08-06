@@ -17,13 +17,7 @@
 - IRLZ44N x1 (other MOSFETs may work)
 - 1N4003 x1 (other flyback diodes may work)
 - 2N3904 x4 (other NPN transistors may work)
-- 100uF 16V capacitor x2
-- 220 resistor x1
-- 1k resistor x3
-- 5k resistor x1
-- 10k resistor x1
-- 47k resistor x4
-- 100k resistor x1
+- Capacitors and resistors. See BOM (Bill of Materials): [BOM](kicad_project/SmartCruiseControl/bom/ibom.html)
 - ESP32 devkit v1 board
 
 <img src="https://docs.zephyrproject.org/latest/_images/doit_esp32_devkit_v1.webp" alt="esp32 board" width="200">

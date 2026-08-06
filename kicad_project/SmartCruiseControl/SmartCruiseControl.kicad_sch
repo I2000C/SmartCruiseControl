@@ -876,6 +876,161 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Device:C"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0.254)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "C"
+				(at 0.635 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "C"
+				(at 0.635 -2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" ""
+				(at 0.9652 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Unpolarized capacitor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "cap capacitor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "C_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "C_0_1"
+				(polyline
+					(pts
+						(xy -2.032 0.762) (xy 2.032 0.762)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -2.032 -0.762) (xy 2.032 -0.762)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "C_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 2.794)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 2.794)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Device:C_Polarized"
 			(pin_numbers
 				(hide yes)
@@ -3912,18 +4067,6 @@
 		)
 	)
 	(junction
-		(at 67.31 125.73)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "04074396-fbe4-42d9-beb3-193345ae16b0")
-	)
-	(junction
-		(at 33.02 123.19)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "044b9520-aa9e-4ccd-a0d0-5f3dd330bc7b")
-	)
-	(junction
 		(at 157.48 133.35)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3942,13 +4085,43 @@
 		(uuid "3836aee0-1550-4a43-b5dd-8c1294982ac0")
 	)
 	(junction
-		(at 236.22 97.79)
+		(at 25.4 123.19)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "3a468845-105f-46b3-bb7e-77936afc0a11")
+	)
+	(junction
+		(at 114.3 78.74)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "43b80e03-0995-4df5-97b0-e0571f9ed1c2")
+	)
+	(junction
+		(at 33.02 90.17)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "4d602cd3-5bda-4969-955e-c5f5e7f9160a")
+	)
+	(junction
+		(at 25.4 125.73)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "4f47cb67-3181-410e-babc-b516750cd267")
+	)
+	(junction
+		(at 236.22 92.71)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "525d4b3e-797c-494f-b5aa-9f78247f2994")
 	)
 	(junction
-		(at 222.25 63.5)
+		(at 85.09 135.89)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "57ee3dee-eeac-4b7a-b6c3-edb840c36006")
+	)
+	(junction
+		(at 210.82 54.61)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "5a552a47-25e3-44bb-bf7f-a6dd9a759c49")
@@ -3958,6 +4131,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "5d949b91-a360-4fa4-8b09-f852377bc5db")
+	)
+	(junction
+		(at 82.55 138.43)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "6b133504-0ba5-46e9-9a15-695a3547f1d8")
 	)
 	(junction
 		(at 193.04 120.65)
@@ -3978,6 +4157,24 @@
 		(uuid "7114567d-308c-4d8e-9ef8-32e5e038f4c9")
 	)
 	(junction
+		(at 82.55 82.55)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "75bd8fbc-190f-4fa6-916d-83635cbdb165")
+	)
+	(junction
+		(at 110.49 102.87)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "76fd03da-d747-4c57-9ece-c4a24cd3c7e5")
+	)
+	(junction
+		(at 110.49 133.35)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8355ca8e-ba9c-4071-8e9e-e3bb67c6a186")
+	)
+	(junction
 		(at 161.29 78.74)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3990,22 +4187,28 @@
 		(uuid "891b5f8f-40df-4550-9ea5-887e3b9872e9")
 	)
 	(junction
-		(at 237.49 48.26)
+		(at 69.85 123.19)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "9987b4f6-d206-4d6d-9224-151da6c990ab")
+		(uuid "8f8b8e0e-e52c-4c5b-96da-a22fe04e04cd")
 	)
 	(junction
-		(at 240.03 45.72)
+		(at 222.25 54.61)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "b448abb2-f24e-4b57-8c9c-fc18165558e8")
+		(uuid "977e9edb-b10b-4d5a-a74a-f2ced2a90dd4")
 	)
 	(junction
-		(at 25.4 123.19)
+		(at 110.49 105.41)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "e0c54a52-209a-4a5c-85c8-3f204a20cb83")
+		(uuid "98aada7b-8fca-4d77-849a-e754a48d02bd")
+	)
+	(junction
+		(at 240.03 39.37)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a5a3de48-5be2-416d-ad39-10cdb80372fb")
 	)
 	(junction
 		(at 172.72 106.68)
@@ -4014,16 +4217,10 @@
 		(uuid "e64110fc-519b-4f54-9dda-4017cfd014f5")
 	)
 	(junction
-		(at 25.4 125.73)
+		(at 237.49 36.83)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "e67eaf73-719a-4a00-ada5-79b29bf36dfd")
-	)
-	(junction
-		(at 69.85 123.19)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "ecf214f2-62a6-4020-b5e6-c0b7fe9977e8")
+		(uuid "f279f801-31a1-4b34-af4f-8b3238e19065")
 	)
 	(wire
 		(pts
@@ -4037,7 +4234,7 @@
 	)
 	(wire
 		(pts
-			(xy 236.22 92.71) (xy 242.57 92.71)
+			(xy 236.22 87.63) (xy 242.57 87.63)
 		)
 		(stroke
 			(width 0)
@@ -4057,7 +4254,17 @@
 	)
 	(wire
 		(pts
-			(xy 236.22 113.03) (xy 242.57 113.03)
+			(xy 85.09 82.55) (xy 82.55 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "052f5a45-22e8-4351-9458-76c9bcad5b8e")
+	)
+	(wire
+		(pts
+			(xy 236.22 107.95) (xy 242.57 107.95)
 		)
 		(stroke
 			(width 0)
@@ -4067,7 +4274,7 @@
 	)
 	(wire
 		(pts
-			(xy 236.22 90.17) (xy 242.57 90.17)
+			(xy 236.22 85.09) (xy 242.57 85.09)
 		)
 		(stroke
 			(width 0)
@@ -4084,6 +4291,16 @@
 			(type default)
 		)
 		(uuid "084345ee-7442-4124-ace7-13fbe65ccec4")
+	)
+	(wire
+		(pts
+			(xy 82.55 82.55) (xy 82.55 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "094f3590-02ce-465b-8703-5a25585b581c")
 	)
 	(wire
 		(pts
@@ -4147,7 +4364,7 @@
 	)
 	(wire
 		(pts
-			(xy 104.14 133.35) (xy 135.89 133.35)
+			(xy 104.14 133.35) (xy 110.49 133.35)
 		)
 		(stroke
 			(width 0)
@@ -4157,7 +4374,7 @@
 	)
 	(wire
 		(pts
-			(xy 222.25 74.93) (xy 222.25 77.47)
+			(xy 210.82 66.04) (xy 210.82 68.58)
 		)
 		(stroke
 			(width 0)
@@ -4177,7 +4394,7 @@
 	)
 	(wire
 		(pts
-			(xy 236.22 95.25) (xy 242.57 95.25)
+			(xy 236.22 90.17) (xy 242.57 90.17)
 		)
 		(stroke
 			(width 0)
@@ -4187,7 +4404,7 @@
 	)
 	(wire
 		(pts
-			(xy 236.22 105.41) (xy 242.57 105.41)
+			(xy 236.22 100.33) (xy 242.57 100.33)
 		)
 		(stroke
 			(width 0)
@@ -4207,17 +4424,7 @@
 	)
 	(wire
 		(pts
-			(xy 69.85 121.92) (xy 69.85 123.19)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2055fe64-668a-4f8e-8892-5c400350850f")
-	)
-	(wire
-		(pts
-			(xy 85.09 107.95) (xy 85.09 151.13)
+			(xy 85.09 107.95) (xy 85.09 135.89)
 		)
 		(stroke
 			(width 0)
@@ -4227,7 +4434,7 @@
 	)
 	(wire
 		(pts
-			(xy 67.31 102.87) (xy 130.81 102.87)
+			(xy 67.31 102.87) (xy 110.49 102.87)
 		)
 		(stroke
 			(width 0)
@@ -4247,17 +4454,7 @@
 	)
 	(wire
 		(pts
-			(xy 237.49 48.26) (xy 237.49 71.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "26faf88b-15ba-4b1d-8a3a-f463bd0778d2")
-	)
-	(wire
-		(pts
-			(xy 236.22 107.95) (xy 242.57 107.95)
+			(xy 236.22 102.87) (xy 242.57 102.87)
 		)
 		(stroke
 			(width 0)
@@ -4287,17 +4484,27 @@
 	)
 	(wire
 		(pts
-			(xy 240.03 45.72) (xy 242.57 45.72)
+			(xy 22.86 87.63) (xy 22.86 90.17)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "2f1290fc-a0c1-4c74-a201-9ebd4cbf67e4")
+		(uuid "2bae6bbe-0a51-45df-9147-98cd4121468e")
 	)
 	(wire
 		(pts
-			(xy 232.41 97.79) (xy 236.22 97.79)
+			(xy 110.49 129.54) (xy 110.49 133.35)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "30c12497-7bac-4cb2-bc95-7f08eb62f457")
+	)
+	(wire
+		(pts
+			(xy 232.41 92.71) (xy 236.22 92.71)
 		)
 		(stroke
 			(width 0)
@@ -4317,6 +4524,16 @@
 	)
 	(wire
 		(pts
+			(xy 69.85 121.92) (xy 69.85 123.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "363b53ab-77ec-4e65-964d-fd6e26b09010")
+	)
+	(wire
+		(pts
 			(xy 120.65 105.41) (xy 120.65 78.74)
 		)
 		(stroke
@@ -4327,7 +4544,7 @@
 	)
 	(wire
 		(pts
-			(xy 234.95 80.01) (xy 242.57 80.01)
+			(xy 234.95 74.93) (xy 242.57 74.93)
 		)
 		(stroke
 			(width 0)
@@ -4337,17 +4554,7 @@
 	)
 	(wire
 		(pts
-			(xy 69.85 123.19) (xy 71.12 123.19)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "37f8d54e-1e5a-4fa2-b419-a88c7adbaab7")
-	)
-	(wire
-		(pts
-			(xy 236.22 95.25) (xy 236.22 97.79)
+			(xy 236.22 90.17) (xy 236.22 92.71)
 		)
 		(stroke
 			(width 0)
@@ -4377,13 +4584,13 @@
 	)
 	(wire
 		(pts
-			(xy 232.41 60.96) (xy 243.84 60.96)
+			(xy 114.3 78.74) (xy 114.3 92.71)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "3e4e25a0-2165-4ba9-80d2-b38314c1e610")
+		(uuid "3f9e41c0-e0a4-4934-ad9e-7051cb533d19")
 	)
 	(wire
 		(pts
@@ -4397,23 +4604,13 @@
 	)
 	(wire
 		(pts
-			(xy 240.03 45.72) (xy 240.03 68.58)
+			(xy 85.09 135.89) (xy 85.09 151.13)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "43a3f8d9-4c69-47ad-8f26-f04b9dcdaa7e")
-	)
-	(wire
-		(pts
-			(xy 240.03 68.58) (xy 243.84 68.58)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "47636713-03c7-4773-af42-4009ae5363d5")
+		(uuid "4b57196e-2f10-457f-9f8b-8a4c443c349c")
 	)
 	(wire
 		(pts
@@ -4447,23 +4644,13 @@
 	)
 	(wire
 		(pts
-			(xy 219.71 60.96) (xy 224.79 60.96)
+			(xy 208.28 52.07) (xy 218.44 52.07)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "56174205-60e3-4169-ba88-f10bc7767939")
-	)
-	(wire
-		(pts
-			(xy 237.49 48.26) (xy 242.57 48.26)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "56f7db50-a27c-4d40-83fc-88968a2827e9")
 	)
 	(wire
 		(pts
@@ -4474,6 +4661,16 @@
 			(type default)
 		)
 		(uuid "586f4087-5525-460f-949c-fd87ab23280e")
+	)
+	(wire
+		(pts
+			(xy 240.03 52.07) (xy 240.03 39.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5a46fa6c-4de4-44ce-9699-1fca2c799729")
 	)
 	(wire
 		(pts
@@ -4497,6 +4694,16 @@
 	)
 	(wire
 		(pts
+			(xy 25.4 127) (xy 25.4 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5e6521e0-6fb4-4e56-947d-00b583d08e6c")
+	)
+	(wire
+		(pts
 			(xy 236.22 157.48) (xy 241.3 157.48)
 		)
 		(stroke
@@ -4517,6 +4724,16 @@
 	)
 	(wire
 		(pts
+			(xy 110.49 105.41) (xy 120.65 105.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "65352196-fe87-402d-8066-c23e67b4a0ae")
+	)
+	(wire
+		(pts
 			(xy 172.72 185.42) (xy 172.72 153.67)
 		)
 		(stroke
@@ -4524,6 +4741,26 @@
 			(type default)
 		)
 		(uuid "670cc9e6-56e0-4d16-8f54-85f9c67964d5")
+	)
+	(wire
+		(pts
+			(xy 87.63 135.89) (xy 85.09 135.89)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6a7fa8ae-0f8a-47c9-a904-aeb2505bf48b")
+	)
+	(wire
+		(pts
+			(xy 110.49 105.41) (xy 110.49 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6b3cfa18-b2cd-4665-9b75-7f83f39b995a")
 	)
 	(wire
 		(pts
@@ -4557,7 +4794,7 @@
 	)
 	(wire
 		(pts
-			(xy 82.55 115.57) (xy 82.55 153.67)
+			(xy 82.55 115.57) (xy 82.55 138.43)
 		)
 		(stroke
 			(width 0)
@@ -4587,17 +4824,7 @@
 	)
 	(wire
 		(pts
-			(xy 25.4 123.19) (xy 33.02 123.19)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "78ae1854-b1a8-49cc-9fd1-7dae73472083")
-	)
-	(wire
-		(pts
-			(xy 222.25 67.31) (xy 222.25 63.5)
+			(xy 210.82 58.42) (xy 210.82 54.61)
 		)
 		(stroke
 			(width 0)
@@ -4614,6 +4841,16 @@
 			(type default)
 		)
 		(uuid "7bc92dc5-2dc5-4a1b-ac8b-4b760ad0a4fe")
+	)
+	(wire
+		(pts
+			(xy 232.41 59.69) (xy 232.41 54.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7d865d1b-09e9-4abe-8772-f1a4eff1e358")
 	)
 	(wire
 		(pts
@@ -4637,7 +4874,7 @@
 	)
 	(wire
 		(pts
-			(xy 236.22 110.49) (xy 242.57 110.49)
+			(xy 236.22 105.41) (xy 242.57 105.41)
 		)
 		(stroke
 			(width 0)
@@ -4687,6 +4924,16 @@
 	)
 	(wire
 		(pts
+			(xy 234.95 52.07) (xy 234.95 62.23)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8643c41f-72c4-43db-9b4d-30bbb7fed772")
+	)
+	(wire
+		(pts
 			(xy 158.75 175.26) (xy 158.75 177.8)
 		)
 		(stroke
@@ -4717,6 +4964,26 @@
 	)
 	(wire
 		(pts
+			(xy 222.25 59.69) (xy 222.25 54.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8cea2cd5-7f1e-4e81-948f-1b4dad817ef7")
+	)
+	(wire
+		(pts
+			(xy 240.03 39.37) (xy 241.3 39.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8d24a1e0-6f42-481d-8756-3cd7201fe006")
+	)
+	(wire
+		(pts
 			(xy 135.89 185.42) (xy 135.89 153.67)
 		)
 		(stroke
@@ -4737,6 +5004,16 @@
 	)
 	(wire
 		(pts
+			(xy 237.49 36.83) (xy 241.3 36.83)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "91bf342c-a1c9-4aa1-b807-f6d04fefdc93")
+	)
+	(wire
+		(pts
 			(xy 236.22 162.56) (xy 241.3 162.56)
 		)
 		(stroke
@@ -4747,7 +5024,7 @@
 	)
 	(wire
 		(pts
-			(xy 219.71 63.5) (xy 222.25 63.5)
+			(xy 208.28 54.61) (xy 210.82 54.61)
 		)
 		(stroke
 			(width 0)
@@ -4787,6 +5064,16 @@
 	)
 	(wire
 		(pts
+			(xy 250.19 54.61) (xy 237.49 54.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "999596c9-600a-4327-acd6-429a6dccbef2")
+	)
+	(wire
+		(pts
 			(xy 236.22 127) (xy 241.3 127)
 		)
 		(stroke
@@ -4797,7 +5084,7 @@
 	)
 	(wire
 		(pts
-			(xy 222.25 63.5) (xy 243.84 63.5)
+			(xy 210.82 54.61) (xy 222.25 54.61)
 		)
 		(stroke
 			(width 0)
@@ -4817,13 +5104,43 @@
 	)
 	(wire
 		(pts
-			(xy 33.02 123.19) (xy 34.29 123.19)
+			(xy 250.19 59.69) (xy 232.41 59.69)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "9e1cb106-8195-4414-b60a-6b1e9c374a2b")
+		(uuid "9c82d84c-a962-4bb7-b84f-d38b7dea87f9")
+	)
+	(wire
+		(pts
+			(xy 82.55 138.43) (xy 82.55 153.67)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9d7a0fdc-9109-48c5-b564-ca2052b9fc45")
+	)
+	(wire
+		(pts
+			(xy 234.95 62.23) (xy 250.19 62.23)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9d830fe1-4556-4125-9ea1-2dcd1d0981b4")
+	)
+	(wire
+		(pts
+			(xy 109.22 78.74) (xy 114.3 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9f718338-020c-430d-a910-d92ed38e0902")
 	)
 	(wire
 		(pts
@@ -4834,16 +5151,6 @@
 			(type default)
 		)
 		(uuid "9faa1285-129b-4ba2-9bd8-84ffb3d8ec21")
-	)
-	(wire
-		(pts
-			(xy 237.49 71.12) (xy 243.84 71.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a0009100-3376-49de-93eb-e40d60592411")
 	)
 	(wire
 		(pts
@@ -4877,6 +5184,26 @@
 	)
 	(wire
 		(pts
+			(xy 87.63 138.43) (xy 82.55 138.43)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a4a22ac6-8535-4e4a-acdd-e4b79916f828")
+	)
+	(wire
+		(pts
+			(xy 33.02 90.17) (xy 34.29 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a652c396-a339-4ca3-832f-7f01334e1ffd")
+	)
+	(wire
+		(pts
 			(xy 27.94 113.03) (xy 34.29 113.03)
 		)
 		(stroke
@@ -4884,6 +5211,26 @@
 			(type default)
 		)
 		(uuid "aa11f831-166d-4239-8f93-9a854b84534e")
+	)
+	(wire
+		(pts
+			(xy 33.02 78.74) (xy 33.02 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ac961a0a-efea-4a44-bd9a-3787f64b8b36")
+	)
+	(wire
+		(pts
+			(xy 22.86 90.17) (xy 33.02 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ad1ee325-cf5c-4121-9f5e-1a0f8efae4fc")
 	)
 	(wire
 		(pts
@@ -4897,7 +5244,17 @@
 	)
 	(wire
 		(pts
-			(xy 114.3 63.5) (xy 114.3 92.71)
+			(xy 237.49 54.61) (xy 237.49 36.83)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ad9ed742-7449-4686-8686-04988d38e64f")
+	)
+	(wire
+		(pts
+			(xy 114.3 63.5) (xy 114.3 78.74)
 		)
 		(stroke
 			(width 0)
@@ -4917,6 +5274,26 @@
 	)
 	(wire
 		(pts
+			(xy 25.4 121.92) (xy 25.4 123.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b1d76cd6-fd74-4fcb-b3a3-8143cccb9061")
+	)
+	(wire
+		(pts
+			(xy 236.22 121.92) (xy 241.3 121.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b5f2ca49-d02b-4834-a5bd-f465011de008")
+	)
+	(wire
+		(pts
 			(xy 157.48 133.35) (xy 180.34 133.35)
 		)
 		(stroke
@@ -4927,7 +5304,17 @@
 	)
 	(wire
 		(pts
-			(xy 234.95 82.55) (xy 242.57 82.55)
+			(xy 69.85 123.19) (xy 71.12 123.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bb7ead15-476b-490a-9e35-b4eb965be642")
+	)
+	(wire
+		(pts
+			(xy 234.95 77.47) (xy 242.57 77.47)
 		)
 		(stroke
 			(width 0)
@@ -4977,13 +5364,13 @@
 	)
 	(wire
 		(pts
-			(xy 33.02 123.19) (xy 33.02 133.35)
+			(xy 25.4 123.19) (xy 34.29 123.19)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "c94facce-4403-4619-846f-b55ca193e232")
+		(uuid "cbcfc973-6ee0-4437-a3a9-7c477d9523d6")
 	)
 	(wire
 		(pts
@@ -5027,6 +5414,16 @@
 	)
 	(wire
 		(pts
+			(xy 114.3 111.76) (xy 110.49 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d2c71549-9fca-40a3-8e47-b2beebf5853f")
+	)
+	(wire
+		(pts
 			(xy 73.66 53.34) (xy 73.66 55.88)
 		)
 		(stroke
@@ -5044,6 +5441,16 @@
 			(type default)
 		)
 		(uuid "d3be5a90-851f-42de-9fa4-a41ae8e001d4")
+	)
+	(wire
+		(pts
+			(xy 234.95 36.83) (xy 237.49 36.83)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d4386f88-ccd3-46f6-895b-aeabcf6fe7e5")
 	)
 	(wire
 		(pts
@@ -5077,6 +5484,16 @@
 	)
 	(wire
 		(pts
+			(xy 110.49 102.87) (xy 130.81 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "da2a52e3-0a6e-46f6-a3bd-dbadcdf7b8f4")
+	)
+	(wire
+		(pts
 			(xy 138.43 78.74) (xy 146.05 78.74)
 		)
 		(stroke
@@ -5087,13 +5504,43 @@
 	)
 	(wire
 		(pts
-			(xy 67.31 105.41) (xy 120.65 105.41)
+			(xy 110.49 97.79) (xy 110.49 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "df2f6c44-9f94-432d-9414-4c9c3bf74813")
+	)
+	(wire
+		(pts
+			(xy 246.38 57.15) (xy 250.19 57.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e02f6f3f-4a8e-42dc-8b42-cedbc227a227")
+	)
+	(wire
+		(pts
+			(xy 67.31 105.41) (xy 110.49 105.41)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "e039210e-9c36-4012-ac80-5e897e10f765")
+	)
+	(wire
+		(pts
+			(xy 110.49 133.35) (xy 135.89 133.35)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e3e1375c-a709-45aa-b54d-af1118c4b6de")
 	)
 	(wire
 		(pts
@@ -5117,7 +5564,7 @@
 	)
 	(wire
 		(pts
-			(xy 82.55 63.5) (xy 82.55 90.17)
+			(xy 82.55 63.5) (xy 82.55 82.55)
 		)
 		(stroke
 			(width 0)
@@ -5137,17 +5584,7 @@
 	)
 	(wire
 		(pts
-			(xy 67.31 125.73) (xy 67.31 133.35)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e8604693-d7cc-40a3-ac43-21922df78334")
-	)
-	(wire
-		(pts
-			(xy 236.22 97.79) (xy 242.57 97.79)
+			(xy 236.22 92.71) (xy 242.57 92.71)
 		)
 		(stroke
 			(width 0)
@@ -5164,6 +5601,16 @@
 			(type default)
 		)
 		(uuid "eac82be4-f83f-4262-868d-db9d9b00c558")
+	)
+	(wire
+		(pts
+			(xy 233.68 39.37) (xy 240.03 39.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ec8246b4-e2a8-40cb-857b-586c9d2493e6")
 	)
 	(wire
 		(pts
@@ -5187,6 +5634,26 @@
 	)
 	(wire
 		(pts
+			(xy 250.19 52.07) (xy 240.03 52.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ef392e23-28fe-489c-beae-4ecc8cbd3e3a")
+	)
+	(wire
+		(pts
+			(xy 232.41 54.61) (xy 222.25 54.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f01e7a9e-bb48-46c3-8ec5-d546a0840fef")
+	)
+	(wire
+		(pts
 			(xy 172.72 120.65) (xy 172.72 106.68)
 		)
 		(stroke
@@ -5194,6 +5661,16 @@
 			(type default)
 		)
 		(uuid "f0953889-33a9-4dcd-b2f5-1dda79a21aa4")
+	)
+	(wire
+		(pts
+			(xy 236.22 116.84) (xy 241.3 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f3be62f0-75b8-4529-a03f-0427c219e301")
 	)
 	(wire
 		(pts
@@ -5217,13 +5694,13 @@
 	)
 	(wire
 		(pts
-			(xy 234.95 66.04) (xy 243.84 66.04)
+			(xy 226.06 52.07) (xy 234.95 52.07)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "f92d2d39-781a-4cba-ac4d-535744abae93")
+		(uuid "fcd4c0cc-b7c2-4321-b763-283509f4f176")
 	)
 	(wire
 		(pts
@@ -5266,7 +5743,7 @@
 		(uuid "0c14f2a7-7b0a-4c2b-838c-e8ff11d74887")
 	)
 	(label "DISPLAY_LED"
-		(at 219.71 60.96 180)
+		(at 208.28 52.07 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5285,6 +5762,16 @@
 		)
 		(uuid "146dbee5-97bd-46e9-852c-01f448f001c3")
 	)
+	(label "5V_OUT"
+		(at 234.95 36.83 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "18c1253a-2b30-4ad4-95c6-3ecd48a65063")
+	)
 	(label "DISPLAY_LED"
 		(at 27.94 113.03 180)
 		(effects
@@ -5296,7 +5783,7 @@
 		(uuid "1fa79867-fb67-454e-8460-5ed5d792404c")
 	)
 	(label "ECU_APPS2"
-		(at 236.22 105.41 180)
+		(at 236.22 100.33 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5345,6 +5832,26 @@
 		)
 		(uuid "43a94cd4-6e16-4b7e-94ae-bc9c814809ac")
 	)
+	(label "CAN_TTL_RX"
+		(at 87.63 138.43 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "4ab37a42-2580-41c2-81fa-3cd563d9d414")
+	)
+	(label "CAN_TTL_TX"
+		(at 87.63 135.89 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "4ada1582-7f70-4b4a-9b91-018e026e5bea")
+	)
 	(label "CLUTCH"
 		(at 127 165.1 180)
 		(effects
@@ -5364,6 +5871,16 @@
 			(justify left bottom)
 		)
 		(uuid "53a1b501-99e1-498f-81c0-1ebb3930a07d")
+	)
+	(label "RELAY_ENABLE"
+		(at 110.49 129.54 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "5929bc9b-5bed-4653-8b0b-67b8fe101113")
 	)
 	(label "ECU_APPS2"
 		(at 200.66 96.52 0)
@@ -5386,7 +5903,7 @@
 		(uuid "5ce286c9-3f8e-4594-82ff-28413906c79a")
 	)
 	(label "CLUTCH"
-		(at 234.95 80.01 180)
+		(at 234.95 74.93 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5394,6 +5911,16 @@
 			(justify right bottom)
 		)
 		(uuid "5de3d42a-4d7e-4dbd-b0de-aa38a8659531")
+	)
+	(label "PWM_GENERATED_APPS1"
+		(at 114.3 111.76 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "664501fb-d8f3-4d49-a873-4e73c64b6ad3")
 	)
 	(label "GENERATED_APPS2"
 		(at 236.22 152.4 180)
@@ -5406,7 +5933,7 @@
 		(uuid "6e5813e8-067c-46b9-a825-c4e264e5f32b")
 	)
 	(label "PEDAL_APPS1"
-		(at 236.22 113.03 180)
+		(at 236.22 107.95 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5425,8 +5952,28 @@
 		)
 		(uuid "7c5bffbc-5339-4d60-b6ad-642ac439f073")
 	)
+	(label "CAN_HIGH"
+		(at 236.22 116.84 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "7d08f185-6b88-4017-9ac2-6505ad08bb9f")
+	)
+	(label "Net-(J2-Pin_1)"
+		(at 226.06 52.07 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "7d3e7aea-410d-4228-a09a-9a0d7b7adf16")
+	)
 	(label "CAN_LOW"
-		(at 236.22 92.71 180)
+		(at 236.22 87.63 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5456,7 +6003,7 @@
 		(uuid "9622598f-d9d7-41ca-bd8f-310e618ee4e9")
 	)
 	(label "BUTTON_KEY"
-		(at 219.71 63.5 180)
+		(at 208.28 54.61 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5464,6 +6011,26 @@
 			(justify right bottom)
 		)
 		(uuid "9711fcfd-1de0-4ce7-9f26-87c7d13bbde7")
+	)
+	(label "5V_IN"
+		(at 233.68 39.37 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "996a6536-6ae8-433d-8a63-312826a6643c")
+	)
+	(label "Net-(J2-Pin_1)"
+		(at 226.06 52.07 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "9a1607e6-0768-4d46-ac05-d5cc2cfd893a")
 	)
 	(label "PEDAL_APPS2"
 		(at 175.26 99.06 180)
@@ -5476,7 +6043,7 @@
 		(uuid "9ec985be-0691-4352-9e2c-e595c112dce5")
 	)
 	(label "CAN_HIGH"
-		(at 236.22 90.17 180)
+		(at 236.22 85.09 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5484,6 +6051,16 @@
 			(justify right bottom)
 		)
 		(uuid "a177b0b5-519b-400f-b91c-3786fdc85cb9")
+	)
+	(label "PWM_GENERATED_APPS2"
+		(at 110.49 97.79 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "bb15412c-7a1b-4ac8-9204-1eddd55eda7e")
 	)
 	(label "PEDAL_APPS2"
 		(at 27.94 97.79 180)
@@ -5495,8 +6072,18 @@
 		)
 		(uuid "bc7b492a-ef71-4b36-93d0-876dcd507bbe")
 	)
+	(label "RELAY_GND"
+		(at 198.12 115.57 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c883b211-f59d-4f6b-acbb-cb19926306f9")
+	)
 	(label "BRAKE"
-		(at 234.95 82.55 180)
+		(at 234.95 77.47 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5506,7 +6093,7 @@
 		(uuid "c95e78ed-8d11-4351-8954-95e12a1105f7")
 	)
 	(label "PEDAL_APPS2"
-		(at 236.22 110.49 180)
+		(at 236.22 105.41 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5526,7 +6113,7 @@
 		(uuid "d9c5bed3-936d-4d4b-b774-75285827765e")
 	)
 	(label "ECU_APPS1"
-		(at 236.22 107.95 180)
+		(at 236.22 102.87 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5534,6 +6121,26 @@
 			(justify right bottom)
 		)
 		(uuid "dbc9cb0f-e66e-4174-84a0-4c40c0098281")
+	)
+	(label "CLUTCH_INPUT"
+		(at 85.09 82.55 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "ddcecbb8-aa84-4c81-9dbb-a5847738a56b")
+	)
+	(label "CAN_LOW"
+		(at 236.22 121.92 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "e1840b23-9874-4bb6-b90b-7537b6ba8267")
 	)
 	(label "CAN_LOW"
 		(at 120.65 156.21 0)
@@ -5545,6 +6152,16 @@
 		)
 		(uuid "e343eec8-a5ff-4f84-8b9c-c84b13725b99")
 	)
+	(label "BRAKE_INPUT"
+		(at 109.22 78.74 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "e75b55ef-4905-48d2-b24a-73f74de53013")
+	)
 	(label "PEDAL_APPS1"
 		(at 236.22 127 180)
 		(effects
@@ -5554,6 +6171,16 @@
 			(justify right bottom)
 		)
 		(uuid "e7fd2692-b543-4497-ae85-b630a1cc1fda")
+	)
+	(label "EN"
+		(at 33.02 78.74 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "f2671472-3752-4c7c-abb6-4156923e0caa")
 	)
 	(label "BUTTON_KEY"
 		(at 27.94 100.33 180)
@@ -5890,7 +6517,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "094a29f1-b0a7-4b9e-8982-96d458f3171f")
-		(property "Reference" "C2"
+		(property "Reference" "C4"
 			(at 149.86 104.5209 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5954,7 +6581,7 @@
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "C2")
+					(reference "C4")
 					(unit 1)
 				)
 			)
@@ -5972,7 +6599,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "10d74ea0-2172-4a66-8fc8-45eb13f5aeae")
-		(property "Reference" "H1"
+		(property "Reference" "H3"
 			(at 142.24 29.2099 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6027,13 +6654,24 @@
 				)
 			)
 		)
+		(property "KiLib_Generator" "mounting_hardware/mounting_hole"
+			(at 139.7 31.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "66a4f642-5f00-4449-ad24-d02afb2eacd7")
 		)
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "H1")
+					(reference "H3")
 					(unit 1)
 				)
 			)
@@ -6051,7 +6689,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "14915ece-fade-48a0-86ec-49542ca24557")
-		(property "Reference" "R8"
+		(property "Reference" "R11"
 			(at 182.88 139.6999 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6115,7 +6753,7 @@
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "R8")
+					(reference "R11")
 					(unit 1)
 				)
 			)
@@ -6133,7 +6771,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "16cb4d35-9966-482b-b8e4-7abbdaaad045")
-		(property "Reference" "TP9"
+		(property "Reference" "TP2"
 			(at 246.38 156.2099 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6194,7 +6832,7 @@
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "TP9")
+					(reference "TP2")
 					(unit 1)
 				)
 			)
@@ -6439,7 +7077,7 @@
 	)
 	(symbol
 		(lib_id "Connector:Conn_01x02_Pin")
-		(at 247.65 82.55 180)
+		(at 247.65 77.47 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6449,8 +7087,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1e62ab6e-2249-4615-9168-9d61adac9119")
-		(property "Reference" "J3"
-			(at 248.92 80.0099 0)
+		(property "Reference" "J5"
+			(at 248.92 74.9299 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6461,7 +7099,7 @@
 			)
 		)
 		(property "Value" "Brake + clutch"
-			(at 248.92 82.5499 0)
+			(at 248.92 77.4699 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6472,7 +7110,7 @@
 			)
 		)
 		(property "Footprint" "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical"
-			(at 247.65 82.55 0)
+			(at 247.65 77.47 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6483,7 +7121,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 247.65 82.55 0)
+			(at 247.65 77.47 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6494,7 +7132,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x02, script generated"
-			(at 247.65 82.55 0)
+			(at 247.65 77.47 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6513,7 +7151,7 @@
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "J3")
+					(reference "J5")
 					(unit 1)
 				)
 			)
@@ -6531,7 +7169,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "22fa0633-eeba-48ca-8976-3f033b9a1441")
-		(property "Reference" "TP5"
+		(property "Reference" "TP4"
 			(at 246.38 125.7299 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6592,7 +7230,7 @@
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "TP5")
+					(reference "TP4")
 					(unit 1)
 				)
 			)
@@ -6610,7 +7248,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "24cbf4c2-6909-4abb-aff2-bdf051101425")
-		(property "Reference" "R3"
+		(property "Reference" "R2"
 			(at 76.2 152.4 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6672,7 +7310,7 @@
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "R3")
+					(reference "R2")
 					(unit 1)
 				)
 			)
@@ -6690,7 +7328,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2ec1a74e-b9e2-4f21-a01f-d7b81b828075")
-		(property "Reference" "TP7"
+		(property "Reference" "TP10"
 			(at 246.38 135.8899 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6751,7 +7389,7 @@
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "TP7")
+					(reference "TP10")
 					(unit 1)
 				)
 			)
@@ -6769,7 +7407,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "37a6a09c-8a8c-45d5-a940-ab83092b3fee")
-		(property "Reference" "TP3"
+		(property "Reference" "TP9"
 			(at 72.39 129.0319 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6830,7 +7468,7 @@
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "TP3")
+					(reference "TP9")
 					(unit 1)
 				)
 			)
@@ -6838,7 +7476,7 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 25.4 125.73 180)
+		(at 25.4 127 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6848,8 +7486,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "37e4d539-847b-44f9-b161-580a6e5ae1cb")
-		(property "Reference" "TP2"
-			(at 27.94 127.7619 0)
+		(property "Reference" "TP7"
+			(at 27.94 129.0319 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6860,7 +7498,7 @@
 			)
 		)
 		(property "Value" "5V"
-			(at 27.94 130.3019 0)
+			(at 27.94 131.5719 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6871,7 +7509,7 @@
 			)
 		)
 		(property "Footprint" "TestPoint:TestPoint_THTPad_D2.0mm_Drill1.0mm"
-			(at 20.32 125.73 0)
+			(at 20.32 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6882,7 +7520,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 20.32 125.73 0)
+			(at 20.32 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6893,7 +7531,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 25.4 125.73 0)
+			(at 25.4 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6909,7 +7547,7 @@
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "TP2")
+					(reference "TP7")
 					(unit 1)
 				)
 			)
@@ -6927,7 +7565,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3d56f68b-b57e-4e87-bd19-d90f24ea5868")
-		(property "Reference" "H3"
+		(property "Reference" "H2"
 			(at 142.24 43.1799 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6982,13 +7620,24 @@
 				)
 			)
 		)
+		(property "KiLib_Generator" "mounting_hardware/mounting_hole"
+			(at 139.7 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "df026bc2-7098-40f4-8844-956e0a2e3540")
 		)
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "H3")
+					(reference "H2")
 					(unit 1)
 				)
 			)
@@ -6996,7 +7645,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 228.6 60.96 90)
+		(at 222.25 52.07 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7006,8 +7655,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "45ae95c6-231f-482e-bd1d-99d956f1f27a")
-		(property "Reference" "R5"
-			(at 228.6 54.61 90)
+		(property "Reference" "R3"
+			(at 222.25 45.72 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7017,7 +7666,7 @@
 			)
 		)
 		(property "Value" "220"
-			(at 228.6 57.15 90)
+			(at 222.25 48.26 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7027,7 +7676,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
-			(at 228.6 62.738 90)
+			(at 222.25 53.848 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7038,7 +7687,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 228.6 60.96 0)
+			(at 222.25 52.07 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7049,7 +7698,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 228.6 60.96 0)
+			(at 222.25 52.07 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7068,7 +7717,7 @@
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "R5")
+					(reference "R3")
 					(unit 1)
 				)
 			)
@@ -7147,85 +7796,6 @@
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
 					(reference "#PWR022")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 33.02 133.35 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "48d699a0-cfc2-45ae-8754-3c6bf90c207f")
-		(property "Reference" "TP12"
-			(at 35.56 135.3819 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "GND"
-			(at 35.56 137.9219 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "TestPoint:TestPoint_THTPad_2.0x2.0mm_Drill1.0mm"
-			(at 27.94 133.35 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 27.94 133.35 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "test point"
-			(at 33.02 133.35 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "6e0a820f-95ef-4c8a-86ea-da05f9d02071")
-		)
-		(instances
-			(project "SmartCruiseControl"
-				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "TP12")
 					(unit 1)
 				)
 			)
@@ -7414,7 +7984,7 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 222.25 77.47 180)
+		(at 210.82 68.58 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7425,7 +7995,7 @@
 		(fields_autoplaced yes)
 		(uuid "4c602c6f-674a-45ca-9cc5-60fe7fb87446")
 		(property "Reference" "#PWR021"
-			(at 222.25 73.66 0)
+			(at 210.82 64.77 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7436,7 +8006,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 222.25 82.55 0)
+			(at 210.82 73.66 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7446,7 +8016,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 222.25 77.47 0)
+			(at 210.82 68.58 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7457,7 +8027,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 222.25 77.47 0)
+			(at 210.82 68.58 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7468,7 +8038,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 222.25 77.47 0)
+			(at 210.82 68.58 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7557,6 +8127,17 @@
 				)
 			)
 		)
+		(property "KiLib_Generator" "package/gullwing"
+			(at 105.41 153.67 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "7"
 			(uuid "7c9e1866-4534-466d-88e2-92f0bf442b08")
 		)
@@ -7591,85 +8172,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+5V")
-		(at 240.03 45.72 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "4f1e607a-3a4b-4975-bab9-2c0df5d57b3d")
-		(property "Reference" "#PWR019"
-			(at 243.84 45.72 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+5V"
-			(at 236.22 45.7199 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 240.03 45.72 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 240.03 45.72 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 240.03 45.72 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "2d80bda3-e62c-4d6c-ac05-63f8a6b291c2")
-		)
-		(instances
-			(project "SmartCruiseControl"
-				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "#PWR019")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R")
 		(at 105.41 49.53 180)
 		(unit 1)
@@ -7692,7 +8194,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "47k"
+		(property "Value" "100k"
 			(at 107.95 50.7999 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7763,7 +8265,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "57e48639-9b70-4eae-8823-37e7acbbc783")
-		(property "Reference" "Q5"
+		(property "Reference" "Q4"
 			(at 158.75 189.23 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7853,7 +8355,7 @@
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "Q5")
+					(reference "Q4")
 					(unit 1)
 				)
 			)
@@ -7960,7 +8462,7 @@
 	)
 	(symbol
 		(lib_id "Connector:Conn_01x02_Pin")
-		(at 247.65 48.26 180)
+		(at 246.38 39.37 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7970,8 +8472,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5c5d11b5-95fb-42a1-888c-54c8f5aa48d3")
-		(property "Reference" "J5"
-			(at 248.92 45.7199 0)
+		(property "Reference" "J1"
+			(at 247.65 36.8299 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7982,7 +8484,7 @@
 			)
 		)
 		(property "Value" "USB 5V"
-			(at 248.92 48.2599 0)
+			(at 247.65 39.3699 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7993,7 +8495,7 @@
 			)
 		)
 		(property "Footprint" "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical"
-			(at 247.65 48.26 0)
+			(at 246.38 39.37 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8004,7 +8506,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 247.65 48.26 0)
+			(at 246.38 39.37 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8015,7 +8517,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x02, script generated"
-			(at 247.65 48.26 0)
+			(at 246.38 39.37 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8034,7 +8536,7 @@
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "J5")
+					(reference "J1")
 					(unit 1)
 				)
 			)
@@ -8042,7 +8544,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 234.95 66.04 270)
+		(at 246.38 57.15 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8050,10 +8552,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "63ff2ab0-652d-4833-a465-758cb483926a")
 		(property "Reference" "#PWR014"
-			(at 228.6 66.04 0)
+			(at 240.03 57.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8064,18 +8565,17 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 231.14 66.0399 90)
+			(at 241.3 57.15 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
 			)
 		)
 		(property "Footprint" ""
-			(at 234.95 66.04 0)
+			(at 246.38 57.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8086,7 +8586,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 234.95 66.04 0)
+			(at 246.38 57.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8097,7 +8597,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 234.95 66.04 0)
+			(at 246.38 57.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8114,85 +8614,6 @@
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
 					(reference "#PWR014")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 69.85 121.92 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "668d50a7-4deb-4937-a6f2-0003943e5f39")
-		(property "Reference" "TP4"
-			(at 72.39 117.3479 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "GND"
-			(at 72.39 119.8879 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "TestPoint:TestPoint_THTPad_2.0x2.0mm_Drill1.0mm"
-			(at 74.93 121.92 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 74.93 121.92 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "test point"
-			(at 69.85 121.92 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "3d6d4173-e08f-47ef-88ba-61701e86a36b")
-		)
-		(instances
-			(project "SmartCruiseControl"
-				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "TP4")
 					(unit 1)
 				)
 			)
@@ -8221,7 +8642,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "47k"
+		(property "Value" "100k"
 			(at 129.54 172.7199 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8370,7 +8791,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "69602d49-044b-4765-a489-fc0639782eea")
-		(property "Reference" "TP8"
+		(property "Reference" "TP11"
 			(at 246.38 140.9699 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8431,7 +8852,7 @@
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "TP8")
+					(reference "TP11")
 					(unit 1)
 				)
 			)
@@ -8527,7 +8948,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6c9364f9-2622-44aa-9d13-7bf0a3378a8a")
-		(property "Reference" "TP14"
+		(property "Reference" "TP12"
 			(at 246.38 151.1299 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8588,7 +9009,7 @@
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "TP14")
+					(reference "TP12")
 					(unit 1)
 				)
 			)
@@ -8667,85 +9088,6 @@
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
 					(reference "#PWR02")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 67.31 133.35 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "7b5bea6a-4859-4c80-9905-8e6b4bfa0e5d")
-		(property "Reference" "TP11"
-			(at 69.85 135.3819 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "3.3V"
-			(at 69.85 137.9219 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "TestPoint:TestPoint_THTPad_D1.5mm_Drill0.7mm"
-			(at 62.23 133.35 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 62.23 133.35 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "test point"
-			(at 67.31 133.35 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "b1aefadd-1ea2-4cee-931e-8ebc1c900e09")
-		)
-		(instances
-			(project "SmartCruiseControl"
-				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "TP11")
 					(unit 1)
 				)
 			)
@@ -8831,7 +9173,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 232.41 97.79 270)
+		(at 232.41 92.71 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8842,7 +9184,7 @@
 		(fields_autoplaced yes)
 		(uuid "81ea5d55-7106-4470-aa20-e53cf5825f8d")
 		(property "Reference" "#PWR07"
-			(at 226.06 97.79 0)
+			(at 226.06 92.71 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8853,7 +9195,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 228.6 97.7899 90)
+			(at 228.6 92.7099 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8864,7 +9206,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 232.41 97.79 0)
+			(at 232.41 92.71 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8875,7 +9217,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 232.41 97.79 0)
+			(at 232.41 92.71 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8886,7 +9228,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 232.41 97.79 0)
+			(at 232.41 92.71 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9084,7 +9426,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "874eebbf-ab5b-4fe8-bb99-8d16378ce5f9")
-		(property "Reference" "R7"
+		(property "Reference" "R5"
 			(at 76.2 48.2599 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9095,7 +9437,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "47k"
+		(property "Value" "100k"
 			(at 76.2 50.7999 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9148,7 +9490,7 @@
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "R7")
+					(reference "R5")
 					(unit 1)
 				)
 			)
@@ -9156,7 +9498,7 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 25.4 123.19 0)
+		(at 25.4 121.92 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9165,9 +9507,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "8c4b21cf-8129-4a48-b83b-8dc04af780d7")
+		(uuid "88fb67a2-d6be-4a95-bf6e-ab0209f4932c")
 		(property "Reference" "TP1"
-			(at 27.94 118.6179 0)
+			(at 27.94 117.3479 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9178,7 +9520,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 27.94 121.1579 0)
+			(at 27.94 119.8879 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9189,7 +9531,7 @@
 			)
 		)
 		(property "Footprint" "TestPoint:TestPoint_THTPad_2.0x2.0mm_Drill1.0mm"
-			(at 30.48 123.19 0)
+			(at 30.48 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9200,7 +9542,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 30.48 123.19 0)
+			(at 30.48 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9211,7 +9553,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 25.4 123.19 0)
+			(at 25.4 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9222,7 +9564,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "6339f959-6d01-420c-9f6f-530c3ff84299")
+			(uuid "f6db93b6-3231-4063-9d0d-596ab74c2fc7")
 		)
 		(instances
 			(project "SmartCruiseControl"
@@ -9323,7 +9665,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8e8be7b2-891e-411e-a68b-d539be60f633")
-		(property "Reference" "TP6"
+		(property "Reference" "TP8"
 			(at 246.38 130.8099 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9384,7 +9726,7 @@
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "TP6")
+					(reference "TP8")
 					(unit 1)
 				)
 			)
@@ -9402,7 +9744,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8ea8fd4a-1c76-4741-9b6e-58bd69c4d6f5")
-		(property "Reference" "Q2"
+		(property "Reference" "Q3"
 			(at 105.41 67.31 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9492,86 +9834,7 @@
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "Q2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 237.49 48.26 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "968d5fbb-7d0e-45e1-964a-2e5958282cf0")
-		(property "Reference" "#PWR020"
-			(at 241.3 48.26 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+5V"
-			(at 233.68 48.2599 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 237.49 48.26 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 237.49 48.26 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 237.49 48.26 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "1cb9a392-a41c-4729-853c-af3f79810bb8")
-		)
-		(instances
-			(project "SmartCruiseControl"
-				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "#PWR020")
+					(reference "Q3")
 					(unit 1)
 				)
 			)
@@ -9579,7 +9842,7 @@
 	)
 	(symbol
 		(lib_id "Connector:Conn_01x05_Pin")
-		(at 248.92 66.04 180)
+		(at 255.27 57.15 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9589,8 +9852,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a3d32ea0-3d8e-446e-a8b8-231a3a421c8b")
-		(property "Reference" "J4"
-			(at 250.19 64.7699 0)
+		(property "Reference" "J3"
+			(at 256.54 55.8799 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9601,7 +9864,7 @@
 			)
 		)
 		(property "Value" "Buttons + led"
-			(at 250.19 67.3099 0)
+			(at 256.54 58.4199 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9612,7 +9875,7 @@
 			)
 		)
 		(property "Footprint" "Connector_JST:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical"
-			(at 248.92 66.04 0)
+			(at 255.27 57.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9623,7 +9886,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 248.92 66.04 0)
+			(at 255.27 57.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9634,7 +9897,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x05, script generated"
-			(at 248.92 66.04 0)
+			(at 255.27 57.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9662,7 +9925,85 @@
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "J4")
+					(reference "J3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 222.25 67.31 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a618946f-485b-4392-9b33-e9bdb0c872e2")
+		(property "Reference" "#PWR020"
+			(at 222.25 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 222.25 72.39 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 222.25 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 222.25 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 222.25 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "29e271b1-d998-4032-993d-76ba1fd308d7")
+		)
+		(instances
+			(project "SmartCruiseControl"
+				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
+					(reference "#PWR020")
 					(unit 1)
 				)
 			)
@@ -9680,7 +10021,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "aa6405b6-9228-476a-bf43-30ef1dc01272")
-		(property "Reference" "TP10"
+		(property "Reference" "TP6"
 			(at 246.38 161.2899 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9741,7 +10082,7 @@
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "TP10")
+					(reference "TP6")
 					(unit 1)
 				)
 			)
@@ -9828,7 +10169,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 222.25 71.12 180)
+		(at 210.82 62.23 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9838,8 +10179,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ae762476-ec85-471f-9a00-38333d8bc3e2")
-		(property "Reference" "R11"
-			(at 224.79 69.8499 0)
+		(property "Reference" "R1"
+			(at 213.36 60.9599 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9849,8 +10190,8 @@
 				(justify right)
 			)
 		)
-		(property "Value" "5k"
-			(at 224.79 72.3899 0)
+		(property "Value" "5.1k"
+			(at 213.36 63.4999 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9861,7 +10202,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
-			(at 224.028 71.12 90)
+			(at 212.598 62.23 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9872,7 +10213,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 222.25 71.12 0)
+			(at 210.82 62.23 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9883,7 +10224,18 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 222.25 71.12 0)
+			(at 210.82 62.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "KiLib_Generator" "resistor/THT"
+			(at 210.82 62.23 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9902,7 +10254,7 @@
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "R11")
+					(reference "R1")
 					(unit 1)
 				)
 			)
@@ -9920,7 +10272,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "aee95e26-71f4-4d2c-af52-ee66458160e8")
-		(property "Reference" "R1"
+		(property "Reference" "R4"
 			(at 134.62 72.39 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9982,7 +10334,7 @@
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "R1")
+					(reference "R4")
 					(unit 1)
 				)
 			)
@@ -10068,6 +10420,99 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:C")
+		(at 222.25 63.5 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b641be2d-2389-4b2f-a466-bffa55a51db7")
+		(property "Reference" "C2"
+			(at 226.06 62.2299 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100nF"
+			(at 226.06 64.7699 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm"
+			(at 223.2152 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 222.25 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 222.25 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "KiLib_Generator" "capacitor/THT/other"
+			(at 222.25 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "c227a054-477b-46d4-acb4-37c573f36255")
+		)
+		(pin "2"
+			(uuid "2707747d-0cad-4c4f-8341-fd9e4363b4d3")
+		)
+		(instances
+			(project "SmartCruiseControl"
+				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
+					(reference "C2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Mechanical:MountingHole_Pad")
 		(at 166.37 31.75 0)
 		(unit 1)
@@ -10079,7 +10524,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b85866e0-d8c0-4fe8-9ad6-a681c9aa6fc6")
-		(property "Reference" "H2"
+		(property "Reference" "H1"
 			(at 168.91 29.2099 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10134,21 +10579,32 @@
 				)
 			)
 		)
+		(property "KiLib_Generator" "mounting_hardware/mounting_hole"
+			(at 166.37 31.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "677891bc-237e-4272-88b8-ca72d062f478")
 		)
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "H2")
+					(reference "H1")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "Connector:Conn_01x04_Pin")
-		(at 247.65 95.25 180)
+		(lib_id "Connector:TestPoint")
+		(at 241.3 116.84 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -10157,31 +10613,31 @@
 		(in_pos_files yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "c1ec009f-b74a-4d26-b958-040a9eeda542")
-		(property "Reference" "J2"
-			(at 248.92 92.7099 0)
+		(uuid "ba902617-b306-4172-b0d3-41626a2cc435")
+		(property "Reference" "TP5"
+			(at 246.38 115.5699 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 		)
-		(property "Value" "CAN bus"
-			(at 248.92 95.2499 0)
+		(property "Value" "CAN_H"
+			(at 246.38 118.1099 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 		)
-		(property "Footprint" "Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical"
-			(at 247.65 95.25 0)
+		(property "Footprint" "TestPoint:TestPoint_THTPad_D1.0mm_Drill0.5mm"
+			(at 241.3 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10192,7 +10648,86 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 247.65 95.25 0)
+			(at 241.3 121.92 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "test point"
+			(at 241.3 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "c41c613b-c334-4ebe-82c2-9853b9a8d1c9")
+		)
+		(instances
+			(project "SmartCruiseControl"
+				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
+					(reference "TP5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:Conn_01x04_Pin")
+		(at 247.65 90.17 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c1ec009f-b74a-4d26-b958-040a9eeda542")
+		(property "Reference" "J2"
+			(at 248.92 87.6299 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "CAN bus"
+			(at 248.92 90.1699 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical"
+			(at 247.65 90.17 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 247.65 90.17 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10203,7 +10738,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x04, script generated"
-			(at 247.65 95.25 0)
+			(at 247.65 90.17 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10229,6 +10764,178 @@
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
 					(reference "J2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Polarized")
+		(at 22.86 83.82 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c236bf71-89b0-48d4-be55-5b5294f9463d")
+		(property "Reference" "C1"
+			(at 26.67 83.4389 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "1uF"
+			(at 26.67 85.9789 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Capacitor_THT:CP_Radial_D5.0mm_P2.00mm"
+			(at 21.8948 80.01 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 22.86 83.82 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Polarized capacitor"
+			(at 22.86 83.82 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "KiLib_Generator" "capacitor/THT/other"
+			(at 22.86 83.82 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "00eaf8b0-b09c-4af7-80c7-c914b8b879ca")
+		)
+		(pin "1"
+			(uuid "0e303192-d697-4a77-8114-d2deaf7f03d3")
+		)
+		(instances
+			(project "SmartCruiseControl"
+				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
+					(reference "C1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 241.3 121.92 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c2af720b-6ce1-4467-baa2-af59b0a0fb5b")
+		(property "Reference" "TP3"
+			(at 246.38 120.6499 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "CAN_L"
+			(at 246.38 123.1899 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "TestPoint:TestPoint_THTPad_D1.0mm_Drill0.5mm"
+			(at 241.3 127 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 241.3 127 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "test point"
+			(at 241.3 121.92 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a2d89be0-2f0f-430d-adb8-b5dd55a3c59a")
+		)
+		(instances
+			(project "SmartCruiseControl"
+				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
+					(reference "TP3")
 					(unit 1)
 				)
 			)
@@ -10314,6 +11021,84 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 22.86 80.01 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ccbc6f59-1265-46a7-aed3-8ef31d81932c")
+		(property "Reference" "#PWR019"
+			(at 22.86 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 22.86 74.93 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 22.86 80.01 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 22.86 80.01 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 22.86 80.01 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "4f0d3dd4-5b8e-4527-920c-8fdc9830f773")
+		)
+		(instances
+			(project "SmartCruiseControl"
+				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
+					(reference "#PWR019")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Mechanical:MountingHole_Pad")
 		(at 166.37 45.72 0)
 		(unit 1)
@@ -10370,6 +11155,17 @@
 			)
 		)
 		(property "Description" "Mounting Hole with connection"
+			(at 166.37 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "KiLib_Generator" "mounting_hardware/mounting_hole"
 			(at 166.37 45.72 0)
 			(hide yes)
 			(show_name no)
@@ -10483,7 +11279,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d8d0d3d4-e73a-475f-bc45-b30bf5eb9ee7")
-		(property "Reference" "Q4"
+		(property "Reference" "Q2"
 			(at 127 189.23 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10573,7 +11369,7 @@
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "Q4")
+					(reference "Q2")
 					(unit 1)
 				)
 			)
@@ -10669,7 +11465,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "da31bfd1-a2de-4cdd-bcd2-f5c179135542")
-		(property "Reference" "R2"
+		(property "Reference" "R8"
 			(at 134.62 96.52 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10731,15 +11527,15 @@
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "R2")
+					(reference "R8")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "Connector:Conn_01x04_Pin")
-		(at 247.65 110.49 180)
+		(lib_id "Connector:TestPoint")
+		(at 69.85 121.92 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -10748,31 +11544,31 @@
 		(in_pos_files yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "dba9ed29-bc23-4237-9d6f-c74d61c1cb57")
-		(property "Reference" "J1"
-			(at 248.92 107.9499 0)
+		(uuid "da69a31d-d7b4-4c29-a8e8-a575497a7d72")
+		(property "Reference" "TP14"
+			(at 72.39 117.3479 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 		)
-		(property "Value" "Accelerator pedal"
-			(at 248.92 110.4899 0)
+		(property "Value" "GND"
+			(at 72.39 119.8879 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 		)
-		(property "Footprint" "Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical"
-			(at 247.65 110.49 0)
+		(property "Footprint" "TestPoint:TestPoint_THTPad_2.0x2.0mm_Drill1.0mm"
+			(at 74.93 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10783,7 +11579,86 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 247.65 110.49 0)
+			(at 74.93 121.92 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "test point"
+			(at 69.85 121.92 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "6d4f01c2-6736-4c06-9c2a-a30199d193f4")
+		)
+		(instances
+			(project "SmartCruiseControl"
+				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
+					(reference "TP14")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:Conn_01x04_Pin")
+		(at 247.65 105.41 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "dba9ed29-bc23-4237-9d6f-c74d61c1cb57")
+		(property "Reference" "J4"
+			(at 248.92 102.8699 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "Accelerator pedal"
+			(at 248.92 105.4099 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical"
+			(at 247.65 105.41 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 247.65 105.41 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10794,7 +11669,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x04, script generated"
-			(at 247.65 110.49 0)
+			(at 247.65 105.41 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10819,7 +11694,7 @@
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "J1")
+					(reference "J4")
 					(unit 1)
 				)
 			)
@@ -10837,7 +11712,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "dbf21e91-6d4d-424f-83d7-55ef637a656c")
-		(property "Reference" "C1"
+		(property "Reference" "C3"
 			(at 149.86 80.3909 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10901,7 +11776,7 @@
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "C1")
+					(reference "C3")
 					(unit 1)
 				)
 			)
@@ -10930,7 +11805,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "47k"
+		(property "Value" "100k"
 			(at 161.29 172.7199 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11001,7 +11876,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ef745be4-1a0f-4172-8367-d151f73aba08")
-		(property "Reference" "Q3"
+		(property "Reference" "Q1"
 			(at 73.66 67.31 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11091,7 +11966,7 @@
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "Q3")
+					(reference "Q1")
 					(unit 1)
 				)
 			)
@@ -11109,7 +11984,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f0209255-7601-4fda-b19c-ae51e9ffeb65")
-		(property "Reference" "Q1"
+		(property "Reference" "Q5"
 			(at 196.85 132.0799 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11179,7 +12054,7 @@
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "Q1")
+					(reference "Q5")
 					(unit 1)
 				)
 			)
@@ -11355,7 +12230,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "fb980354-19d6-4ee0-a2e0-2e314ba63a59")
-		(property "Reference" "R4"
+		(property "Reference" "R7"
 			(at 139.7 127 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11417,7 +12292,7 @@
 		(instances
 			(project "SmartCruiseControl"
 				(path "/76a366b8-fcb4-4623-9f11-71651658708f"
-					(reference "R4")
+					(reference "R7")
 					(unit 1)
 				)
 			)
