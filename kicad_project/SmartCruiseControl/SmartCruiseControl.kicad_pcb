@@ -13190,6 +13190,39 @@
 			(uuid "625f6dd0-1447-4343-bb8e-2f40d5ebc8e2")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/ESP32-3D-model/DEVKIT_V1_ESP32-WROOM-32.step"
+			(offset
+				(xyz -2.25 0 8.5)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -90 -0 -90)
+			)
+		)
+		(model "${KICAD10_3DMODEL_DIR}/Connector_PinSocket_2.54mm.3dshapes/PinSocket_1x15_P2.54mm_Vertical.step"
+			(offset
+				(xyz -17.5 12.5 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -0 -0 -90)
+			)
+		)
+		(model "${KICAD10_3DMODEL_DIR}/Connector_PinSocket_2.54mm.3dshapes/PinSocket_1x15_P2.54mm_Vertical.step"
+			(offset
+				(xyz -17.5 -12.5 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -0 -0 -90)
+			)
+		)
 	)
 	(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 		(layer "F.Cu")
