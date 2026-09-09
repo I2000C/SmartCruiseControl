@@ -44,7 +44,7 @@
 #define ERROR_DEADZONE 0.3f             // Dead zone for error values
 
 /* Indicator LED constants */
-#define INDICATOR_LED_PIN GPIO_NUM_25           // Status LED pin for cruise control state
+#define INDICATOR_LED_PIN GPIO_NUM_27           // Status LED pin for cruise control state
 #define INDICATOR_LED_PWM_CHANNEL 0             // PWM channel for indicator LED
 #define INDICATOR_LED_BUILTIN_PIN GPIO_NUM_2    // Same as status LED but using internal LED
 #define INDICATOR_LED_BUILTIN_PWM_CHANNEL 1     // PWM channel for builtin indicator LED
