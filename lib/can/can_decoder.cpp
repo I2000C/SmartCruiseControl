@@ -28,6 +28,7 @@ bool CanDecoder::decodeFrame(const CanFrame& frame, SharedVehicleState& sharedSt
             ENTER_CRITICAL(sharedState);
             sharedState.state.speed = speedEstimator.getSpeed();
             sharedState.state.speedValid = speedEstimator.isValid();
+            sharedState.state.parkingBrake = (frame.data[0] & (1 << 1)) != 0;
             EXIT_CRITICAL(sharedState);
             break;
         case 0x208:
@@ -78,6 +79,7 @@ bool CanDecoder::decodeFrame(const CanFrame& frame, SharedVehicleState& sharedSt
             // Door open/closed status bits
             ENTER_CRITICAL(sharedState);
             sharedState.state.doorStatus = frame.data[2];
+            sharedState.state.reverseLight = (frame.data[1] & (1 << 3)) != 0;
             EXIT_CRITICAL(sharedState);
             break;
         case 0x608:

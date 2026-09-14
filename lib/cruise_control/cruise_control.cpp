@@ -10,6 +10,11 @@ bool CruiseControl::canEnableCruise(bool isResume, const VehicleState& vehicleSt
         return false;
     }
 
+    // Check parking brake and reverse light
+    if(vehicleState.parkingBrake || vehicleState.reverseLight) {
+        return false;
+    }
+
     // Validate vehicle state before enabling or resuming cruise control
     if(!vehicleState.speedValid) {
         return false;

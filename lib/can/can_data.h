@@ -23,6 +23,9 @@ struct VehicleState {
     uint16_t rpm;         // rpm
     uint32_t rpmLastUpdate; // timestamp of last RPM update
 
+    bool parkingBrake;   // Parking brake status
+    bool reverseLight;   // Reverse light status
+
     float totalDistance;    // km
     float startDistance;    // km
     float tripDistance;     // km
