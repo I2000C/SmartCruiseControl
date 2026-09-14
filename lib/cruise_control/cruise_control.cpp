@@ -124,6 +124,16 @@ void CruiseControl::loop(const VehicleState& vehicleState, const CCButton button
                     cruisePID.setInitialOutput(throttleStartValue / 100.0f, targetSpeed, vehicleState.speed);
                     Throttle::enableOverride(true);
                     currentState = SystemState::STATE_ACTIVE;
+                } else {
+                    if(buttonEvent) {
+                        // If driver is pressing throttle pedal and SET button is pressed, set target speed to current speed
+                        if(button == CCButton::BUTTON_SET) {
+                            // Save throttle pedal value to start PID with it
+                            throttleStartValue = throttlePedal;
+                            targetSpeed = vehicleState.speed;
+                            targetSpeed = constrain(targetSpeed, MIN_SPEED_KMH, MAX_SPEED_KMH);
+                        }
+                    }
                 }
             }
             break;
