@@ -134,15 +134,12 @@ void FuelRangeEstimator::update(float fuelRateLh,
     // Filter instantaneous consumption
     //-----------------------------------------------------
 
-    if(speedKmh > 5.0f) {
-        const float instant = (fuelRateLh / speedKmh) * 100.0f;
-
-        if(instantConsumptionFiltered <= 0.0f) {
-            instantConsumptionFiltered = instant;
-        } else {
-            instantConsumptionFiltered = ALPHA_INSTANT * instant +
-                (1.0f - ALPHA_INSTANT) * instantConsumptionFiltered;
-        }
+    float instantConsumption = speedKmh >= 5.0f ? ((fuelRateLh / speedKmh) * 100.0f) : 0.0f;
+    if(instantConsumptionFiltered <= 0.0f) {
+        instantConsumptionFiltered = instantConsumption;
+    } else {
+        instantConsumptionFiltered = ALPHA_INSTANT * instantConsumption +
+            (1.0f - ALPHA_INSTANT) * instantConsumptionFiltered;
     }
 
     //-----------------------------------------------------

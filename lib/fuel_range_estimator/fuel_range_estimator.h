@@ -18,7 +18,7 @@ class FuelRangeEstimator {
         //---------------------------------------------------------
 
         // Smoothing factor for instantaneous consumption filtering.
-        static constexpr float ALPHA_INSTANT = 0.02f;
+        static constexpr float ALPHA_INSTANT = 0.15f;
 
         // Number of samples stored in the circular history buffer.
         static constexpr size_t HISTORY_SIZE = 500;
