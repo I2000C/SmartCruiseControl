@@ -29,6 +29,8 @@
 #define SPEED_TIMEOUT_MS 3000         // Maximum age of speed data before invalidation
 #define RPM_TIMEOUT_MS 3000           // Maximum age of RPM data before invalidation
 
+#define BRAKE_PEDAL_THRESHOLD 15      // Threshold to detect brake pedal in case hardware detection fails
+
 /* PIDController constants */
 #define PID_KP 0.25f                  // Proportional gain
 #define PID_KI 0.02f                  // Integral gain

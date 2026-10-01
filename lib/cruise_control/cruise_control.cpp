@@ -10,6 +10,11 @@ bool CruiseControl::canEnableCruise(bool isResume, const VehicleState& vehicleSt
         return false;
     }
 
+    // Check brake pedal intensity over CAN bus
+    if(vehicleState.brakeIntensity > BRAKE_PEDAL_THRESHOLD) {
+        return false;
+    }
+
     // Check parking brake and reverse light
     if(vehicleState.parkingBrake || vehicleState.reverseLight) {
         return false;
