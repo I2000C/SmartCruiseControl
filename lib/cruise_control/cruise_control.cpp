@@ -5,8 +5,13 @@
 #include "debug.h"
 
 bool CruiseControl::canEnableCruise(bool isResume, const VehicleState& vehicleState) {
-    // Check brake and clutch
+    // Check software brake and clutch
     if(BrakeClutch::isBrakePressed() || BrakeClutch::isClutchPressed()) {
+        return false;
+    }
+
+    // Check hardware brake and clutch
+    if(Throttle::isOverrideEnabled() && !Throttle::isMosfetRelayActive()) {
         return false;
     }
 

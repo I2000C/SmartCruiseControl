@@ -27,4 +27,10 @@ namespace Throttle {
     // When enabled, the generated throttle value is used instead of the actual pedal value.
     // If brake or clutch are active, this will return false and throttle won't be overrided
     void enableOverride(bool enabled);
+
+    // Returns wether throttle is being overrided or not
+    bool isOverrideEnabled();
+
+    // Returns if mosfet relay is actually enabled and not disabled by other sources
+    bool isMosfetRelayActive();
 }

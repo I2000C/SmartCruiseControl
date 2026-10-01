@@ -20,6 +20,11 @@ bool Throttle::init() {
     setGeneratedValue(0.0f);
 
     analogReadResolution(THROTTLE_PWM_RESOLUTION_BITS);
+
+    #ifdef CHECK_RELAY_MOSFET
+        pinMode(CHECK_RELAY_MOSFET_PIN, INPUT);
+    #endif
+
     return true;
 }
 
@@ -40,7 +45,21 @@ float Throttle::readPedalValue() {
     return apps2Value;
 }
 
+static bool throttleOverride = false;
 void Throttle::enableOverride(bool enabled) {
     // Engage or disengage throttle override relay
     digitalWrite(THROTTLE_RELAY_PIN, enabled);
+    throttleOverride = enabled;
+}
+
+bool Throttle::isOverrideEnabled() {
+    return throttleOverride;
+}
+
+bool Throttle::isMosfetRelayActive() {
+    #ifdef CHECK_RELAY_MOSFET
+        return digitalRead(CHECK_RELAY_MOSFET_PIN);
+    #else
+        return true;
+    #endif
 }

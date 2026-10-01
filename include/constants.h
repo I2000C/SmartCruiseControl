@@ -65,6 +65,9 @@
 #define THROTTLE_PWM_RESOLUTION (1<<THROTTLE_PWM_RESOLUTION_BITS)
 #define THROTTLE_PWM_MAX (THROTTLE_PWM_RESOLUTION-1)
 
+#define CHECK_RELAY_MOSFET                     // Check if relay mosfet is actually enabled using a dedicated pin
+#define CHECK_RELAY_MOSFET_PIN GPIO_NUM_15     // Pin connected to relay mosfet gate
+
 #define THROTTLE_APPS2_PEDAL_PIN GPIO_NUM_34      // Analog input from actual accelerator pedal
 
 #define THROTTLE_RELAY_PIN GPIO_NUM_21            // Relay control pin for throttle override
