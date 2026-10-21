@@ -102,10 +102,11 @@ float PIDController::compute(float setpoint, float processValue) {
 
     // Print debug data
     if(Debug::isEnabled()) {
-        if((millis() - tDebug) >= DEBUG_INFO_PERIOD_MS) {
+        uint32_t time = millis();
+        if((time - tDebug) >= DEBUG_INFO_PERIOD_MS) {
             tDebug += DEBUG_INFO_PERIOD_MS;
-            Debug::printf("sp=%.2f pv=%.2f err=%.2f out=%.2f P=%.2f I=%.2f D=%.2f acc=%.2f\n",
-                setpoint, processValue, error, output*100, pOut, iOut, dOut, getAcceleration());
+            Debug::printf("[%7d] sp=%.2f pv=%.2f err=%.2f out=%.2f P=%.2f I=%.2f D=%.2f acc=%.2f\n",
+                time, setpoint, processValue, error, output*100, pOut, iOut, dOut, getAcceleration());
         }
     }
 

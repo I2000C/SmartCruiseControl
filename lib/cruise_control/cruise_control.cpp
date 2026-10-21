@@ -92,7 +92,8 @@ void CruiseControl::loop(const VehicleState& vehicleState, const CCButton button
 
     bool buttonEvent = hasButtonEvent(button);
     if(buttonEvent) {
-        Debug::printf("Button pressed: %d, state: %d\n", button, currentState);
+        uint32_t time = millis();
+        Debug::printf("[%7d] Button pressed: %d, state: %d\n", time, button, currentState);
     }
 
     float throttlePedal = Throttle::readPedalValue();
