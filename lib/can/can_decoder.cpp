@@ -104,31 +104,40 @@ void CanDecoder::refreshComputedData(SharedVehicleState& sharedState) {
     sharedState.state.speedValid = speedEstimator.isValid();
     EXIT_CRITICAL(sharedState);
 
-    // Update trip timer and duration
+    bool isEngineOn = sharedState.state.rpm > 500 && ((millis() - sharedState.state.rpmLastUpdate) < RPM_TIMEOUT_MS);
+    
+    // Update trip timer and duration if engine is on
     ENTER_CRITICAL(sharedState);
     if(sharedState.state.startTime == 0) {
         sharedState.state.startTime = millis();
+        sharedState.state.tripTime = 0;
     }
-    sharedState.state.tripTime = millis() - sharedState.state.startTime;
+    if(isEngineOn) {
+        sharedState.state.tripTime += REFRESH_COMPUTED_DATA_TIME_MS;
+    }
     EXIT_CRITICAL(sharedState);
 
-    // Update average speed using total distance and trip time
-    float tripDistanceKM = sharedState.state.tripDistance;
-    float tripTimeHours = (sharedState.state.tripTime / 1000.0f) / 3600.0f;
-    ENTER_CRITICAL(sharedState);
-    sharedState.state.averageSpeed = tripTimeHours > 0.0f ? (tripDistanceKM / tripTimeHours) : 0.0f;
-    EXIT_CRITICAL(sharedState);
+    // Update average speed using total distance and trip time if engine is on
+    if(isEngineOn) {
+        float tripDistanceKM = sharedState.state.tripDistance;
+        float tripTimeHours = (sharedState.state.tripTime / 1000.0f) / 3600.0f;
+        ENTER_CRITICAL(sharedState);
+        sharedState.state.averageSpeed = tripTimeHours > 0.0f ? (tripDistanceKM / tripTimeHours) : 0.0f;
+        EXIT_CRITICAL(sharedState);
+    }
 
-    // Update fuel consumption stats and remaining range estimate
-    float fuelRateLh = sharedState.state.fuelRate;
-    float speedKmh = sharedState.state.speedValid ? sharedState.state.speed : 0.0f;
-    float odometerKm = sharedState.state.tripDistance;
-    float fuelRemainigL = sharedState.state.fuelLevel;
-    fuelRangeEstimator.update(fuelRateLh, speedKmh, odometerKm, fuelRemainigL, REFRESH_COMPUTED_DATA_TIME_MS / 1000.0f);
-    ENTER_CRITICAL(sharedState);
-    sharedState.state.instantFuelConsumption = fuelRangeEstimator.getInstantConsumption();
-    sharedState.state.averageFuelConsumption = fuelRangeEstimator.getTripAverageConsumption();
-    sharedState.state.remainingRange = fuelRangeEstimator.getDisplayedRangeKm();
-    sharedState.state.usedFuelLiters = fuelRangeEstimator.getFuelUsedLiters();
-    EXIT_CRITICAL(sharedState);
+    // Update fuel consumption stats and remaining range estimation if engine is on
+    if(isEngineOn) {
+        float fuelRateLh = sharedState.state.fuelRate;
+        float speedKmh = sharedState.state.speedValid ? sharedState.state.speed : 0.0f;
+        float odometerKm = sharedState.state.tripDistance;
+        float fuelRemainingL = sharedState.state.fuelLevel;
+        fuelRangeEstimator.update(fuelRateLh, speedKmh, odometerKm, fuelRemainingL, REFRESH_COMPUTED_DATA_TIME_MS / 1000.0f);
+        ENTER_CRITICAL(sharedState);
+        sharedState.state.instantFuelConsumption = fuelRangeEstimator.getInstantConsumption();
+        sharedState.state.averageFuelConsumption = fuelRangeEstimator.getTripAverageConsumption();
+        sharedState.state.remainingRange = fuelRangeEstimator.getDisplayedRangeKm();
+        sharedState.state.usedFuelLiters = fuelRangeEstimator.getFuelUsedLiters();
+        EXIT_CRITICAL(sharedState);
+    }
 }
