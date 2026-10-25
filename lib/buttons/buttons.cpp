@@ -39,8 +39,7 @@ Button Buttons::getPressedButton() {
     return current;
 }
 
-CCButton Buttons::getPressedCCButton() {
-    Button button = Buttons::getPressedButton();
+CCButton Buttons::parseButton(Button button) {
     switch(button) {
         case Button::BUTTON_REJECT_CALL:
         case Button::BUTTON_MUTE:
@@ -55,4 +54,9 @@ CCButton Buttons::getPressedCCButton() {
         default:
             return CCButton::BUTTON_NONE;
     }
+}
+
+CCButton Buttons::getPressedCCButton() {
+    Button button = Buttons::getPressedButton();
+    return parseButton(button);
 }

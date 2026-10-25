@@ -56,5 +56,8 @@ namespace Buttons {
     Button getPressedButton();
 
     // Map generic button presses to cruise control commands
+    CCButton parseButton(Button button);
+
+    // Get currently pressed cruise control button
     CCButton getPressedCCButton();
 }

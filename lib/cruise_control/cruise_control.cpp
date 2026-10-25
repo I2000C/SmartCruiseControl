@@ -106,14 +106,27 @@ bool CruiseControl::hasButtonEvent(const CCButton button) {
     return ((buttonHoldTicks - BUTTONS_REPEAT_DELAY_TICKS) % BUTTONS_REPEAT_PERIOD_TICKS) == 0;
 }
 
-void CruiseControl::loop(const VehicleState& vehicleState, const CCButton button) {
+void CruiseControl::loop(const VehicleState& vehicleState, const Button rawButton) {
     // Update indicator based on current cruise control state
     IndicatorLed::setState(currentState);
+
+    CCButton button = Buttons::parseButton(rawButton);
 
     bool buttonEvent = hasButtonEvent(button);
     if(buttonEvent) {
         uint32_t time = millis();
         Debug::printf("[%7d] Button pressed: %d, state: %d\n", time, button, currentState);
+
+        // Toggle debug mode if required
+        if(rawButton == Button::BUTTON_MUTE) {
+            if(Debug::isEnabled()) {
+                Debug::println("Debug mode is disabled. ELM327 mode is enabled");
+                Debug::setEnabled(false);
+            } else {
+                Debug::setEnabled(true);
+                Debug::println("Debug mode is enabled. ELM327 mode is disabled");
+            }
+        }
     }
 
     float throttlePedal = Throttle::readPedalValue();

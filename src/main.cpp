@@ -39,7 +39,7 @@ void mainTask(void* args) {
     uint8_t counter = 0;
 
     while(true) {
-        CCButton pressedButton = Buttons::getPressedCCButton();
+        Button pressedButton = Buttons::getPressedButton();
 
         if(++counter >= pidUpdateInterval) {
             counter = 0;
@@ -163,7 +163,8 @@ void setup() {
         fatalErrorLoop(ERROR_CAN_READER_INIT);
     }
 
-    // Wait a second for a button to be pressed to enter debug mode
+    // Wait a second for a button to be pressed to enter button and pedals testing mode
+    Serial.begin(SERIAL_BAUDRATE);
     Debug::setEnabled(false);
     uint32_t buttonDebugTime = 0;
     while(buttonDebugTime < 1000) {
@@ -171,42 +172,24 @@ void setup() {
         if(button == Button::BUTTON_NONE) {
             delay(BUTTONS_QUERY_PERIOD_MS);
             buttonDebugTime += BUTTONS_QUERY_PERIOD_MS;
-        } else {
-            if(button == Button::BUTTON_MUTE) {
-                // Enable button and pedals testing mode
-                Debug::setEnabled(true);
-                Serial.begin(SERIAL_DEBUG_BAUDRATE);
-                Debug::println("Buttons debug mode is enabled");
+        } else if(button == Button::BUTTON_MUTE) {
+            // Enable button and pedals testing mode
+            Debug::setEnabled(true);
+            Debug::println("Buttons debug mode is enabled");
 
-                // Fade indicator LED for 4 seconds
-                for(uint32_t time = 0; time < 4000; time += MAIN_LOOP_PERIOD_MS) {
-                    IndicatorLed::setState(SystemState::STATE_OVERRIDE);
-                    delay(MAIN_LOOP_PERIOD_MS);
-                }
-
-                IndicatorLed::setState(SystemState::STATE_OFF);
-                testButtonsAndPedals();
-            } else {
-                // Enable debug mode
-                Debug::setEnabled(true);
-                Serial.begin(SERIAL_DEBUG_BAUDRATE);
-                Debug::println("Debug mode is enabled");
-    
-                // Fade indicator LED for 2 seconds
-                for(uint32_t time = 0; time < 2000; time += MAIN_LOOP_PERIOD_MS) {
-                    IndicatorLed::setState(SystemState::STATE_OVERRIDE);
-                    delay(MAIN_LOOP_PERIOD_MS);
-                }
-                break;
+            // Fade indicator LED for 4 seconds
+            for(uint32_t time = 0; time < 2000; time += MAIN_LOOP_PERIOD_MS) {
+                IndicatorLed::setState(SystemState::STATE_OVERRIDE);
+                delay(MAIN_LOOP_PERIOD_MS);
             }
+
+            IndicatorLed::setState(SystemState::STATE_OFF);
+            testButtonsAndPedals();
         }
     }
 
-    // Start ELM327 serial task if debug mode is not enabled
-    if(!Debug::isEnabled()) {
-        Serial.begin(SERIAL_ELM327_BAUDRATE);
-        elm327.init();
-    }
+    // Start ELM327 serial task
+    elm327.init();
 
     IndicatorLed::setState(SystemState::STATE_OFF);
 

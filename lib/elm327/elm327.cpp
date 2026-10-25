@@ -1,6 +1,7 @@
 #include "constants.h"
 #include "elm327.h"
 #include "elm327_pids.h"
+#include "debug.h"
 #include <Arduino.h>
 
 // Background task that reads serial commands and keeps vehicle state fresh
@@ -17,6 +18,12 @@ void elm327Task(void* args) {
     uint32_t lastUpdateTime = 0;
 
     while(true) {
+        // If debug mode is active, ignore ELM327 commands
+        if(Debug::isEnabled()) {
+            delay(1000);
+            continue;
+        }
+
         while(Serial.available()) {
             uint32_t now = millis();
             if(now - lastUpdateTime > REFRESH_COMPUTED_DATA_TIME_MS) {
