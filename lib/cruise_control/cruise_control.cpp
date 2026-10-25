@@ -5,40 +5,58 @@
 #include "debug.h"
 
 bool CruiseControl::canEnableCruise(bool isResume, const VehicleState& vehicleState) {
+    uint32_t time = millis();
+
     // Check software brake and clutch
     if(BrakeClutch::isBrakePressed() || BrakeClutch::isClutchPressed()) {
+        Debug::printf("[%7d] Cruise control was disabled due to BRAKE pedal (SOFTWARE)\n", time);
+        return false;
+    }
+    if(BrakeClutch::isClutchPressed()) {
+        Debug::printf("[%7d] Cruise control was disabled due to CLUTCH pedal (SOFTWARE)\n", time);
         return false;
     }
 
     // Check hardware brake and clutch
     if(Throttle::isOverrideEnabled() && !Throttle::isMosfetRelayActive()) {
+        Debug::printf("[%7d] Cruise control was disabled due to BRAKE or CLUTCH pedals (HARDWARE)\n", time);
         return false;
     }
 
     // Check brake pedal intensity over CAN bus
     if(vehicleState.brakeIntensity > BRAKE_PEDAL_THRESHOLD) {
+        Debug::printf("[%7d] Cruise control was disabled due to BRAKE pedal (CAN_BUS)\n", time);
         return false;
     }
 
     // Check parking brake and reverse light
-    if(vehicleState.parkingBrake || vehicleState.reverseLight) {
+    if(vehicleState.parkingBrake) {
+        Debug::printf("[%7d] Cruise control was disabled due to PARKING_BRAKE\n", time);
+        return false;
+    }
+    if(vehicleState.reverseLight) {
+        Debug::printf("[%7d] Cruise control was disabled due to REVERSE_LIGHT\n", time);
         return false;
     }
 
     // Validate vehicle state before enabling or resuming cruise control
     if(!vehicleState.speedValid) {
+        Debug::printf("[%7d] Cruise control was disabled due to invalid speed (CAN_BUS)\n", time);
         return false;
     }
 
     float currentSpeed = vehicleState.speed;
     if(currentSpeed < MIN_CAR_SPEED_KMH || currentSpeed > MAX_CAR_SPEED_KMH) {
+        Debug::printf("[%7d] Cruise control was disabled due to invalid speed (OUT_OF_RANGE)\n", time);
         return false;
     }
     if(isResume) {
         if(targetSpeed < MIN_SPEED_KMH || targetSpeed > MAX_SPEED_KMH) {
+            Debug::printf("[%7d] Cruise control was disabled due to invalid RESUME speed (OUT_OF_RANGE)\n", time);
             return false;
         }
         if(fabsf(currentSpeed - targetSpeed) > MAX_TARGET_SPEED_DIFF) {
+            Debug::printf("[%7d] Cruise control was disabled due to invalid RESUME speed (DIFF_OUT_OF_RANGE)\n", time);
             return false;
         }
     }
@@ -46,10 +64,12 @@ bool CruiseControl::canEnableCruise(bool isResume, const VehicleState& vehicleSt
     // Validate RPM freshness and range
     uint32_t rpmLastUpdate = vehicleState.rpmLastUpdate;
     if(millis() - rpmLastUpdate > RPM_TIMEOUT_MS) {
+        Debug::printf("[%7d] Cruise control was disabled due to invalid rpm (CAN_BUS)\n", time);
         return false;
     }
     uint16_t rpm = vehicleState.rpm;
     if(rpm < MIN_RPM || rpm > MAX_RPM) {
+        Debug::printf("[%7d] Cruise control was disabled due to invalid rpm (OUT_OF_RANGE)\n", time);
         return false;
     }
 
