@@ -8,7 +8,7 @@ bool CruiseControl::canEnableCruise(bool isResume, const VehicleState& vehicleSt
     uint32_t time = millis();
 
     // Check software brake and clutch
-    if(BrakeClutch::isBrakePressed() || BrakeClutch::isClutchPressed()) {
+    if(BrakeClutch::isBrakePressed()) {
         Debug::printf("[%7d] Cruise control was disabled due to BRAKE pedal (SOFTWARE)\n", time);
         return false;
     }
