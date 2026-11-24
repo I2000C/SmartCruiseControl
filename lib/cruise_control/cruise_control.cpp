@@ -4,60 +4,84 @@
 #include "brake_clutch.h"
 #include "debug.h"
 
-bool CruiseControl::canEnableCruise(bool isResume, const VehicleState& vehicleState) {
+void showDisableCauseOnIndicatorLed(uint8_t disableCause) {
+    if(!Debug::isEnabled()) {
+        return;
+    }
+
+    if(disableCause > 12) {
+        return;
+    }
+
+    IndicatorLed::setState(SystemState::STATE_OFF);
+    delay(LED_INITIAL_WAIT_TIME);
+
+    for(int i=3; i>=0; i--) {
+        bool bit = (disableCause >> i) & 1;
+        IndicatorLed::setState(SystemState::STATE_ACTIVE);
+        delay(bit ? LED_LONG_PULSE : LED_SHORT_PULSE);
+        IndicatorLed::setState(SystemState::STATE_OFF);
+
+        if(i > 0) {
+            delay(LED_WAIT_TIME);
+        }
+    }
+}
+
+uint8_t CruiseControl::canEnableCruise(bool isResume, const VehicleState& vehicleState) {
     uint32_t time = millis();
 
     // Check software brake and clutch
     if(BrakeClutch::isBrakePressed()) {
         Debug::printf("[%7d] Cruise control was disabled due to BRAKE pedal (SOFTWARE)\n", time);
-        return false;
+        return BRAKE_PRESSED_SOFTWARE;
     }
     if(BrakeClutch::isClutchPressed()) {
         Debug::printf("[%7d] Cruise control was disabled due to CLUTCH pedal (SOFTWARE)\n", time);
-        return false;
+        return CLUTCH_PRESSED_SOFTWARE;
     }
 
     // Check hardware brake and clutch
     if(Throttle::isOverrideEnabled() && !Throttle::isMosfetRelayActive()) {
         Debug::printf("[%7d] Cruise control was disabled due to BRAKE or CLUTCH pedals (HARDWARE)\n", time);
-        return false;
+        return BRAKE_OR_CLUTCH_PRESSED_HARDWARE;
     }
 
     // Check brake pedal intensity over CAN bus
     if(vehicleState.brakeIntensity > BRAKE_PEDAL_THRESHOLD) {
         Debug::printf("[%7d] Cruise control was disabled due to BRAKE pedal (CAN_BUS)\n", time);
-        return false;
+        return BRAKE_PRESSED_CAN_BUS;
     }
 
     // Check parking brake and reverse light
     if(vehicleState.parkingBrake) {
         Debug::printf("[%7d] Cruise control was disabled due to PARKING_BRAKE\n", time);
-        return false;
+        return PARKING_BRAKE;
     }
     if(vehicleState.reverseLight) {
         Debug::printf("[%7d] Cruise control was disabled due to REVERSE_LIGHT\n", time);
-        return false;
+        return REVERSE_LIGHT;
     }
 
     // Validate vehicle state before enabling or resuming cruise control
     if(!vehicleState.speedValid) {
         Debug::printf("[%7d] Cruise control was disabled due to invalid speed (CAN_BUS)\n", time);
-        return false;
+        return SPEED_INVALID_CAN_BUS;
     }
 
     float currentSpeed = vehicleState.speed;
     if(currentSpeed < MIN_CAR_SPEED_KMH || currentSpeed > MAX_CAR_SPEED_KMH) {
         Debug::printf("[%7d] Cruise control was disabled due to invalid speed (OUT_OF_RANGE)\n", time);
-        return false;
+        return SPEED_OUT_OF_RANGE;
     }
     if(isResume) {
         if(targetSpeed < MIN_SPEED_KMH || targetSpeed > MAX_SPEED_KMH) {
             Debug::printf("[%7d] Cruise control was disabled due to invalid RESUME speed (OUT_OF_RANGE)\n", time);
-            return false;
+            return RESUME_SPEED_OUT_OF_RANGE;
         }
         if(fabsf(currentSpeed - targetSpeed) > MAX_TARGET_SPEED_DIFF) {
             Debug::printf("[%7d] Cruise control was disabled due to invalid RESUME speed (DIFF_OUT_OF_RANGE)\n", time);
-            return false;
+            return RESUME_SPEED_DIFF_OUT_OF_RANGE;
         }
     }
 
@@ -65,15 +89,15 @@ bool CruiseControl::canEnableCruise(bool isResume, const VehicleState& vehicleSt
     uint32_t rpmLastUpdate = vehicleState.rpmLastUpdate;
     if(millis() - rpmLastUpdate > RPM_TIMEOUT_MS) {
         Debug::printf("[%7d] Cruise control was disabled due to invalid rpm (CAN_BUS)\n", time);
-        return false;
+        return RPM_INVALID_CAN_BUS;
     }
     uint16_t rpm = vehicleState.rpm;
     if(rpm < MIN_RPM || rpm > MAX_RPM) {
         Debug::printf("[%7d] Cruise control was disabled due to invalid rpm (OUT_OF_RANGE)\n", time);
-        return false;
+        return RPM_INVALID_OUT_OF_RANGE;
     }
 
-    return true;
+    return NO_DISABLE_CAUSE;
 }
 
 bool CruiseControl::hasButtonEvent(const CCButton button) {
@@ -129,6 +153,7 @@ void CruiseControl::loop(const VehicleState& vehicleState, const Button rawButto
         }
     }
 
+    uint8_t disableCause;
     float throttlePedal = Throttle::readPedalValue();
 
     switch(currentState) {
@@ -136,8 +161,8 @@ void CruiseControl::loop(const VehicleState& vehicleState, const Button rawButto
             // Handle requests to set or resume cruise from OFF state
             if(buttonEvent && (button == CCButton::BUTTON_SET || button == CCButton::BUTTON_RESUME)) {
                 bool isResume = button == CCButton::BUTTON_RESUME;
-                if(canEnableCruise(isResume, vehicleState)) {
-                    
+                disableCause = canEnableCruise(isResume, vehicleState);
+                if(disableCause == NO_DISABLE_CAUSE) {
                     if(!isResume) {
                         targetSpeed = vehicleState.speed;
                     }
@@ -155,17 +180,21 @@ void CruiseControl::loop(const VehicleState& vehicleState, const Button rawButto
                         Throttle::enableOverride(true);
                         currentState = SystemState::STATE_ACTIVE;
                     }
+                } else {
+                    showDisableCauseOnIndicatorLed(disableCause);
                 }
             }
             break;
 
         case SystemState::STATE_OVERRIDE:
             // When the driver presses the pedal, disable cruise and follow the pedal
-            if(!canEnableCruise(false, vehicleState) || button == CCButton::BUTTON_CANCEL) {
+            disableCause = canEnableCruise(false, vehicleState);
+            if(disableCause != NO_DISABLE_CAUSE || button == CCButton::BUTTON_CANCEL) {
                 Throttle::setGeneratedValue(0);
                 Throttle::enableOverride(false);
                 cruisePID.reset();
                 currentState = SystemState::STATE_OFF;
+                showDisableCauseOnIndicatorLed(disableCause);
             } else {
                 if(throttlePedal < THROTTLE_PEDAL_THRESHOLD_DISABLE) {
                     Throttle::setGeneratedValue(throttleStartValue);
@@ -189,11 +218,13 @@ void CruiseControl::loop(const VehicleState& vehicleState, const Button rawButto
 
         case SystemState::STATE_ACTIVE:
             // Maintain target speed with PID while cruise is active
-            if(!canEnableCruise(false, vehicleState) || button == CCButton::BUTTON_CANCEL) {
+            disableCause = canEnableCruise(false, vehicleState);
+            if(disableCause != NO_DISABLE_CAUSE || button == CCButton::BUTTON_CANCEL) {
                 Throttle::setGeneratedValue(0);
                 Throttle::enableOverride(false);
                 cruisePID.reset();
                 currentState = SystemState::STATE_OFF;
+                showDisableCauseOnIndicatorLed(disableCause);
             } else {
                 if(throttlePedal > THROTTLE_PEDAL_THRESHOLD_ENABLE) {
                     Throttle::setGeneratedValue(0);
